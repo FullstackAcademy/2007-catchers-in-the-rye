@@ -1,0 +1,17 @@
+# Ignore all node_modules
+node_modules/*
+
+# Compiled JS
+public/bundle.js
+public/bundle.js.map
+
+# NPM errors
+npm-debug.log
+
+# OSX
+.DS_Store
+
+# Vim stuff
+*.swp
+
+.DS_Store

@@ -1,21 +1,22 @@
 const Sequelize = require("sequelize") //for things like Sequelize.STRING
 //import your db
 const { db } = require('../db')
-const { STRING, BOOLEAN, FLOAT, ENUM, INTEGER } = Sequelize
+const { STRING, BOOLEAN, FLOAT, ENUM } = Sequelize
 //define your model
 const Order = db.define('order', {
     isPaid: {
         type: BOOLEAN,
-        defaultValue: false
+        defaultValue: true
     },
     total: {
         type: FLOAT
     },
     paymentMethod: {
-        type: ENUM('credit', 'cash')
+        type: ENUM('credit', 'cash'),
+        defaultValue: 'credit'
     },
     ccNumber: {
-        type: INTEGER
+        type: STRING
     },
     shippingAddress: {
         type: STRING

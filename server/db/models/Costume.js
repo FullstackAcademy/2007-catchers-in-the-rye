@@ -6,21 +6,28 @@ const { STRING, FLOAT, INTEGER } = Sequelize
 //avg rating would be a calcuation not field
 const Costume = db.define('costume', {
     costumeName: {
-        type: STRING
+        type: STRING,
+        allowNull: false,
+        unique: true,
+        validation: {
+            notEmpty: true
+        }
     },
     price: {
-        type: FLOAT
+        type: FLOAT,
+        allowNull: false,
+        validation: {
+            notEmpty: true
+        }
     },
     quantity: {
-        type: INTEGER
+        type: INTEGER,
+        defaultValue: 10
+    },
+    imageUrl: {
+        type: STRING,
+        defaultValue: '/notFound.png',
     }
-    // averageRating: {
-    //     type: INTEGER,
-    //     validate: {
-    //         max: 5,
-    //         min: 1
-    //     }
-    // }
 })
 //define any class or instance methods
 

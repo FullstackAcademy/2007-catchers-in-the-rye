@@ -3,7 +3,7 @@ const Sequelize = require("sequelize") //for things like Sequelize.STRING
 const { db } = require('../db')
 const { STRING, ENUM } = Sequelize
 //define your model
-// no guest for now. we could do more validation on passwords
+// not including guest for now. we could do more validation on passwords
 const User = db.define('user', {
     userType: {
         type: ENUM('admin', 'shopper'),

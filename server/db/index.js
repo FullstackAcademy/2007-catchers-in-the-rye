@@ -15,8 +15,8 @@ Category.hasMany(Costume)
 User.hasMany(Order)
 Order.belongsTo(User)
 
-Costume.belongsToMany(Order, { through: 'lineItem' })
-Order.belongsToMany(Costume, { through: 'lineItem' })
+Costume.belongsToMany(Order, { through: 'lineitem' })
+Order.belongsToMany(Costume, { through: 'lineitem' })
 
 //export your db and Models (so they all can be imported from a single central location)
 module.exports = { db, User, Costume, Category, Order }

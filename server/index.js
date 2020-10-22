@@ -1,17 +1,12 @@
 const express = require("express")
-//initialize app
 const app = express()
-//require morgan|volleyball, path packages
 const morgan = require('morgan')
-//require db from /db
 const { db, Example, Example2 } = require('./db')
-const routes = require('./routes')
+const api = require('./api')
 const path = require('path')
 
-//use morgan|volleyball
 app.use(morgan('dev'))
 
-//use express.json()
 app.use(express.json())
 app.use(express.urlencoded( {extended: false} ))
 
@@ -19,18 +14,17 @@ app.use(express.urlencoded( {extended: false} ))
 app.use(express.static(path.join(__dirname,'./public')))
 
 //require in your routes and use them on your api path
-app.use('/', routes)
-app.use('/api',routes)
+app.use('/api', api)
 
 //404 handler
-app.use(function(req,res,next){
+app.use(function(req, res, next){
     const err = new Error('Not found')
     err.status = 404
     next(err)
 })
 
 //500 handler
-app.use(function(err,req,res,next){
+app.use(function(err, req, res, next){
     console.error(err,err.stack)
     res.status(err.status || 500)
     res.send('something wrong: ' + err.message)

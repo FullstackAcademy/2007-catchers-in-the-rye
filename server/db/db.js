@@ -5,7 +5,8 @@ const databaseUrl = process.env.DATABASE_URL || 'postgres:localhost:5432/grace-s
 //export your db
 const db = new Sequelize(databaseUrl, {
     logging: false,
-    operatorsAliases: false
+    operatorsAliases: false,
+    operatorsAliases: 0
 })
 
 

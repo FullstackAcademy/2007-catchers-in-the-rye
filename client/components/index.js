@@ -1,9 +1,8 @@
 import React from 'react';
-import { HashRouter as Router, Switch } from 'react-router-dom';
-import { Route, NavLink } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 // import AllCostumes from './AllCostumes'
 // import SingleCostume from './SingleCostume'
-// import AllCategories from './AllCategories'
+import AllCategories from './category/AllCategories'
 // import SingleCategory from './SingleCategory'
 
 const Routes = () => {
@@ -11,11 +10,13 @@ const Routes = () => {
       <Router>
         <div>
             <hr />
+            <p>Buy our costumes!</p>
+            <Route path="/categories" exact component={AllCategories} /> 
             {/* <Route path="/costumes" exact component={AllCostumes} />
             <Route path="/costumes/:id" component={SingleCostume} />
-            <Route path="/categories" exact component={AllCategories} />
-            <Route path="/categories/:id" component={SingleCategory} /> */}
-      </div>
+            <Route path="/categories/:id" component={SingleCategory} /> */
+            }
+        </div>
       </Router>
     );
   }

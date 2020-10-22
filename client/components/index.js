@@ -1,10 +1,10 @@
 import React from 'react';
 import { HashRouter as Router, Switch } from 'react-router-dom';
 import { Route, NavLink } from 'react-router-dom'
-import AllCostumes from './AllCostumes'
-import SingleCostume from './SingleCostume'
-import AllCategories from './AllCategories'
-import SingleCategory from './SingleCategory'
+// import AllCostumes from './AllCostumes'
+// import SingleCostume from './SingleCostume'
+// import AllCategories from './AllCategories'
+// import SingleCategory from './SingleCategory'
 
 const Routes = () => {
     return (

@@ -4,12 +4,12 @@
 	"description": "",
 	"main": "server/index.js",
 	"scripts": {
-		"test": "mocha \"**/*.spec.js\"",
-		"build": "webpack",
-		"build:dev": "webpack -w",
-		"start": "node server/index.js",
-		"start:dev": "npm run build:dev & nodemon --ignore client --ignore server/public",
-		"postinstall": "webpack"
+	    "start-dev": "npm run build-watch & npm run start-server",
+    	"start-server": "nodemon main.js -e html,js,css --ignore public",
+    	"build-watch": "webpack -w",
+    	"test": "NODE_ENV='test' mocha  ./tests --recursive --watch --require babel-polyfill --require babel-register",
+    	"start": "echo 'Running server for production - developers, use npm run start-dev for development' && node main",
+    	"seed": "node seed.js"
 	},
 	"author": "",
 	"license": "ISC",

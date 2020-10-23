@@ -9,19 +9,6 @@ const categories = [
     { title: 'Superheroes' }
 ]
 
-const users = []
-while(users.length < 20) {
-    users.push(
-      {
-        firstName: faker.name.firstName(),
-        lastName: faker.name.lastName(),
-        userEmail: faker.internet.email(),
-        username: faker.internet.userName(),
-        password: faker.internet.password()
-      }
-    )
-}
-
 const costumes = [
     {
         costumeName: 'Cinderella',
@@ -75,8 +62,21 @@ const costumes = [
     },
 ]
 
+const users = []
+while(users.length < 20) {
+    users.push(
+      {
+        firstName: faker.name.firstName(),
+        lastName: faker.name.lastName(),
+        userEmail: faker.internet.email(),
+        username: faker.internet.userName(),
+        password: faker.internet.password()
+      }
+    )
+}
+
 const orders = []
-while(orders.length <= 5){
+while(orders.length < 5){
     orders.push(
         { 
             total: faker.finance.amount(),

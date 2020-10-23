@@ -16,7 +16,7 @@ class AllCategories extends Component {
                         {
                             categories.map(category => {
                                 <li key = {category.id} className = "category">
-                                    <p>{category.type}</p>
+                                    <p>{category.title}</p>
                                 </li>
                             })
                         }

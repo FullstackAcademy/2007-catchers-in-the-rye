@@ -8,6 +8,7 @@ class SingleCategory extends Component {
     }
     render() {
         const { selectedCategory } = this.props;
+        // should be fleshed out more based on api routes to include all costumes belonging to a category
         return (
             <div id = "singleCategory">
                 <h1>Single Category</h1>

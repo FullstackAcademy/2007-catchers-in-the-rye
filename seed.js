@@ -5,7 +5,8 @@ const categories = [
     { title: 'Disney'},
     { title: 'Adult' },
     { title: 'Villains' },
-    { title: 'Inanimate objects' }
+    { title: 'Inanimate objects' },
+    { title: 'Superheroes' }
 ]
 
 const users = []
@@ -28,8 +29,18 @@ const costumes = [
         categoryId: 1
     },
     {
+        costumeName: 'Elsa',
+        price: 159.99,
+        categoryId: 1
+    },
+    {
         costumeName: 'Hot nun',
         price: 99.99,
+        categoryId: 2
+    },
+    {
+        costumeName: 'Hot nurse',
+        price: 89.99,
         categoryId: 2
     },
     {
@@ -38,9 +49,29 @@ const costumes = [
         categoryId: 3
     },
     {
+        costumeName: 'Devil',
+        price: 6.66,
+        categoryId: 3
+    },
+    {
         costumeName: 'Stapler',
         price: 1.99,
         categoryId: 4
+    },
+    {
+        costumeName: 'Pickle Moustache Guy',
+        price: .79,
+        categoryId: 4
+    },
+    {
+        costumeName: 'Wonder Woman',
+        price: 109.99,
+        categoryId: 5
+    },
+    {
+        costumeName: 'Captain America',
+        price: 99.99,
+        categoryId: 5
     },
 ]
 

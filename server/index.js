@@ -18,6 +18,10 @@ app.use(express.urlencoded( {extended: false} ))
 //use express.static() MAKE SURE THE PATH TO YOUR PUBLIC FOLDER IS RIGHT!
 app.use(express.static(path.join(__dirname,'./public')))
 
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'))
+  })
+
 //require in your routes and use them on your api path
 app.use('/', routes)
 app.use('/api',routes)

@@ -3,9 +3,8 @@ const { Order } = require('../db')
 
 router.get('/', async(req, res, next) => {
     try {
-        const orders = await Order.findAll(
+        const orders = await Order.findAll()
         res.send(orders)
-        )
     } catch(err) {
         next(err)
     }

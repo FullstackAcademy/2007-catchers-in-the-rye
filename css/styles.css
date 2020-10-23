@@ -63,13 +63,3 @@
   background-color: #4CAF50;
   color: white;
 }
-
-.homeHeroImg {
-	background-image: url('https://catcher-in-the-rye.s3.us-east-1.amazonaws.com/amir-seilsepour-qnlwlWd3nBs-unsplash.jpg?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEFUaCXVzLWVhc3QtMiJHMEUCIHXHLCVVsRBtSKrb03em7wvtHF0bUyh1UTWQNcjFsW7JAiEAxDaQVOcoisIMnVMDd9S7pagcLSH1JOtME3TskzyIK%2FEqzQIInv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw0NDUwNTQ1ODc2NjUiDOxOysrYd%2BiIkvSl3SqhAvPW1g6pTDdQPGwrjukGr0PW11pMsF5QRCimKEo3CgKxL3PjLApX52yt7HDI1%2Bn%2BqnE2FC4gV99dXk08F0ok4Sbrg9V0mMlzF%2FjhfXEAsezS53Ll2m3hXNW6uhS7v47yXWXeIBZ6YMNtoo5UxlfbFUH9E%2B2XCFUyzxhes6BxA0GfdZ%2FB3A9vs8Vtm94T8wRiutaXCWc85lWIeuS9TAM5KCj4g8nr%2B6RX5QbfxuDH4ey8ieUAzaUJRGnvSeu7nAhP1Vs7uBrMsvAOmcLTX9U4tX5OZ9EvNzy6ffSJXjzqZ2Nw4TF9rCbv1pF3HqNU0mPg7cHGsrZpv8nZhsl1yk7O7c%2BgSYxrvNhoFdvCJYCwC3J86vhu%2Brmnz1YBYp7VlWMAGBMworjJ%2FAU6sALrE8Th0i8eO1VqYrr%2BVRbb8YL1f0pJvTzj2YHBHLl3qfc1Ka2ti9uNFfCwdK2i9TQene11rKU8pSaF5gqyAE9BOXPx3z7ImJh3%2FO1x3D2NurdWLbAchMo%2FsHXcEoE4MCXmFGTDMZHuHo5UmVHoAA8nCblnnZUr6csUeAmMNPlpIOLLDHFQDOuKYJ4Tk6VD7QrZipZSk4abP6kt3W80a491PlJcGw8FTngurPAYfbFpUtSWDcIzZLI2IGLyOPvU2fXB%2FhTEUQK1%2BZazJE8C%2F5rvdN9sD7tyfdN8tHy10KWxLP7aJ%2BWJJCsh9q3gP4rYPN2Lyzzuxe2vmQgFvOpqgMi1DZZgkfamDHK0PYDrPilK4bqsuF6zpENXrRM57eQHJePPhEzjUtPAtjlGipLey2%2BV&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201023T154057Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAWPH2SCMISQQ2PML2%2F20201023%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=e06c1503f2e9a2970b7cdffbf6bef13f84c056ceaececa386331ce510d4a9d96');
-	width: 100vw;
-  height: 100vh;
-  /*calc(100vh - 75px);*/
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat
-}

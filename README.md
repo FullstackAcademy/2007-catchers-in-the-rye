@@ -1,4 +1,7 @@
 # 2007-catchers-in-the-rye
+Repo:
+https://github.com/FullstackAcademy/2007-catchers-in-the-rye/tree/dev
+
 For Database Schema:
 https://docs.google.com/drawings/d/1lOoTJ9Bon_eHZ4tQ66ExLc6Xjr1zuBni7O9Rjcuy60g/edit?usp=sharing
 

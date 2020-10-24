@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux"
-import "../../css/styles.css"
+import "../../server/public/css/styles.css"
 
 
 export default class NavBar extends Component {

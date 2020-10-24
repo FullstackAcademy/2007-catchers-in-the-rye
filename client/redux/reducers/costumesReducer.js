@@ -5,7 +5,7 @@ const COSTUMES = [];
 export default function costumesReducer(state = COSTUMES, action) {
   switch (action.type) {
     case LOAD_COSTUMES:
-      return [...state, ...action.payload.costumes];
+      return [...state, ...action.payload];
     default:
       return state;
   }

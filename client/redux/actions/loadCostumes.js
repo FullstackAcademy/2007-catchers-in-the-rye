@@ -1,5 +1,7 @@
 import { LOAD_COSTUMES } from "../actionStrings";
 import axios from "axios";
+
+
 function loadCostumes(costumes) {
   return {
     type: LOAD_COSTUMES,
@@ -7,7 +9,7 @@ function loadCostumes(costumes) {
   };
 }
 
-export const loadCostumesDispatch = () => {
+export default function loadCostumesDispatch() {
   return async (dispatch) => {
     return await axios
       .get("/api/costumes")

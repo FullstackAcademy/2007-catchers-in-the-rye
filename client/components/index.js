@@ -6,18 +6,21 @@ import CreateCostume from './costume/CreateCostume'
 import NavBar from './NavBar'
 import Home from './Home'
 
+
+
 const Routes = () => {
   return (
     <Router>
       <div>
-        {/* <Route render={() => <NavBar />} /> */}
+        <Route render={() => <NavBar />} />
         <main>
-        <Switch>
-          <Route path="/home" exact component={Home} />
-          <Route path="/categories" exact component={AllCategories} />
-          <Route path="/categories/:id" component={SingleCategory} />
-          <Route path= "costumes/add" exact component={CreateCostume} />
-        </Switch>
+          <Switch>
+            <Route path="/home" exact component={Home} />
+            <Route path="/" exact component={Home} />
+            <Route path="/categories" exact component={AllCategories} />
+            <Route path="/categories/:id" component={SingleCategory} />
+            <Route path="costumes/add" exact component={CreateCostume} />
+          </Switch>
         </main>
       </div>
     </Router>

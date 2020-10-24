@@ -6,14 +6,18 @@ class Login extends Component {
         super()
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            message: ''
         }
         this.setUsername = this.setUsername.bind(this)
         this.setPassword = this.setPassword.bind(this)
+        this.onLoginSubmit = this.onLoginSubmit.bind(this)
     }
     async onLoginSubmit(ev){
         ev.preventDefault()
-        await axios.post(this.state)
+        const response = (await axios.post('/api/login',this.state)).data
+        console.log(response)
+        // this.setState({message: response})
     }
     setUsername(ev){
       console.log(ev.target.value)
@@ -27,7 +31,7 @@ class Login extends Component {
         return (
             <>
               <h1>Login</h1>
-              <form onSubmit={onLoginSubmit}>
+              <form onSubmit={this.onLoginSubmit}>
                 <label>
                   Username
                   <input
@@ -41,7 +45,8 @@ class Login extends Component {
                     type="password"
                   />
                 </label>
-                <button>Login</button>
+                <button type='submit'>Login</button>
+                <p>{this.state.message}</p>
               </form>
             </>
           );

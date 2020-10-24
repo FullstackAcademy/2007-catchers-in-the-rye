@@ -4,7 +4,7 @@ import { fetchCategories } from '../../redux/categories'
 
 class AllCategories extends Component {
     componentDidMount() {
-        //this.props.fetchCategories();
+        this.props.fetchCategories();
     }
     render() {
         const { categories } = this.props;

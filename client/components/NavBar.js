@@ -13,19 +13,8 @@ export default class NavBar extends Component {
           <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-start">
               <a class="navbar-item">Grace Shockers</a>
-              <a class="navbar-item">Home</a>
-              <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">Categories</a>
-                <div class="navbar-dropdown">
-                  <a class="navbar-item">Men</a>
-                  <a class="navbar-item">Women</a>
-                  <a class="navbar-item">Kids</a>
-                  <a class="navbar-item">Scary</a>
-                  <a class="navbar-item">Funny</a>
-                  <a class="navbar-item">Animals</a>
-                  <a class="navbar-item">Movies</a>
-                </div>
-              </div>
+              <Link to="/home" class="navbar-item">Home</Link>
+              <Link to="/categories" class="navbar-item">Category View</Link>
             </div>
 
             <div class="navbar-end">
@@ -42,17 +31,15 @@ export default class NavBar extends Component {
 
         <div>
           <div class="sidenav">
-            <a href="#">All Costumes</a>
-            <a href="#">Men</a>
-            <a href="#">Women</a>
-            <a href="#">Kids</a>
-            <a href="#">Scary</a>
-            <a href="#">Funny</a>
-            <a href="#">Animals</a>
-            <a href="#">Movies</a>
+            <Link to="/home">All Costumes</Link>
+            <Link to="/categories/disney">Disney</Link>
+            <Link to="/categories/adult">Adult</Link>
+            <Link to="/categories/villians">Villians</Link>
+            <Link to="/categories/inanimateobjects">Inanimate Objects</Link>
+            <Link to="/categories/superheroes">Superheroes</Link>
           </div>
         </div>
-      </div>
+      </div >
     )
   }
 }

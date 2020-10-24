@@ -39,9 +39,6 @@ router.post('/', async(req,res,next)=> {
                     }
                 }
                 else res.sendStatus(404)
-                // .send({
-                //     message: 'Account not found - check username or password.'
-                // })
             } catch(err){     
                 next(err)   
     //             console.error(err);

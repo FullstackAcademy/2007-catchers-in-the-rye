@@ -15,18 +15,20 @@ class Login extends Component {
     }
     async onLoginSubmit(ev){
         ev.preventDefault()
-        const response = (await axios.post('/api/login',this.state)).data
-        console.log(response)
-        // if(!response)
-        // this.setState({message: response})
+        try{
+          const response = (await axios.post('/api/login',this.state)).data
+          console.log(response)
+          this.setState({ message: response.message })
+        }catch(err){
+          console.error(err)
+          this.setState({message: 'Log in failed - check username and/or password'})
+        }
     }
     setUsername(ev){
-      console.log(ev.target.value)
       this.setState({username: ev.target.value})
     }
     setPassword(ev){
-        console.log(ev.target.value)
-        this.setState({password: ev.target.value})
+      this.setState({password: ev.target.value})
     }
     // componentDidMount(){
 

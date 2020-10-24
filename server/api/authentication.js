@@ -17,14 +17,15 @@ router.post('/', async(req,res,next)=> {
                         password
                     }, include: [Session],
                 })
-
                 if (loginUser) {
                     if(loginUser.session) {
                     // res.cookie('sid', foundUser.session.uuid, {
                     //     maxAge: A_WEEK_IN_SECONDS,
                     //     path: '/',
                     //   });
-                        res.sendStatus(200)
+                        res.status(200).send({
+                            message: `Welcome back, ${username}!`
+                        })
                     } else {
                         const createdSession = await Session.create({})
                         await createdSession.setUser(loginUser)
@@ -32,18 +33,24 @@ router.post('/', async(req,res,next)=> {
                         //     maxAge: A_WEEK_IN_SECONDS,
                         //     path: '/'
                         // })
-                        res.sendStatus(201)
+                        res.status(201).send({
+                            message: `Welcome, ${username}!`
+                        })
                     }
                 }
-            } catch(err){ 
-                
-                console.error(err);
-      res.status(500).send({
-        message: err.message,
-      });
+                else res.sendStatus(404)
+                // .send({
+                //     message: 'Account not found - check username or password.'
+                // })
+            } catch(err){     
+                next(err)   
+    //             console.error(err);
+    //             res.status(500).send({
+    //             message: err.message,
+    //   });
     }
-            }
-        })
+    }
+})
 
 
 module.exports = router

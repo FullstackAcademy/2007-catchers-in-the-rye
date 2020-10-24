@@ -17,6 +17,7 @@ class Login extends Component {
         ev.preventDefault()
         const response = (await axios.post('/api/login',this.state)).data
         console.log(response)
+        // if(!response)
         // this.setState({message: response})
     }
     setUsername(ev){
@@ -27,6 +28,9 @@ class Login extends Component {
         console.log(ev.target.value)
         this.setState({password: ev.target.value})
     }
+    // componentDidMount(){
+
+    // }
     render(){
         return (
             <>

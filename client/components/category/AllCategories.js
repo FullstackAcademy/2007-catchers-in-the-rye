@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { fetchCategories } from '../../redux/categories'
 
 class AllCategories extends Component {
-    componentDidMount() {
-        //this.props.fetchCategories();
+    componentDidMount () {
+        this.props.fetchCategories();
+        console.log(this.props.categories)
     }
     render() {
         const { categories } = this.props;
@@ -15,9 +16,11 @@ class AllCategories extends Component {
                     <ul id = "categoryList">
                         {
                             categories.map(category => {
+                                return(
                                 <li key = {category.id} className = "category">
                                     <p>{category.title}</p>
                                 </li>
+                                )
                             })
                         }
                     </ul>

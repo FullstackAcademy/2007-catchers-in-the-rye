@@ -10,13 +10,15 @@ const Routes = () => {
   return (
     <Router>
       <div>
-        <Route render={() => <NavBar />} />
+        {/* <Route render={() => <NavBar />} /> */}
+        <main>
         <Switch>
-          <Route exact path="/home" exact component={Home} />
+          <Route path="/home" exact component={Home} />
           <Route path="/categories" exact component={AllCategories} />
           <Route path="/categories/:id" component={SingleCategory} />
           <Route path= "costumes/add" exact component={CreateCostume} />
         </Switch>
+        </main>
       </div>
     </Router>
   );

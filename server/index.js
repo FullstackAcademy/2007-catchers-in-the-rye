@@ -16,6 +16,10 @@ app.use(express.static(path.join(__dirname, '/public')))
 //require in your routes and use them on your api path
 app.use('/api', api)
 
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'))
+  })
+
 //404 handler
 app.use(function(req, res, next){
     const err = new Error('Not found')

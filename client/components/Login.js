@@ -30,9 +30,6 @@ class Login extends Component {
     setPassword(ev){
       this.setState({password: ev.target.value})
     }
-    // componentDidMount(){
-
-    // }
     render(){
         return (
             <>

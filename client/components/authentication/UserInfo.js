@@ -22,12 +22,13 @@ class UserInfo extends Component {
     async submit(ev){
         ev.preventDefault()
         try{
-          const response = (await axios.post('/api/login',this.state)).data
-          console.log(response)
+          if(this.props.type === 'login') const response = (await axios.post('/api/login',this.state)).data
+          else if(this.props.type === 'create') const response = (await axios.post('/api/user/create',this.state)).data
           this.setState({ message: response.message })
         }catch(err){
           console.error(err)
-          this.setState({message: 'Log in failed - check username and/or password'})
+          if(this.props.type === 'login') this.setState({message: 'Log in failed - check username and/or password'})
+          else if(this.props.type === 'create') this.setState({message: 'Could not create account'})
         }
     }
     render(){

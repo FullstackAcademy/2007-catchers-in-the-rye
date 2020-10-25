@@ -1,1 +1,14 @@
-//ability to create new user. this would need hash and bcrypt to encrypt the password
+import React, { Component } from 'react'
+import axios from 'axios'
+import UserInfo from './UserInfo'
+
+function CreateUser () {
+  return(
+    <>
+      <h1>Create Account</h1>
+      <UserInfo type='create'></UserInfo>
+    </>
+  )
+}
+
+export default CreateUser

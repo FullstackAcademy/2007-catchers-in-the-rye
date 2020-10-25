@@ -5,7 +5,7 @@ import SingleCategory from './category/SingleCategory'
 import CreateCostume from './costume/CreateCostume'
 import NavBar from './NavBar'
 import Home from './Home'
-import Login from './Login'
+import Login from './authentication/Login'
 
 const Routes = () => {
   return (

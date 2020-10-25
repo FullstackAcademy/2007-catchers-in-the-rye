@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import UserInfo from './UserInfo'
 
 class Login extends Component {
     constructor(){
@@ -31,29 +32,35 @@ class Login extends Component {
       this.setState({password: ev.target.value})
     }
     render(){
-        return (
-            <>
-              <h1>Login</h1>
-              <form onSubmit={this.onLoginSubmit}>
-                <label>
-                  Username
-                  <input
-                    onChange={this.setUsername}
-                  />
-                </label>
-                <label>
-                  Password
-                  <input
-                    onChange={this.setPassword}
-                    type="password"
-                  />
-                </label>
-                <button type='submit'>Login</button>
-                <p>{this.state.message}</p>
-              </form>
-            </>
-          );
-        }
+        // return (
+        //     <>
+        //       <h1>Login</h1>
+        //       <form onSubmit={this.onLoginSubmit}>
+        //         <label>
+        //           Username
+        //           <input
+        //             onChange={this.setUsername}
+        //           />
+        //         </label>
+        //         <label>
+        //           Password
+        //           <input
+        //             onChange={this.setPassword}
+        //             type="password"
+        //           />
+        //         </label>
+        //         <button type='submit'>Login</button>
+        //         <p>{this.state.message}</p>
+        //       </form>
+        //     </>
+        //   );
+        return(
+          <>
+            <UserInfo onLoginSubmit={this.onLoginSubmit} setUsername={this.setUsername} setPassword={this.setPassword}></UserInfo>
+            <p>{this.state.message}</p>
+          </>
+        )
+      }
 }
 
 

@@ -655,7 +655,6 @@ const _fetchCategories = categories => {
 const fetchCategories = () => {
   return async dispatch => {
     const response = await axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/categories');
-    console.log(response.data);
     dispatch(_fetchCategories(response.data));
   };
 };

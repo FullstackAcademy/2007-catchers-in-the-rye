@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { connect } from "react-redux"
 import AllCategories from './category/AllCategories'
 import SingleCategory from './category/SingleCategory'
 import CreateCostume from './costume/CreateCostume'
@@ -11,26 +12,32 @@ import loadCostumesDispatch from '../redux/actions/loadCostumes';
 
 
 
-const Routes = () => {
-  return (
-    <Router>
-      <div>
-        <Route render={() => <NavBar />} />
-        <div className="container">
-          <main>
-            <Switch>
-              <Route path="/home" exact component={Home} />
-              <Route path="/categories" exact component={AllCategories} />
-              <Route path="/categories/:id" component={SingleCategory} />
-              <Route path="/costumes/:name" component={SingleCostume} />
-              <Route path="costumes/add" exact component={CreateCostume} />
-              <Route path="/login" exact component={Login} />
-            </Switch>
-          </main>
+class Routes extends Component {
+  async componentDidMount() {
+    await this.props.dispatchLoadCostumes()
+  }
+
+  render() {
+    return (
+      <Router>
+        <div>
+          <Route render={() => <NavBar />} />
+          <div className="container">
+            <main>
+              <Switch>
+                <Route path="/home" exact component={Home} />
+                <Route path="/categories" exact component={AllCategories} />
+                <Route path="/categories/:id" component={SingleCategory} />
+                <Route path="/costumes/:name" component={SingleCostume} />
+                <Route path="costumes/add" exact component={CreateCostume} />
+                <Route path="/login" exact component={Login} />
+              </Switch>
+            </main>
+          </div>
         </div>
-      </div>
-    </Router>
-  );
+      </Router>
+    );
+  }
 }
 
 
@@ -43,7 +50,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    dispatchLoadCostumes: () => (loadCostumesDispatch())
+    dispatchLoadCostumes: () => dispatch(loadCostumesDispatch())
   }
 }
 

@@ -3,10 +3,17 @@ import { connect } from "react-redux"
 import loadCostumesDispatch from "../../redux/actions/loadCostumes"
 
 class SingleCostume extends Component {
-  findCostumeName() {
-    let thisCostume = {
 
-    }
+  render(){
+    const currentCostumeName = this.props.match.params.name
+    const currentCostume = this.props.costumes.filter((costume) =>
+      costume.name === thisCostumeName)
+    return (
+      <div clasName = "container">
+
+        )
+      </div>
+    )
   }
 }
 

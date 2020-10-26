@@ -12,7 +12,7 @@ export default class NavBar extends Component {
         <nav class="navbar is-link" role="navigation" aria-label="main navigation">
           <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-start">
-              <a class="navbar-item">Grace Shockers</a>
+              <a>Grace Shockers</a>
               <Link to="/home" class="navbar-item">Home</Link>
               <Link to="/categories" class="navbar-item">Category View</Link>
             </div>
@@ -30,7 +30,7 @@ export default class NavBar extends Component {
         </nav>
 
         <div>
-          <div class="sidenav">
+          <div className="sidenav">
             <Link to="/home">All Costumes</Link>
             <Link to="/categories/disney">Disney</Link>
             <Link to="/categories/adult">Adult</Link>

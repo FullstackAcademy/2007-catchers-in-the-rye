@@ -6,12 +6,14 @@
   "scripts": {
     "start-dev": "npm run build-watch & npm run start-server",
     "start-server": "nodemon main.js -e html,js,css --ignore public",
-    "build-watch": "webpack -w",
+    "build-watch": "webpack -w --mode=\"development\"",
     "test": "NODE_ENV='test' mocha  ./tests --recursive --watch --require @babel/polyfill --require @babel/register",
-    "start": "echo 'Running server for production - developers, use npm run start-dev for development' && node main",
+    "start": "echo 'Running server for production - developers, use npm run start-dev for development' && node seed && node server",
     "seed": "node seed.js",
     "css-build": "node-sass --omit-source-map-url sass/mystyles.scss css/mystyles.css",
-    "css-watch": "npm run css-build -- --watch"
+    "css-watch": "npm run css-build -- --watch",
+    "build": "webpack --mode=\"production\"",
+    "postinstall": "webpack"
   },
   "author": "",
   "license": "ISC",

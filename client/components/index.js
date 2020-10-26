@@ -7,11 +7,13 @@ import NavBar from './NavBar'
 import Home from './Home'
 import Login from './authentication/Login'
 
+
+
 const Routes = () => {
   return (
     <Router>
       <div>
-        {/* <Route render={() => <NavBar />} /> */}
+        <Route render={() => <NavBar />} />
         <main>
         <Switch>
           <Route path="/home" exact component={Home} />

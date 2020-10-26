@@ -1,6 +1,6 @@
 .sidenav {
   height: 100%;
-  width: 160px;
+  width: 170px;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -62,4 +62,9 @@
 .topnav a.active {
   background-color: #4CAF50;
   color: white;
+}
+
+.container {
+  padding-left: 170px;
+  padding-top: 50px;
 }

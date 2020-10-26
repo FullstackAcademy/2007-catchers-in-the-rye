@@ -30,17 +30,17 @@ class AllCategories extends Component {
 };
 
 const mapStateToProps = (state) => {
-    return {
-        categories: state.categories
-    }
+  return {
+    categories: state.categories
+  }
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        fetchCategories: () => {
-            dispatch(fetchCategories())
-        }
+  return {
+    fetchCategories: () => {
+      dispatch(fetchCategories())
     }
+  }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllCategories)

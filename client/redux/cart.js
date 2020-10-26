@@ -17,7 +17,7 @@ const fetchCart = () => {
     }
 }
 
-export default function cartReducer(state = [], action) {
+export default function cartReducer(state = {}, action) {
     switch(action.type) {
         case FETCH_CART:
             return action.cart

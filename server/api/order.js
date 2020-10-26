@@ -9,11 +9,11 @@ router.get('/', async(req, res, next) => {
         next(err)
     }
 })
-
+//currently doing findOne since user should only have one order that is not paid
 router.get('/userCart', async(req,res,next) => {
     try{
         const userId = req.user.id
-        const userCart = await Order.findAll({
+        const userCart = await Order.findOne({
             where: {
                 userId,
                 isPaid: false,

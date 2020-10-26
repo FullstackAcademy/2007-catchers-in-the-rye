@@ -3,9 +3,8 @@ const { User, Session } = require('../db')
 
 const A_WEEK_IN_SECONDS = 60 * 60 * 24 * 7;
 
-router.post('/', async(req,res,next)=> {
+router.post('/login', async(req,res,next)=> {
     const { username, password } = req.body
-    console.log(req)
     if (typeof username !== 'string' || typeof password !== 'string') {
         res.status(400).send({
             message: 'Username and password must both be strings.',
@@ -42,19 +41,22 @@ router.post('/', async(req,res,next)=> {
                     }
                 }
                 else res.sendStatus(404)
-            } catch(err){     
+            } 
+            catch(err){     
                 next(err)   
-    //             console.error(err);
-    //             res.status(500).send({
-    //             message: err.message,
-    //   });
-    }
+        }
     }
 })
 
-// router.get('/whoami',(req,res,next) => {
-
-// })
+router.get('/whoami',(req,res,next) => {
+    if(req.user) {
+        res.send({
+            username: req.user.username,
+        })
+    } else {
+        res.sendStatus(401)
+    }
+})
 
 
 module.exports = router

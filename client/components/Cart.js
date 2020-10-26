@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import { fetchCart } from '../../redux/cart'
+import { fetchCart } from '../redux/cart'
 
 class Cart extends Component{
     constructor(){
@@ -10,9 +10,14 @@ class Cart extends Component{
         this.props.fetchCart()
     }
     render(){
-        console.log(this.state.cart)
+        // console.log('state',this.props.cart[0])
+        const cart = this.props.cart[0]
+        console.log(cart)
         return(
-
+            <>
+                <h1>Hello</h1>
+                {/* <h1>{cart.user.firstName}'s Cart</h1> */}
+            </>
         )
     }
 }
@@ -25,7 +30,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchCart: (userId) => dispatch(fetchCart(userId))
+        fetchCart: () => dispatch(fetchCart())
     }
 }
 

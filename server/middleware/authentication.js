@@ -1,3 +1,4 @@
+const chalk = require('chalk')
 const { Session, User } = require('../db')
 
 const authMiddleware = async(req, res, next) => {
@@ -8,7 +9,10 @@ const authMiddleware = async(req, res, next) => {
         req.user = null
     } 
     else {
-        const session = await Session.findByPk(sid, {
+        const session = await Session.findOne({
+            where: {
+                uuid: sid
+            },
             include: [User]
         })
         if(!session) {

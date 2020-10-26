@@ -23,8 +23,9 @@ export default class UserInfo extends Component {
         ev.preventDefault()
         try{
           let response
-          if(this.props.type === 'login') response = (await axios.post('/api/login',this.state)).data
-          else if(this.props.type === 'create') response = (await axios.post('/api/user/create',this.state)).data
+          if(this.props.type === 'login') response = (await axios.post('/api/auth/login',this.state)).data
+          // below route when we have option to create user
+          // else if(this.props.type === 'create') response = (await axios.post('/api/user/create',this.state)).data
           this.setState({ message: response.message })
         }catch(err){
           console.error(err)

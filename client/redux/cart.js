@@ -1,5 +1,4 @@
 import axios from 'axios'
-import categoryReducer from './categories'
 
 const FETCH_CART = 'FETCH_CART'
 
@@ -10,9 +9,10 @@ const _fetchCart = (cart) => {
     }
 }
 
-const fetchCart = (userId) => {
+const fetchCart = () => {
     return async(dispatch) => {
-        const data = axios.get(`/api/${userId}/cart`)
+        const { data } = await axios.get(`/api/orders/userCart`)
+        console.log(data)
         dispatch(_fetchCart(data))
     }
 }

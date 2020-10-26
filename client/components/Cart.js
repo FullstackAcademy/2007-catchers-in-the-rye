@@ -12,11 +12,11 @@ class Cart extends Component{
     render(){
         // console.log('state',this.props.cart[0])
         const cart = this.props.cart
-        console.log(cart)
+        console.log(cart.costumes)
         return(
             <>
                 <h1>Hello</h1>
-                <h1>{cart.user.firstName}'s Cart</h1>
+                {/* <h1>{cart.user.firstName}'s Cart</h1> */}
             </>
         )
     }

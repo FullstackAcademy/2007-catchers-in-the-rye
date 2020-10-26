@@ -3,30 +3,30 @@ import { connect } from 'react-redux';
 import { fetchCategories } from '../../redux/categories'
 
 class AllCategories extends Component {
-  componentDidMount() {
-    //this.props.fetchCategories();
-  }
-  render() {
-    const { categories } = this.props;
-    return (
-      <div class="container">
-        <div id="allCategories">
-          <h1>All Categories</h1>
-          {
-            <ul id="categoryList">
-              {
-                categories.map(category => {
-                  <li key={category.id} className="category">
-                    <p>{category.title}</p>
-                  </li>
-                })
-              }
-            </ul>
-          }
-        </div>
-      </div>
-    )
-  }
+    componentDidMount () {
+        this.props.fetchCategories();
+    }
+    render() {
+        const { categories } = this.props;
+        return (
+            <div id = "allCategories">
+                <h1>All Categories</h1>
+                {
+                    <ul id = "categoryList">
+                        {
+                            categories.map(category => {
+                                return(
+                                <li key = {category.id} className = "category">
+                                    <p>{category.title}</p>
+                                </li>
+                                )
+                            })
+                        }
+                    </ul>
+                }
+            </div>
+        )
+    }
 };
 
 const mapStateToProps = (state) => {

@@ -5,6 +5,7 @@ import SingleCategory from './category/SingleCategory'
 import CreateCostume from './costume/CreateCostume'
 import NavBar from './NavBar'
 import Home from './Home'
+import Login from './authentication/Login'
 
 
 
@@ -14,13 +15,13 @@ const Routes = () => {
       <div>
         <Route render={() => <NavBar />} />
         <main>
-          <Switch>
-            <Route path="/home" exact component={Home} />
-            <Route path="/" exact component={Home} />
-            <Route path="/categories" exact component={AllCategories} />
-            <Route path="/categories/:id" component={SingleCategory} />
-            <Route path="costumes/add" exact component={CreateCostume} />
-          </Switch>
+        <Switch>
+          <Route path="/home" exact component={Home} />
+          <Route path="/categories" exact component={AllCategories} />
+          <Route path="/categories/:id" component={SingleCategory} />
+          <Route path= "costumes/add" exact component={CreateCostume} />
+          <Route path= "/login" exact component={Login} />
+        </Switch>
         </main>
       </div>
     </Router>

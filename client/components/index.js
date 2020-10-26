@@ -17,6 +17,7 @@ const Routes = () => {
         <div className="container">
         <main>
         <Switch>
+        <Route path="/" exact component={Home} />
           <Route path="/home" exact component={Home} />
           <Route path="/categories" exact component={AllCategories} />
           <Route path="/categories/:id" component={SingleCategory} />

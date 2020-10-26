@@ -9,7 +9,7 @@ class Home extends Component {
   }
 
   render() {
-    console.log(this.props.costumes)
+    //console.log(this.props.costumes)
     return (
         <div className="costumesList">
           <h5>Costume List</h5>

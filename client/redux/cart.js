@@ -13,7 +13,7 @@ const fetchCart = () => {
     return async(dispatch) => {
         let response = (await axios.get('/api/orders/userCart')).data
         response.costumes = response.costumes.map(costume => {
-            return { costumeName: costume.costumeName, id: costume.id, imageUrl: costume.imageUrl, price: costume.price }
+            return { costumeName: costume.costumeName, id: costume.id, imageUrl: costume.imageUrl, price: costume.price, quantity: costume.lineitem.quantity}
         })
         dispatch(_fetchCart(response))
     }

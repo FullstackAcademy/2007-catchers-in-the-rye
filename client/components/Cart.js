@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { fetchCart } from '../redux/cart'
-//Checkout / keep shopping buttons need functionality
+//all buttons need functionality: Checkout / keep shopping, remove from cart, + / - buttons 
 class Cart extends Component{
     constructor(){
         super()
@@ -9,21 +9,18 @@ class Cart extends Component{
     componentDidMount(){
         this.props.fetchCart()
     }
-    calcQuantityAndTotal(costumes){
-        let cartQuantities = {}
+    calcTotal(costumes){
         let cartTotal = 0
         for(let costume of costumes){
-            if(cartQuantities[costume.costumeName]) cartQuantities[costume.costumeName]++
-            else cartQuantities[costume.costumeName] = 1
             cartTotal += costume.price
         }
-        return [cartQuantities, cartTotal]
+        return cartTotal
     }
     render(){
         const cart = this.props.cart
+        console.log(cart)
         const costumes = cart.costumes ? cart.costumes : []
-        const cartQuantities = costumes.length? this.calcQuantityAndTotal(costumes)[0] : {}
-        const cartTotal = costumes.length ? this.calcQuantityAndTotal(costumes)[1] : 0
+        const cartTotal = costumes.length ? this.calcTotal(costumes) : 0
         return(
             <div>
                 <h1>Your cart</h1>
@@ -31,13 +28,17 @@ class Cart extends Component{
                     return(
                         <div key={costume.id}>
                             <p><strong>Costume:</strong>{costume.costumeName}</p>
-                            <p><strong>Price:</strong>{costume.price}</p>
-                            <p><strong>Quantity:</strong>{cartQuantities[costume.costumeName]}</p>
+                            <p><strong>Price per unit:</strong>{costume.price}</p>
+                            <p><strong>Quantity:</strong>{costume.quantity}</p>
+                            <button>+</button>
+                            <button>-</button>
+                            <p><strong>Sub Total:</strong>{ costume.price * costume.quantity }</p>
+                            <button>Remove from Cart</button>
                             <img src={costume.imageUrl}></img>
                         </div>
                     )
                 })}
-                <h2>Cart Total: {cartTotal}</h2>
+                <h2><strong>Cart Total: </strong>{cartTotal}</h2>
                 <button>Check Out Now</button>
                 <button>Keep Shopping</button>
             </div>

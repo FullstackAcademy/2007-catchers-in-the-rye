@@ -11,19 +11,19 @@ class Home extends Component {
   render() {
     console.log(this.props.costumes)
     return (
-        <div className="costumesList">
-          <h5>Costume List</h5>
-          <div>
-            {this.props.costumes.map((costume) => {
-              return (
-                <li key={costume.id} className="costumes" >
-                  <div>{costume.costumeName}</div>
-                  <div>{costume.price}</div>
-                </li>
-              )
-            })}
-          </div>
+      <div className="costumesList">
+        <h5>Costume List</h5>
+        <div>
+          {this.props.costumes.map((costume) => {
+            return (
+              <li key={costume.id} className="costumes" >
+                <Link to={`/costumes/${costume.name}`}>{costume.costumeName}</Link>
+                <div>{costume.price}</div>
+              </li>
+            )
+          })}
         </div>
+      </div>
     )
   }
 }

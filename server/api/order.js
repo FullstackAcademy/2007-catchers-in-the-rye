@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Order } = require('../db')
+const { Order, Costume } = require('../db')
 
 router.get('/', async(req, res, next) => {
     try {
@@ -12,11 +12,13 @@ router.get('/', async(req, res, next) => {
 
 router.get('/:id', async(req, res, next) => {
     try {
-        const order = await Order.findByPk(req.params.id)
+        const order = await Order.findByPk(req.params.id, { include: [Costume] })
         res.send(order)
     } catch(err) {
         next(err)
     }
 })
+
+
 
 module.exports = router

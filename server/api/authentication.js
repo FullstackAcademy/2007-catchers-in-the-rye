@@ -5,6 +5,7 @@ const A_WEEK_IN_SECONDS = 60 * 60 * 24 * 7;
 
 router.post('/', async(req,res,next)=> {
     const { username, password } = req.body
+    console.log(req)
     if (typeof username !== 'string' || typeof password !== 'string') {
         res.status(400).send({
             message: 'Username and password must both be strings.',

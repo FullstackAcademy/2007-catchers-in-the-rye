@@ -22,8 +22,9 @@ class UserInfo extends Component {
     async submit(ev){
         ev.preventDefault()
         try{
-          if(this.props.type === 'login') const response = (await axios.post('/api/login',this.state)).data
-          else if(this.props.type === 'create') const response = (await axios.post('/api/user/create',this.state)).data
+          let response
+          if(this.props.type === 'login') response = (await axios.post('/api/login',this.state)).data
+          else if(this.props.type === 'create') response = (await axios.post('/api/user/create',this.state)).data
           this.setState({ message: response.message })
         }catch(err){
           console.error(err)

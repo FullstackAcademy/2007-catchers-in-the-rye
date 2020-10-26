@@ -14,6 +14,7 @@ const Routes = () => {
     <Router>
       <div>
         <Route render={() => <NavBar />} />
+        <div className="container">
         <main>
         <Switch>
           <Route path="/home" exact component={Home} />
@@ -23,6 +24,7 @@ const Routes = () => {
           <Route path= "/login" exact component={Login} />
         </Switch>
         </main>
+        </div>
       </div>
     </Router>
   );

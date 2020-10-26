@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { fetchCart } from '../redux/cart'
-
+//Checkout / keep shopping buttons need functionality
 class Cart extends Component{
     constructor(){
         super()
@@ -9,15 +9,38 @@ class Cart extends Component{
     componentDidMount(){
         this.props.fetchCart()
     }
+    calcQuantityAndTotal(costumes){
+        let cartQuantities = {}
+        let cartTotal = 0
+        for(let costume of costumes){
+            if(cartQuantities[costume.costumeName]) cartQuantities[costume.costumeName]++
+            else cartQuantities[costume.costumeName] = 1
+            cartTotal += costume.price
+        }
+        return [cartQuantities, cartTotal]
+    }
     render(){
-        // console.log('state',this.props.cart[0])
         const cart = this.props.cart
-        console.log(cart.costumes)
+        const costumes = cart.costumes ? cart.costumes : []
+        const cartQuantities = costumes.length? this.calcQuantityAndTotal(costumes)[0] : {}
+        const cartTotal = costumes.length ? this.calcQuantityAndTotal(costumes)[1] : 0
         return(
-            <>
-                <h1>Hello</h1>
-                {/* <h1>{cart.user.firstName}'s Cart</h1> */}
-            </>
+            <div>
+                <h1>Your cart</h1>
+                {costumes.map(costume => {
+                    return(
+                        <div key={costume.id}>
+                            <p><strong>Costume:</strong>{costume.costumeName}</p>
+                            <p><strong>Price:</strong>{costume.price}</p>
+                            <p><strong>Quantity:</strong>{cartQuantities[costume.costumeName]}</p>
+                            <img src={costume.imageUrl}></img>
+                        </div>
+                    )
+                })}
+                <h2>Cart Total: {cartTotal}</h2>
+                <button>Check Out Now</button>
+                <button>Keep Shopping</button>
+            </div>
         )
     }
 }

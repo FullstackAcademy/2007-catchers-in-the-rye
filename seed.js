@@ -100,14 +100,13 @@ const seed = async() => {
         const costumesCreated = await Costume.findAll()
         // assign a user to each order
         for(let i = 0; i < ordersCreated.length; i++){
-            let rand = Math.floor(Math.random() * usersCreated.length)
+            let rand = Math.floor(Math.random() * (usersCreated.length-1))
             await ordersCreated[i].setUser(usersCreated[rand])
         }
-
         // assign costumes to each order
         for(let i = 0; i < ordersCreated.length; i++){
-            let rand = Math.floor(Math.random() * costumesCreated.length)
-            await ordersCreated[i].setCostumes(costumesCreated[rand])
+            let rand = Math.floor(Math.random() * (costumesCreated.length-1))
+            await ordersCreated[i].setCostumes([costumesCreated[rand], costumesCreated[rand+1]])
         }
 
         await db.close()

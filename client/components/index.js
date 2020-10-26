@@ -14,7 +14,8 @@ const Routes = () => {
   return (
     <Router>
       <div>
-        {/* <Route render={() => <NavBar />} /> */}
+        <Route render={() => <NavBar />} />
+        <div className="container">
         <main>
         <Switch>
           <Route path="/home" exact component={Home} />
@@ -25,6 +26,7 @@ const Routes = () => {
           <Route path= "/create" exact component={CreateUser} />
         </Switch>
         </main>
+        </div>
       </div>
     </Router>
   );

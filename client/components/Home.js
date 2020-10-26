@@ -11,7 +11,6 @@ class Home extends Component {
   render() {
     console.log(this.props.costumes)
     return (
-      <div className="container">
         <div className="costumesList">
           <h5>Costume List</h5>
           <div>
@@ -25,8 +24,6 @@ class Home extends Component {
             })}
           </div>
         </div>
-      </div>
-
     )
   }
 }

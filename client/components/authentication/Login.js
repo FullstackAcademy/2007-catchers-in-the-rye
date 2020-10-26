@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import UserInfo from './UserInfo'
 
-function Login () {
+export default function Login () {
   return(
     <>
       <h1>Login</h1>
@@ -10,5 +10,3 @@ function Login () {
     </>
   )
 }
-
-export default Login

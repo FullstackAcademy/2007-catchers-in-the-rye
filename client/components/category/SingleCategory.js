@@ -1,68 +1,54 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { selectCategory } from '../../redux/singleCategory'
+//import { fetchCategories } from '../../redux/categories'
 
 class SingleCategory extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      category: {}
-    }
+  constructor(){
+    super()
   }
   async componentDidMount(){
-    const category = this.props.categories.find(c => c.title = this.props.match.params.title)
-    //console.log(category)
-    //const selectedCategory = await this.props.selectCategory(category.id)
-    // console.log(selectedCategory)
-    if (category){
-      this.setState({category})
-    }
+    //this.props.fetchCategories()
+    const category = this.props.categories.find(c => c.title.toLowerCase() === this.props.match.params.title.toLowerCase())
+    await this.props.selectCategory(category.id)
   }
   render() {
-    const {category} = this.state
-    const costumesInCategory = this.state.category.costumes
-    console.log(typeof(costumesInCategory))
+    const {selectedCategory} = this.props
+    const costumesInCategory = selectedCategory.costumes
     return (
       <div id="singleCategory">
-        <h1>{category.title}</h1>
-          {/* <ul>
+        <h1>{selectedCategory.title}</h1>
+          <ul>
             {costumesInCategory.map(costume => {
               return (
-                <li>
-                  <div>
-                    {costume.imageUrl}
-                    {costume.costumeName}
-                  </div>
+                <li key={costume.id}>
+                    <div>{costume.costumeName}</div>
+                    <div>{costume.imageUrl}</div>
                 </li>
               )
             })}
-          </ul> */}
+          </ul>
       </div>
     )
   }
 };
 
-// const mapStateToProps = (state, ownProps) => {
-//   const selectedId = ownProps.match.params.id * 1
-//   const selectedCategory = state.selectedCategory
-//   return {
-//     selectedId,
-//     selectedCategory
-//   }
-// };
-
 const mapStateToProps = (state) => {
   return {
-    categories: state.categories
+    categories: state.categories,
+    selectedCategory: state.selectedCategory
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    selectCategory: id => {
+    selectCategory: (id) => {
       dispatch(selectCategory(id))
-    }
-  }
+    },
+    // fetchCategories: () => {
+    //   dispatch(fetchCategories())
+    // }
+  } 
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleCategory)

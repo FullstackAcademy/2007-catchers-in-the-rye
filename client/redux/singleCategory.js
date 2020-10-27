@@ -15,9 +15,8 @@ export const selectCategory = (id) => {
             const {data} = await axios.get(`/api/categories/${id}`);
             dispatch(_selectCategory(data));
         } catch(err){
-            dispatch(selectCategory(err))
+            console.log(err)
         }
-      
     };
 };
 

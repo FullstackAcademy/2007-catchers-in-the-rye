@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { User } = require('../db')
+const { User, Order, Costume } = require('../db')
 
 router.get('/', async(req, res, next) => {
     try{
@@ -18,5 +18,6 @@ router.get('/:id', async(req, res, next) => {
         next(err)
     }
 })
+
 
 module.exports = router

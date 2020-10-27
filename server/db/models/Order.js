@@ -6,7 +6,7 @@ const { STRING, BOOLEAN, FLOAT, ENUM } = Sequelize
 const Order = db.define('order', {
     isPaid: {
         type: BOOLEAN,
-        defaultValue: true
+        defaultValue: false
     },
     total: {
         type: FLOAT

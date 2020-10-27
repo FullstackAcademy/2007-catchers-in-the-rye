@@ -22,12 +22,15 @@ export default class UserInfo extends Component {
     async submit(ev){
         ev.preventDefault()
         try{
-          const response = (await axios.post('/api/login',this.state)).data
-          console.log(response)
+          let response
+          if(this.props.type === 'login') response = (await axios.post('/api/auth/login',this.state)).data
+          // can use below code when we have option to create user
+          // else if(this.props.type === 'create') response = (await axios.post('/api/user/create',this.state)).data
           this.setState({ message: response.message })
         }catch(err){
           console.error(err)
-          this.setState({message: 'Log in failed - check username and/or password'})
+          if(this.props.type === 'login') this.setState({message: 'Log in failed - check username and/or password'})
+          else if(this.props.type === 'create') this.setState({message: 'Could not create account'})
         }
     }
     render(){

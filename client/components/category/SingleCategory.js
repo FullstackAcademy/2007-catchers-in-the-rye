@@ -4,9 +4,6 @@ import { selectCategory } from '../../redux/singleCategory'
 //import { fetchCategories } from '../../redux/categories'
 
 class SingleCategory extends Component {
-  constructor(){
-    super()
-  }
   async componentDidMount(){
     //this.props.fetchCategories()
     const category = this.props.categories.find(c => c.title.toLowerCase() === this.props.match.params.title.toLowerCase())
@@ -15,6 +12,7 @@ class SingleCategory extends Component {
   render() {
     const {selectedCategory} = this.props
     const costumesInCategory = selectedCategory.costumes
+    if (costumesInCategory){
     return (
       <div id="singleCategory">
         <h1>{selectedCategory.title}</h1>
@@ -30,6 +28,7 @@ class SingleCategory extends Component {
           </ul>
       </div>
     )
+    } else { return null }
   }
 };
 

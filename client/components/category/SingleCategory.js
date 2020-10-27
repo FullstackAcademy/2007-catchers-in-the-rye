@@ -11,22 +11,32 @@ class SingleCategory extends Component {
   }
   async componentDidMount(){
     const category = this.props.categories.find(c => c.title = this.props.match.params.title)
-    console.log(category)
-    //const selectedCategory = await this.props.selectCategory(this.props.match.params.id)
-    //const selectedCategory = await this.props.selectCategory(category.id*1)
-    //console.log(selectedCategory)
+    //console.log(category)
+    //const selectedCategory = await this.props.selectCategory(category.id)
+    // console.log(selectedCategory)
     if (category){
       this.setState({category})
     }
   }
   render() {
-    // should be fleshed out more based on api routes to include all costumes belonging to a category
-    //console.log(this.state.category)
-    const costumesInCategory = this.state.category.costumes 
-    console.log(costumesInCategory)
+    const {category} = this.state
+    const costumesInCategory = this.state.category.costumes
+    console.log(typeof(costumesInCategory))
     return (
       <div id="singleCategory">
-        <h1>Single Category</h1>
+        <h1>{category.title}</h1>
+          {/* <ul>
+            {costumesInCategory.map(costume => {
+              return (
+                <li>
+                  <div>
+                    {costume.imageUrl}
+                    {costume.costumeName}
+                  </div>
+                </li>
+              )
+            })}
+          </ul> */}
       </div>
     )
   }

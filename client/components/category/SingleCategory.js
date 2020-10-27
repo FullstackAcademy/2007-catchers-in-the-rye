@@ -3,12 +3,27 @@ import { connect } from 'react-redux';
 import { selectCategory } from '../../redux/singleCategory'
 
 class SingleCategory extends Component {
-  componentDidMount() {
-    //this.props.selectCategory(this.props.selectedId)
+  constructor(props){
+    super(props)
+    this.state = {
+      category: {}
+    }
+  }
+  async componentDidMount(){
+    const category = this.props.categories.find(c => c.title = this.props.match.params.title)
+    console.log(category)
+    //const selectedCategory = await this.props.selectCategory(this.props.match.params.id)
+    //const selectedCategory = await this.props.selectCategory(category.id*1)
+    //console.log(selectedCategory)
+    if (category){
+      this.setState({category})
+    }
   }
   render() {
-    const { selectedCategory } = this.props;
     // should be fleshed out more based on api routes to include all costumes belonging to a category
+    //console.log(this.state.category)
+    const costumesInCategory = this.state.category.costumes 
+    console.log(costumesInCategory)
     return (
       <div id="singleCategory">
         <h1>Single Category</h1>
@@ -17,21 +32,27 @@ class SingleCategory extends Component {
   }
 };
 
-const mapStateToProps = (state, ownProps) => {
-  const selectedId = ownProps.match.params.id * 1
-  const selectedCategory = state.selectedCategory
+// const mapStateToProps = (state, ownProps) => {
+//   const selectedId = ownProps.match.params.id * 1
+//   const selectedCategory = state.selectedCategory
+//   return {
+//     selectedId,
+//     selectedCategory
+//   }
+// };
+
+const mapStateToProps = (state) => {
   return {
-    selectedId,
-    selectedCategory
+    categories: state.categories
   }
-};
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    selectCategory: (id) => {
+    selectCategory: id => {
       dispatch(selectCategory(id))
     }
   }
-};
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleCategory)

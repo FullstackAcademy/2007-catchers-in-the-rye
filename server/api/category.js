@@ -3,7 +3,9 @@ const { Category, Costume } = require('../db')
 
 router.get('/', async(req, res, next) => {
     try {
-        const categories = await Category.findAll()
+        const categories = await Category.findAll({
+            include: Costume
+        })
         res.send(categories)
     } catch(err) {
         next(err)

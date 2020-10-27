@@ -11,8 +11,13 @@ const _selectCategory = (category) => {
 
 export const selectCategory = (id) => {
     return async(dispatch) => {
-      const response = await axios.get(`/api/categories/${id}`);
-      dispatch(_selectCategory(response.data));
+        try{
+            const {data} = await axios.get(`/api/categories/${id}`);
+            dispatch(_selectCategory(data));
+        } catch(err){
+            dispatch(selectCategory(err))
+        }
+      
     };
 };
 

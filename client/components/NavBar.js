@@ -9,20 +9,20 @@ export default class NavBar extends Component {
 
     return (
       <div >
-        <nav class="navbar is-link" role="navigation" aria-label="main navigation">
-          <div id="navbarBasicExample" class="navbar-menu">
-            <div class="navbar-start">
-              <a>Grace Shockers</a>
-              <Link to="/home" class="navbar-item">Home</Link>
-              <Link to="/categories" class="navbar-item">Category View</Link>
+        <nav className="navbar is-link" role="navigation" aria-label="main navigation">
+          <div id="navbarBasicExample" className="navbar-menu">
+            <div className="navbar-start">
+              <a className="navbar-item">Grace Shockers</a>
+              <Link to="/home" className="navbar-item">Home</Link>
+              <Link to="/categories" className="navbar-item">Category View</Link>
             </div>
 
-            <div class="navbar-end">
-              <div class="navbar-item">
-                <div class="buttons">
-                  <a class="button is-black">
+            <div className="navbar-end">
+              <div className="navbar-item">
+                <div className="buttons">
+                  <a className="button is-black">
                     <strong>Register</strong></a>
-                  <a class="button is-black">Log in</a>
+                  <a className="button is-black">Log in</a>
                 </div>
               </div>
             </div>

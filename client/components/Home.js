@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux"
-import loadCostumesDispatch from "../redux/actions/loadCostumes"
+import { loadCostumesDispatch } from "../redux/actions/"
 
 class Home extends Component {
-  async componentDidMount() {
-    await this.props.dispatchLoadCostumes();
-  }
 
   render() {
     console.log(this.props.costumes)
@@ -17,7 +14,7 @@ class Home extends Component {
           {this.props.costumes.map((costume) => {
             return (
               <li key={costume.id} className="costumes" >
-                <Link to={`/costumes/${costume.name}`}>{costume.costumeName}</Link>
+                <Link to={`/costumes/${costume.costumeName}/${costume.id}`}>{costume.costumeName}</Link>
                 <div>{costume.price}</div>
               </li>
             )

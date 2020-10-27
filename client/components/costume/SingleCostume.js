@@ -1,17 +1,27 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import loadCostumesDispatch from "../../redux/actions/loadCostumes"
+import { loadSCostumeDispatch } from "../../redux/actions"
 
 class SingleCostume extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      id: this.props.match.params.id
+    }
+  }
 
-  render(){
-    const currentCostumeName = this.props.match.params.name
-    const currentCostume = this.props.costumes.filter((costume) =>
-      costume.name === thisCostumeName)
+  async componentDidMount() {
+    await this.props.dispatchLoadSCostume(this.state.id)
+  }
+
+  render() {
+
+
+    const thisCostume = this.props.sCostume
     return (
-      <div clasName = "container">
-
-        )
+      <div className="container">
+        <div>{thisCostume.costumeName}</div>
+        <div>{thisCostume.price}</div>
       </div>
     )
   }
@@ -21,15 +31,14 @@ class SingleCostume extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    costumes: state.costumes
+    sCostume: state.sCostume
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  {
-    return {
-      dispatchLoadCostumes: () => dispatch(loadStudentsDispatch())
-    }
+
+  return {
+    dispatchLoadSCostume: (id) => dispatch(loadSCostumeDispatch(id))
   }
 }
 

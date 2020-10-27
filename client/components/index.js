@@ -26,9 +26,10 @@ class Routes extends Component {
             <main>
               <Switch>
                 <Route path="/home" exact component={Home} />
+                <Route path="/" exact component={Home} />
                 <Route path="/categories" exact component={AllCategories} />
                 <Route path="/categories/:id" component={SingleCategory} />
-                <Route path="/costumes/:name" component={SingleCostume} />
+                <Route path="/costumes/:name/:id" component={SingleCostume} />
                 <Route path="costumes/add" exact component={CreateCostume} />
                 <Route path="/login" exact component={Login} />
               </Switch>

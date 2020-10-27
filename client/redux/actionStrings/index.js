@@ -1,1 +1,2 @@
 export const LOAD_COSTUMES = "LOAD_COSTUMES"
+export const LOAD_SCOSTUME = "LOAD_SCOSTUME"

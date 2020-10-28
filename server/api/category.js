@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Category } = require('../db')
+const { Category, Costume } = require('../db')
 
 router.get('/', async(req, res, next) => {
     try {
@@ -12,7 +12,9 @@ router.get('/', async(req, res, next) => {
 
 router.get('/:id', async(req, res, next) => {
     try {
-        const category = await Category.findByPk(req.params.id)
+        const category = await Category.findByPk(req.params.id, {
+            include: Costume
+        })
         res.send(category)
     } catch(err){
         next(err)

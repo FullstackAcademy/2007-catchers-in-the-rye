@@ -6,6 +6,7 @@ const { Costume } = require('./models/Costume')
 const { Category } = require('./models/Category')
 const { Order } = require('./models/Order')
 const { Session } = require('./models/Session')
+const { Lineitem } = require('./models/Lineitem')
 
 const { NamedModulesPlugin } = require('webpack')
 
@@ -16,11 +17,11 @@ Category.hasMany(Costume)
 User.hasMany(Order)
 Order.belongsTo(User)
 
-Costume.belongsToMany(Order, { through: 'lineitem' })
-Order.belongsToMany(Costume, { through: 'lineitem' })
+Costume.belongsToMany(Order, { through: Lineitem })
+Order.belongsToMany(Costume, { through: Lineitem })
 
 User.hasOne(Session)
 Session.belongsTo(User)
 
 //export your db and Models (so they all can be imported from a single central location)
-module.exports = { db, User, Costume, Category, Order, Session }
+module.exports = { db, User, Costume, Category, Order, Session, Lineitem }

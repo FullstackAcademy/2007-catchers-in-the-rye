@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCategories } from '../../redux/categories'
+import { Link } from "react-router-dom";
 
 class AllCategories extends Component {
     componentDidMount () {
@@ -17,7 +18,7 @@ class AllCategories extends Component {
                             categories.map(category => {
                                 return(
                                 <li key = {category.id} className = "category">
-                                    <p>{category.title}</p>
+                                  <Link to={`/categories/${category.title}`}>{category.title}</Link>
                                 </li>
                                 )
                             })

@@ -1,12 +1,17 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux"
-import { loadCostumesDispatch } from "../redux/actions/"
+import loadCostumesDispatch from "../redux/actions/loadCostumes"
+import { fetchCategories } from '../redux/categories'
 
 class Home extends Component {
+  async componentDidMount() {
+    await this.props.dispatchLoadCostumes();
+    await this.props.fetchCategories();
+  }
 
   render() {
-    console.log(this.props.costumes)
+    //console.log(this.props.costumes)
     return (
       <div className="costumesList">
         <h5>Costume List</h5>
@@ -34,6 +39,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     dispatchLoadCostumes: () => dispatch(loadCostumesDispatch()),
+    fetchCategories: () => dispatch(fetchCategories())
   };
 };
 

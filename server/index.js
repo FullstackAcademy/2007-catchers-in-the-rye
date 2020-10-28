@@ -1,14 +1,17 @@
 const express = require("express")
 const app = express()
 const morgan = require('morgan')
-const { db, Example, Example2 } = require('./db')
+const cookieParser = require('cookie-parser');
+const { db } = require('./db')
 const api = require('./api')
 const path = require('path')
+const authMiddleware = require ('./middleware/authentication')
 
 app.use(morgan('dev'))
-
 app.use(express.json())
 app.use(express.urlencoded( {extended: false} ))
+app.use(cookieParser())
+app.use(authMiddleware)
 
 //use express.static() MAKE SURE THE PATH TO YOUR PUBLIC FOLDER IS RIGHT!
 app.use(express.static(path.join(__dirname, '/public')))

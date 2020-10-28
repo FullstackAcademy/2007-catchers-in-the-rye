@@ -1,5 +1,5 @@
-const Sequelize = require("sequelize") 
-const { db } = require('../db')
+const Sequelize = require("sequelize")
+const db = require('../db')
 const { INTEGER } = Sequelize
 
 const Lineitem = db.define('lineitem', {
@@ -9,4 +9,4 @@ const Lineitem = db.define('lineitem', {
     }
 })
 
-module.exports = { Lineitem }
+module.exports = Lineitem

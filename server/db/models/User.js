@@ -1,9 +1,7 @@
-const Sequelize = require("sequelize") //for things like Sequelize.STRING
-//import your db
-const { db } = require('../db')
+const Sequelize = require("sequelize")
+const db = require('../db')
 const { STRING, ENUM } = Sequelize
-//define your model
-// not including guest for now. we could do more validation on passwords
+
 const User = db.define('user', {
     userType: {
         type: ENUM('admin', 'shopper'),
@@ -43,8 +41,6 @@ const User = db.define('user', {
             notEmpty: true
         }
     }
-})
-//define any class or instance methods
+});
 
-//export your model
-module.exports = { User }
+module.exports = User

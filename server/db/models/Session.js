@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-const { db } = require('../db')
+const db = require('../db')
 const { UUID, UUIDV4 } = Sequelize
 
 const Session = db.define('session', {
@@ -10,4 +10,4 @@ const Session = db.define('session', {
 })
 
 
-module.exports = { Session }
+module.exports = Session

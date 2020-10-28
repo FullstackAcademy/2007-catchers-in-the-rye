@@ -29,7 +29,7 @@ class Cart extends Component{
                         <div key={costume.id}>
                             <p><strong>Costume:</strong>{costume.costumeName}</p>
                             <p><strong>Price per unit:</strong>{costume.price}</p>
-                            <p><strong>Quantity:</strong>{costume.quantity}</p>
+                            {/* <p><strong>Quantity:</strong>{costume.quantity}</p> */}
                             <button>+</button>
                             <button>-</button>
                             <p><strong>Sub Total:</strong>{ costume.price * costume.quantity }</p>

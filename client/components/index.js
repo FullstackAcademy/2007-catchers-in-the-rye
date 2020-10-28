@@ -30,9 +30,9 @@ const Routes = () => {
         </Switch>
         </main>
         </div>
-      </Router>
-    );
-  }
+      </div>
+    </Router>
+  );
 }
 
 

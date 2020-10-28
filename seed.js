@@ -6,7 +6,9 @@ const categories = [
     { title: 'Adult' },
     { title: 'Villains' },
     { title: 'Inanimate objects' },
-    { title: 'Superheroes' }
+    { title: 'Superheroes' },
+    { title: 'Pets' },
+    { title: 'Monsters' },
 ]
 
 const costumes = [
@@ -21,6 +23,11 @@ const costumes = [
         categoryId: 1
     },
     {
+        costumeName: 'Mrs. Potts',
+        price: 299.99,
+        categoryId: 1
+    },
+    {
         costumeName: 'Hot nun',
         price: 99.99,
         categoryId: 2
@@ -28,6 +35,11 @@ const costumes = [
     {
         costumeName: 'Hot nurse',
         price: 89.99,
+        categoryId: 2
+    },
+    {
+        costumeName: 'Hot computer programmer',
+        price: 109.99,
         categoryId: 2
     },
     {
@@ -41,6 +53,11 @@ const costumes = [
         categoryId: 3
     },
     {
+        costumeName: 'Man',
+        price: 12.99,
+        categoryId: 3
+    },
+    {
         costumeName: 'Stapler',
         price: 1.99,
         categoryId: 4
@@ -48,6 +65,11 @@ const costumes = [
     {
         costumeName: 'Pickle Moustache Guy',
         price: .79,
+        categoryId: 4
+    },
+    {
+        costumeName: 'Cactus',
+        price: 19.99,
         categoryId: 4
     },
     {
@@ -60,7 +82,48 @@ const costumes = [
         price: 99.99,
         categoryId: 5
     },
+    {
+        costumeName: 'Black Widow',
+        price: 79.99,
+        categoryId: 5
+    },
+    {
+        costumeName: 'Hot Dog',
+        price: 24.99,
+        categoryId: 6
+    },
+    {
+        costumeName: 'Lion',
+        price: 22.99,
+        categoryId: 6
+    },
+    {
+        costumeName: 'Cowboy Riding a Pet',
+        price: 18.99,
+        categoryId: 6
+    },
+    {
+        costumeName: 'Werewolf',
+        price: 49.99,
+        categoryId: 7
+    },
+    {
+        costumeName: 'Creature from the Black Lagoon',
+        price: 159.99,
+        categoryId: 7
+    },
+    {
+        costumeName: 'Frankenstein',
+        price: 39.99,
+        categoryId: 7
+    },
+    {
+        costumeName: "Frankenstein's Monster",
+        price: 109.99,
+        categoryId: 7
+    },
 ]
+
 
 const users = []
 while(users.length < 20) {

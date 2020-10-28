@@ -16,10 +16,11 @@ const Routes = () => {
         <div className="container">
         <main>
         <Switch>
+        <Route path="/" exact component={Home} />
           <Route path="/home" exact component={Home} />
           <Route path="/categories" exact component={AllCategories} />
-          <Route path="/categories/:id" component={SingleCategory} />
-          <Route path= "/costumes/add" exact component={CreateCostume} />
+          <Route path="/categories/:title" component={SingleCategory} />
+          <Route path= "costumes/add" exact component={CreateCostume} />
           <Route path= "/login" exact component={Login} />
           <Route path= "/cart" exact component={Cart} />
         </Switch>

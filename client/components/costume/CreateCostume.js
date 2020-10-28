@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchCategories } from '../../redux/categories'
+import { createCostume } from '../../redux/actions/createCostume'
 
 class CreateCostume extends Component {
     constructor () {
@@ -10,7 +11,7 @@ class CreateCostume extends Component {
             price: 0,
             quantity: 0,
             imageUrl: '',
-            categoryId: 0,
+            categoryId: 1,
         }
         this.submitCostume = this.submitCostume.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -46,7 +47,7 @@ class CreateCostume extends Component {
     }
     render () {
         const { state, props, submitCostume, handleChange } = this
-        const { costumeName, price, quantity, imageUrl, category } = state
+        const { costumeName, price, quantity, imageUrl, categoryId } = state
         const { categories } = props
         return (
             <div>

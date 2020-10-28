@@ -19,4 +19,14 @@ router.get('/:id', async(req, res, next) => {
     }
 })
 
+router.post('/', async(req, res, next) => {
+    try {
+        console.log('step 3 works')
+        const costume = await Costume.create(req.body);
+        res.status(201).send(costume)
+    } catch(err) {
+        next(err)
+    }
+});
+
 module.exports = router

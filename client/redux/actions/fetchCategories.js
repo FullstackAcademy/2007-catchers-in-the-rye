@@ -1,16 +1,12 @@
-import { FETCH_CATEGORIES } from "../actionStrings";
-import axios from "axios";
+import axios from 'axios';
+import { FETCH_CATEGORIES } from '../actionStrings';
 
-const _fetchCategories = (categories) => {
-    return {
-        type: FETCH_CATEGORIES,
-        categories
-    }
-}
+const _fetchCategories = (categories) => ({
+  type: FETCH_CATEGORIES,
+  categories,
+});
 
-export const fetchCategories = () => {
-    return async(dispatch) => {
-      const response = await axios.get('/api/categories');
-      dispatch(_fetchCategories(response.data));
-    };
+export const fetchCategories = () => async (dispatch) => {
+  const response = await axios.get('/api/categories');
+  dispatch(_fetchCategories(response.data));
 };

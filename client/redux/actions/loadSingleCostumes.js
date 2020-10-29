@@ -1,6 +1,5 @@
-import { LOAD_SCOSTUME } from "../actionStrings";
-import axios from "axios";
-
+import axios from 'axios';
+import { LOAD_SCOSTUME } from '../actionStrings';
 
 function loadSCostume(costume) {
   return {
@@ -10,13 +9,11 @@ function loadSCostume(costume) {
 }
 
 export default function loadSCostumeDispatch(id) {
-  console.log(id)
-  return async (dispatch) => {
-    return await axios
-      .get(`/api/costumes/${id}`)
-      .then((res) => {
-        dispatch(loadSCostume(res.data));
-      })
-      .catch((e) => console.log(e));
-  };
-};
+  console.log(id);
+  return async (dispatch) => await axios
+    .get(`/api/costumes/${id}`)
+    .then((res) => {
+      dispatch(loadSCostume(res.data));
+    })
+    .catch((e) => console.log(e));
+}

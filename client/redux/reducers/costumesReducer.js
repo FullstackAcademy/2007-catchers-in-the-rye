@@ -1,4 +1,4 @@
-import { LOAD_COSTUMES, LOAD_SCOSTUME, CREATE_COSTUME  } from "../actionStrings";
+import { LOAD_COSTUMES, LOAD_SCOSTUME, CREATE_COSTUME } from '../actionStrings';
 
 const COSTUMES = [];
 
@@ -7,13 +7,13 @@ export function costumesReducer(state = COSTUMES, action) {
     case LOAD_COSTUMES:
       return [...state, ...action.payload];
     case CREATE_COSTUME:
-      return [...state, action.costume]
+      return [...state, action.costume];
     default:
       return state;
   }
 }
 
-const SCOSTUME = {}
+const SCOSTUME = {};
 export function sCostumeReducer(state = SCOSTUME, action) {
   switch (action.type) {
     case LOAD_SCOSTUME:

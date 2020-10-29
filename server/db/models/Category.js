@@ -1,8 +1,7 @@
-const Sequelize = require("sequelize") //for things like Sequelize.STRING
-//import your db
-const { db } = require('../db')
+const Sequelize = require("sequelize")
+const db = require('../db')
 const { STRING } = Sequelize
-//define your model
+
 const Category = db.define('category', {
     title: {
         type: STRING,
@@ -14,4 +13,4 @@ const Category = db.define('category', {
     }
 })
 
-module.exports = { Category }
+module.exports = Category

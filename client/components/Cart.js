@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import { fetchCart } from '../redux/cart'
+import { fetchCart, updateCartQuantity } from '../redux/cart'
 //all buttons need functionality: Checkout / keep shopping, remove from cart, + / - buttons 
 class Cart extends Component{
     componentDidMount(){
@@ -26,7 +26,7 @@ class Cart extends Component{
                             <p><strong>Costume:</strong>{costume.costumeName}</p>
                             <p><strong>Price per unit:</strong>{costume.price}</p>
                             <p><strong>Quantity:</strong>{costume.quantity}</p>
-                            <button>+</button>
+                            <button onClick={() => this.props.updateCartQuantity(costume.id, '+')}>+</button>
                             <button>-</button>
                             <p><strong>Sub Total:</strong>{ costume.price * costume.quantity }</p>
                             <button>Remove from Cart</button>
@@ -50,7 +50,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchCart: () => dispatch(fetchCart())
+        fetchCart: () => dispatch(fetchCart()),
+        updateCartQuantity: (costumeId, sign) => {
+            dispatch(updateCartQuantity(costumeId, sign))
+        }
     }
 }
 

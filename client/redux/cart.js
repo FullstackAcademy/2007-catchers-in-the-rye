@@ -1,6 +1,8 @@
 import axios from 'axios'
 
 const FETCH_CART = 'FETCH_CART'
+const ADD_QUANTITY = 'ADD_QUANTITY'
+const MINUS_QUANTITY = 'MINUS_QUANTITY'
 
 const _fetchCart = (cart) => {
     return {
@@ -19,13 +21,30 @@ const fetchCart = () => {
     }
 }
 
+const addQuantity = (costume) => {
+    return{
+        type: ADD_QUANTITY,
+        costume
+    }
+}
+
+const updateCartQuantity = (costumeId, sign) => {
+    return async(dispatch) => {
+        const { data } = await (axios.put('/api/orders/userCart', { costumeId, sign }))
+        console.log(data)
+        if(sign === '+') dispatch(addQuantity(data))
+    }
+}
+
 export default function cartReducer(state = {}, action) {
     switch(action.type) {
         case FETCH_CART:
             return action.cart
+        case ADD_QUANTITY:
+            return {...state.cart, costumes: [action.costume, ...state.costumes]}
     default:
         return state
     }
 }
 
-export { fetchCart }
+export { fetchCart, updateCartQuantity }

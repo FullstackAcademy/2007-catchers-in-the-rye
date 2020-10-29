@@ -1,8 +1,8 @@
 const Sequelize = require("sequelize")
-const { db } = require('../db')
+
+const db = require('../db')
 const { STRING, ENUM } = Sequelize
 
-// not including guest for now. we could do more validation on passwords
 const User = db.define('user', {
     userType: {
         type: ENUM('admin', 'shopper'),
@@ -42,6 +42,6 @@ const User = db.define('user', {
             notEmpty: true
         }
     }
-})
+});
 
-module.exports = { User }
+module.exports = User

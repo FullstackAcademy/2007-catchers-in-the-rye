@@ -1,6 +1,7 @@
 const Sequelize = require("sequelize")
-const { db } = require('../db')
+const db = require('../db')
 const { STRING, BOOLEAN, FLOAT, ENUM } = Sequelize
+
 const Order = db.define('order', {
     isPaid: {
         type: BOOLEAN,
@@ -25,4 +26,4 @@ const Order = db.define('order', {
     }
 })
 
-module.exports = { Order }
+module.exports = Order

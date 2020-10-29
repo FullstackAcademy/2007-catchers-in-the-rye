@@ -12,6 +12,7 @@ router.get('/', async(req, res, next) => {
 //currently doing findOne since user should only have one order that is not paid
 router.get('/userCart', async(req,res,next) => {
     try{
+        console.log(req.cookies)
         const userId = req.user.id
         const userCart = await Order.findOne({
             where: {

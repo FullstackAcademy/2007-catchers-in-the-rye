@@ -3,9 +3,6 @@ import { connect } from 'react-redux'
 import { fetchCart } from '../redux/cart'
 //all buttons need functionality: Checkout / keep shopping, remove from cart, + / - buttons 
 class Cart extends Component{
-    constructor(){
-        super()
-    }
     componentDidMount(){
         this.props.fetchCart()
     }
@@ -17,8 +14,7 @@ class Cart extends Component{
         return cartTotal
     }
     render(){
-        const cart = this.props.cart
-        console.log(cart)
+        const { cart } = this.props
         const costumes = cart.costumes ? cart.costumes : []
         const cartTotal = costumes.length ? this.calcTotal(costumes) : 0
         return(

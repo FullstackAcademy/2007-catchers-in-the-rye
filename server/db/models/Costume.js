@@ -1,8 +1,7 @@
-const Sequelize = require("sequelize") 
-const { db } = require('../db')
+const Sequelize = require("sequelize")
+const db = require('../db')
 const { STRING, FLOAT, INTEGER } = Sequelize
 
-//avg rating would be a calcuation not field
 const Costume = db.define('costume', {
     costumeName: {
         type: STRING,
@@ -29,4 +28,4 @@ const Costume = db.define('costume', {
     }
 })
 
-module.exports = { Costume }
+module.exports = Costume

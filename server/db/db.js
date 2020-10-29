@@ -8,4 +8,4 @@ const db = new Sequelize(databaseUrl, {
     operatorsAliases: 0
 })
 
-module.exports = { db }
+module.exports = db

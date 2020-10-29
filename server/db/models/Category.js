@@ -1,5 +1,5 @@
 const Sequelize = require("sequelize")
-const { db } = require('../db')
+const db = require('../db')
 const { STRING } = Sequelize
 
 const Category = db.define('category', {
@@ -13,4 +13,4 @@ const Category = db.define('category', {
     }
 })
 
-module.exports = { Category }
+module.exports = Category

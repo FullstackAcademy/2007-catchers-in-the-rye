@@ -6,6 +6,6 @@ const db = new Sequelize(databaseUrl, {
     logging: false,
     operatorsAliases: false,
     operatorsAliases: 0
-});
+})
 
 module.exports = db

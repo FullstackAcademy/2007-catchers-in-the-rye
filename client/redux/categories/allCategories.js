@@ -11,8 +11,8 @@ const _fetchCategories = (categories) => {
 
 export const fetchCategories = () => {
     return async(dispatch) => {
-      const response = await axios.get('/api/categories');
-      dispatch(_fetchCategories(response.data));
+      const {data} = await axios.get('/api/categories');
+      dispatch(_fetchCategories(data));
     }
 }
 

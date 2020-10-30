@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 const FETCH_CART = 'FETCH_CART'
-const ADD_QUANTITY = 'ADD_QUANTITY'
-const MINUS_QUANTITY = 'MINUS_QUANTITY'
+const UPDATE_QUANTITY = 'UPDATE_QUANTITY'
+const REMOVE_ITEM = 'REMOVE_ITEM'
 
 const _fetchCart = (cart) => {
     return {
@@ -14,17 +14,15 @@ const _fetchCart = (cart) => {
 const fetchCart = () => {
     return async(dispatch) => {
         let response = (await axios.get('/api/orders/userCart')).data
-        response.costumes = response.costumes.map(costume => {
-            return { costumeName: costume.costumeName, id: costume.id, imageUrl: costume.imageUrl, price: costume.price, quantity: costume.lineitem.quantity}
-        })
         dispatch(_fetchCart(response))
     }
 }
 
-const addQuantity = (costume) => {
+const _updateCartQuantity = (lineitem, costumeId) => {
     return{
-        type: ADD_QUANTITY,
-        costume
+        type: UPDATE_QUANTITY,
+        lineitem,
+        costumeId
     }
 }
 
@@ -32,7 +30,21 @@ const updateCartQuantity = (costumeId, sign) => {
     return async(dispatch) => {
         const { data } = await (axios.put('/api/orders/userCart', { costumeId, sign }))
         console.log(data)
-        if(sign === '+') dispatch(addQuantity(data))
+        dispatch(_updateCartQuantity(data, costumeId))
+    }
+}
+
+const _removeItem = (costumeId) => {
+    return {
+        type: REMOVE_ITEM,
+        costumeId
+    }
+}
+
+const removeItem = (costumeId) => {
+    return async(dispatch) => {
+        await axios.delete(`/api/orders/userCart/${costumeId}`)
+        dispatch(_removeItem(costumeId))
     }
 }
 
@@ -40,11 +52,18 @@ export default function cartReducer(state = {}, action) {
     switch(action.type) {
         case FETCH_CART:
             return action.cart
-        case ADD_QUANTITY:
-            return {...state.cart, costumes: [action.costume, ...state.costumes]}
+        case UPDATE_QUANTITY:
+            const costumes = state.costumes.filter(costume => {
+                if(costume.id === action.costumeId) costume.lineitem = action.lineitem
+                if(costume.lineitem.quantity) return costume //if quantity is 0 as result of '-', costume should disappear from page
+            })
+            return {...state.cart, costumes}
+        case REMOVE_ITEM:
+            const costumesAfterRemove = state.costumes.filter(costume => costume.id !== action.costumeId)
+            return {...state.cart, costumes: costumesAfterRemove}
     default:
         return state
     }
 }
 
-export { fetchCart, updateCartQuantity }
+export { fetchCart, updateCartQuantity, removeItem }

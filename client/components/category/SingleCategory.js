@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { selectCategory } from '../../redux/singleCategory'
+import { selectCategory } from '../../redux/categories/singleCategory'
 //import { fetchCategories } from '../../redux/categories'
 
 class SingleCategory extends Component {

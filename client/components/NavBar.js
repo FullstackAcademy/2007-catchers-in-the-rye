@@ -13,15 +13,17 @@ export default class NavBar extends Component {
             <div className="navbar-start">
               <a className="navbar-item">Grace Shockers</a>
               <Link to="/home" className="navbar-item">Home</Link>
-              <Link to="/categories" className="navbar-item">Category View</Link>
+              <Link to="/cart" className="navbar-item">Cart</Link>
+              {/* <Link to="/categories" className="navbar-item">Category View</Link> */}
             </div>
 
             <div className="navbar-end">
               <div className="navbar-item">
+                <a className="navbar-item">Welcome, Guest!</a>
                 <div className="buttons">
                   <a className="button is-black">
                     <strong>Register</strong></a>
-                  <a className="button is-black">Log in</a>
+                  <Link to="/login" className="button is-black">Log in</Link>
                 </div>
               </div>
             </div>

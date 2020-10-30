@@ -1,7 +1,32 @@
 const router = require('express').Router()
 const { User, Session } = require('../db')
 
-const A_WEEK_IN_SECONDS = 60 * 60 * 24 * 7;
+const A_WEEK_IN_SECONDS = 1000 * 60 * 60 * 24 * 7;
+
+router.put('/:id', async(req,res,next)=> {
+    try {
+        const session = await Session.findbyPk(req.params.id);
+        res.cookie('sid', guestSession.uuid, {
+            maxAge: A_WEEK_IN_SECONDS,
+            path: '/'
+        }).send(session)
+    }
+    catch (err){
+        next(err);
+    }
+})
+
+router.post('/guest', async(req,res,next)=> {
+    try {
+        const guestSession = await Session.create()
+        res.cookie('sid', guestSession.uuid, {
+            maxAge: A_WEEK_IN_SECONDS,
+            path: '/'
+        }).status(201).send(guestSession)
+    } catch(err) {
+        next(err)
+    }
+})
 
 router.post('/login', async(req,res,next)=> {
     const { username, password } = req.body

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import { fetchCart, updateCartQuantity, removeItem } from '../redux/cart'
+import { fetchCart, updateCartQuantity, removeItem } from '../redux/cart/cart'
 // buttons that still need functionality: Checkout / keep shopping 
 class Cart extends Component{
     componentDidMount(){

@@ -1,23 +1,26 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux'
 import axios from 'axios'
 import thunkMiddleware from 'redux-thunk'
-import categoryReducer from './categories';
-import singleCategoryReducer from './singleCategory'
-import { costumesReducer, sCostumeReducer } from "./reducers/costumesReducer";
-import cartReducer from './cart'
+import allCategoriesReducer from './categories/allCategories'
+import singleCategoryReducer from './categories/singleCategory'
+import allCostumesReducer from './costumes/allCostumes'
+import singleCostumeReducer from "./costumes/singleCostume"
+import cartReducer from './cart/cart'
+import sessionReducer from './authentication/session'
 
 
 const appReducer = combineReducers({
-  categories: categoryReducer,
+  categories: allCategoriesReducer,
   selectedCategory: singleCategoryReducer,
-  costumes: costumesReducer,
-  sCostume: sCostumeReducer,
-  cart: cartReducer
-});
+  costumes: allCostumesReducer,
+  sCostume: singleCostumeReducer,
+  cart: cartReducer,
+  session: sessionReducer
+})
 
 let middleware = [
   thunkMiddleware.withExtraArgument({ axios })
-];
+]
 
 export default createStore(
   appReducer,

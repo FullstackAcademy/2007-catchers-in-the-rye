@@ -16,7 +16,7 @@ Order.belongsTo(User)
 Costume.belongsToMany(Order, { through: Lineitem })
 Order.belongsToMany(Costume, { through: Lineitem })
 
-User.hasOne(Session)
+User.hasMany(Session)
 Session.belongsTo(User)
 
 module.exports = { db, User, Costume, Category, Order, Session, Lineitem }

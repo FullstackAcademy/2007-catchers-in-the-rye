@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'axios'
 
 const SELECT_CATEGORY = 'SELECT_CATEGORY'
 
@@ -7,7 +7,7 @@ const _selectCategory = (category) => {
         type: SELECT_CATEGORY,
         category
     }
-};
+}
 
 export const selectCategory = (id) => {
     return async(dispatch) => {
@@ -17,8 +17,8 @@ export const selectCategory = (id) => {
         } catch(err){
             console.log(err)
         }
-    };
-};
+    }
+}
 
 export default function singleCategoryReducer (state = {}, action) {
     if (action.type === SELECT_CATEGORY) {

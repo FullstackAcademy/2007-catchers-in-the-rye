@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux"
-import loadCostumesDispatch from "../redux/actions/loadCostumes"
-import { fetchCategories } from '../redux/categories'
+import { loadCostumesDispatch } from "../redux/costumes/allCostumes"
+import { fetchCategories } from '../redux/categories/allCategories'
 
 class Home extends Component {
   async componentDidMount() {

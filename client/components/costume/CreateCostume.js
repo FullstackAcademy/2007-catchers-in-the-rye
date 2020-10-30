@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchCategories } from '../../redux/categories'
-import { createCostume } from '../../redux/actions/createCostume'
+import { fetchCategories } from '../../redux/categories/allCategories'
+import { createCostume } from '../../redux/costumes/allCostumes'
 
 class CreateCostume extends Component {
     constructor (props) {

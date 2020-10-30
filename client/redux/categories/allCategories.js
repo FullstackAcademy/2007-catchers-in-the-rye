@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'axios'
 
 const FETCH_CATEGORIES = 'FETCH_CATEGORIES'
 
@@ -11,12 +11,12 @@ const _fetchCategories = (categories) => {
 
 export const fetchCategories = () => {
     return async(dispatch) => {
-      const response = await axios.get('/api/categories');
-      dispatch(_fetchCategories(response.data));
-    };
-};
+      const {data} = await axios.get('/api/categories');
+      dispatch(_fetchCategories(data));
+    }
+}
 
-export default function categoryReducer (state = [], action) {
+export default function allCategoriesReducer (state = [], action) {
     if (action.type === FETCH_CATEGORIES) {
         state = action.categories
     }

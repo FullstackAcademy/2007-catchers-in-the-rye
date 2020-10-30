@@ -14,9 +14,6 @@ const Order = db.define('order', {
         type: ENUM('credit', 'cash'),
         defaultValue: 'credit'
     },
-    ccNumber: {
-        type: STRING
-    },
     shippingAddress: {
         type: STRING
     },

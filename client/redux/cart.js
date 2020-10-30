@@ -28,8 +28,7 @@ const _updateCartQuantity = (lineitem, costumeId) => {
 
 const updateCartQuantity = (costumeId, sign) => {
     return async(dispatch) => {
-        const { data } = await (axios.put('/api/orders/userCart', { costumeId, sign }))
-        console.log(data)
+        const { data } = await (axios.put(`/api/orders/userCart/${costumeId}`, { sign }))
         dispatch(_updateCartQuantity(data, costumeId))
     }
 }

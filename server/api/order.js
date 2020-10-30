@@ -10,6 +10,7 @@ router.get('/', async(req, res, next) => {
     }
 })
 //currently doing findOne since user should only have one order that is not paid
+//for the below routes, we are currently re-finding the order based on user ID on req.user. This may be updated based on how we handle guest. also, we could probably put an orderId on the req.user object or something when user creates an order, so that we can just reference the orderId that references user's cart.
 router.get('/userCart', async(req,res,next) => {
     try{
         const userId = req.user.id
@@ -26,11 +27,11 @@ router.get('/userCart', async(req,res,next) => {
     }
 })
 
-router.put('/userCart', async(req,res,next) => {
+router.put('/userCart/:costumeId', async(req,res,next) => {
     try{
         const userId = req.user.id
-        const { costumeId, sign } = req.body
-        //i am re-finding the order based on userId here, but may be updated based on how we handle guest. also, we could probably put an orderId on the req.user object or something when user creates an order, so that we can just reference the orderId that references user's cart.
+        const costumeId = req.params.costumeId
+        const { sign } = req.body
         const userCart = await Order.findOne({
             where: {
                 userId,
@@ -47,7 +48,7 @@ router.put('/userCart', async(req,res,next) => {
         }
         if (sign === '-') {
             await lineitem.decrement('quantity')
-            //if quantity is 0 as result of decrement, destroy
+            //if quantity goes down to 0 as result of decrement, destroy so costume is removed from cart
             if(!lineitem.quantity) lineitem.destroy()
         }
         if(lineitem) res.send(lineitem)
@@ -79,7 +80,7 @@ router.delete('/userCart/:costumeId', async(req,res,next) => {
     }
 })
 
-// commented out for now, but we do not need this route anymore given we are using cookies to identify cart
+// commented out for now - we do not need this route anymore given we are using cookies to identify cart
 // router.get('/:id', async(req, res, next) => {
 //     try {
 //         const order = await Order.findByPk(req.params.id, { include: [Costume] })

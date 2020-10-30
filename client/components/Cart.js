@@ -7,7 +7,6 @@ class Cart extends Component{
         this.props.fetchCart()
     }
     calcTotal(costumes){
-        console.log(costumes)
         let cartTotal = 0
         for(let costume of costumes){
             cartTotal += costume.price * costume.lineitem.quantity

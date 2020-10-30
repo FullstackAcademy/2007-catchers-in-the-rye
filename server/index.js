@@ -12,12 +12,19 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(authMiddleware)
 
-app.use(express.static(path.join(__dirname, '/public')))
+app.use((req, res, next) => {
+    console.log('cookies', req.cookies);
+    if (req.cookies.session_id) {
+      req.user = DATABASE.SESSIONS[req.cookies.session_id];
+    }
+    next();
+});
 
+app.use(express.static(path.join(__dirname, '/public')))
 app.use('/api', api)
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'))
-  })
+})
 
 app.use(function(req, res, next){
     const err = new Error('Not found')

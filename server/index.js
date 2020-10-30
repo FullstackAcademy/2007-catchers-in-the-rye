@@ -14,8 +14,9 @@ app.use(authMiddleware)
 
 app.use((req, res, next) => {
     console.log('cookies', req.cookies);
-    if (req.cookies.session_id) {
-      req.user = DATABASE.SESSIONS[req.cookies.session_id];
+    if (req.cookies.sid) {
+      //req.user = DATABASE.SESSIONS[req.cookies.session_id];
+      console.log('Hello world');
     }
     next();
 });

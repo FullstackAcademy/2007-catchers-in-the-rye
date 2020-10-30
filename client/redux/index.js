@@ -6,6 +6,7 @@ import singleCategoryReducer from './categories/singleCategory'
 import allCostumesReducer from './costumes/allCostumes'
 import singleCostumeReducer from "./costumes/singleCostume"
 import cartReducer from './cart/cart'
+import sessionReducer from './authentication/session'
 
 
 const appReducer = combineReducers({
@@ -13,7 +14,8 @@ const appReducer = combineReducers({
   selectedCategory: singleCategoryReducer,
   costumes: allCostumesReducer,
   sCostume: singleCostumeReducer,
-  cart: cartReducer
+  cart: cartReducer,
+  session: sessionReducer
 })
 
 let middleware = [

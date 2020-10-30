@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const { User, Session } = require('../db')
 
-const A_WEEK_IN_SECONDS = 1000 * 15
+const A_WEEK_IN_SECONDS = 1000 * 60 * 60 * 24 * 7;
 //60 * 60 * 24 * 7;
 
 router.post('/login', async(req,res,next)=> {

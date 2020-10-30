@@ -21,7 +21,8 @@ export default class NavBar extends Component {
                 <div className="buttons">
                   <a className="button is-black">
                     <strong>Register</strong></a>
-                  <a className="button is-black">Log in</a>
+                  <Link to="/login" className="button is-black">Log in</Link>
+                  {/* <a className="button is-black">Log in</a> */}
                 </div>
               </div>
             </div>

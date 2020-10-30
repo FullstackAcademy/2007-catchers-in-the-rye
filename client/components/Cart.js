@@ -1,44 +1,40 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import { fetchCart } from '../redux/cart'
-//all buttons need functionality: Checkout / keep shopping, remove from cart, + / - buttons 
+import { fetchCart, updateCartQuantity, removeItem } from '../redux/cart'
+// buttons that still need functionality: Checkout / keep shopping 
 class Cart extends Component{
-    constructor(){
-        super()
-    }
     componentDidMount(){
         this.props.fetchCart()
     }
     calcTotal(costumes){
         let cartTotal = 0
         for(let costume of costumes){
-            cartTotal += costume.price
+            cartTotal += costume.price * costume.lineitem.quantity
         }
-        return cartTotal
+        return cartTotal.toFixed(2)
     }
     render(){
-        const cart = this.props.cart
-        console.log(cart)
+        const { cart } = this.props
         const costumes = cart.costumes ? cart.costumes : []
         const cartTotal = costumes.length ? this.calcTotal(costumes) : 0
         return(
             <div>
                 <h1>Your cart</h1>
                 {costumes.map(costume => {
-                    return(
+                    return( 
                         <div key={costume.id}>
                             <p><strong>Costume:</strong>{costume.costumeName}</p>
-                            <p><strong>Price per unit:</strong>{costume.price}</p>
-                            <p><strong>Quantity:</strong>{costume.quantity}</p>
-                            <button>+</button>
-                            <button>-</button>
-                            <p><strong>Sub Total:</strong>{ costume.price * costume.quantity }</p>
-                            <button>Remove from Cart</button>
+                            <p><strong>Price per unit:</strong>${costume.price.toFixed(2)}</p>
+                            <p><strong>Quantity:</strong>{costume.lineitem.quantity}</p>
+                            <button onClick={() => this.props.updateCartQuantity(costume.id, '+')}>+</button>
+                            <button onClick={() => this.props.updateCartQuantity(costume.id, '-')}>-</button>
+                            <p><strong>Sub Total:</strong>${ (costume.price * costume.lineitem.quantity).toFixed(2) }</p>
+                            <button onClick={() => this.props.removeItem(costume.id)}>Remove from Cart</button>
                             <img src={costume.imageUrl}></img>
                         </div>
                     )
                 })}
-                <h2><strong>Cart Total: </strong>{cartTotal}</h2>
+                <h2><strong>Cart Total: </strong>${cartTotal}</h2>
                 <button>Check Out Now</button>
                 <button>Keep Shopping</button>
             </div>
@@ -54,7 +50,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchCart: () => dispatch(fetchCart())
+        fetchCart: () => dispatch(fetchCart()),
+        updateCartQuantity: (costumeId, sign) => {
+            dispatch(updateCartQuantity(costumeId, sign))
+        },
+        removeItem: (costumeId) => dispatch(removeItem(costumeId))
     }
 }
 

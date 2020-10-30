@@ -1,3 +1,4 @@
+const { NamedModulesPlugin } = require('webpack')
 const db = require('./db')
 const User = require('./models/User')
 const Costume = require('./models/Costume')

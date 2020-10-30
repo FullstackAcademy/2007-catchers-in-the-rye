@@ -29,6 +29,7 @@ const authMiddleware = async(req, res, next) => {
             req.user = session.user;
         }
     }
+    req.sid = sid
     next()
 }
 

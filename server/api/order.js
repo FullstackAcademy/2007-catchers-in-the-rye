@@ -13,15 +13,15 @@ router.get('/', async(req, res, next) => {
 //for the below routes, we are currently re-finding the order based on user ID on req.user. This may be updated based on how we handle guest. also, we could probably put an orderId on the req.user object or something when user creates an order, so that we can just reference the orderId that references user's cart.
 router.get('/userCart', async(req,res,next) => {
     try{
-        const userId = req.user.id
-        const userCart = await Order.findOne({
+        const sessionId = req.sid
+        const cart = await Order.findOne({
             where: {
-                userId,
+                sessionId,
                 isPaid: false,
             }, 
             include: [Costume]
         })
-        res.send(userCart)
+        res.send(cart)
     }catch(err) {
         next(err)
     }
@@ -29,17 +29,17 @@ router.get('/userCart', async(req,res,next) => {
 
 router.put('/userCart/:costumeId', async(req,res,next) => {
     try{
-        const userId = req.user.id
+        const sessionId = req.sid
         const costumeId = req.params.costumeId
         const { sign } = req.body
-        const userCart = await Order.findOne({
+        const cart = await Order.findOne({
             where: {
-                userId,
+                sessionId,
                 isPaid: false,
             }, 
             include: [Costume]
         })
-        const orderId = userCart.id
+        const orderId = cart.id
         const lineitem = await Lineitem.findOne({
             where: { costumeId, orderId}
         })
@@ -59,16 +59,16 @@ router.put('/userCart/:costumeId', async(req,res,next) => {
 
 router.delete('/userCart/:costumeId', async(req,res,next) => {
     try{
-        const userId = req.user.id
+        const sessionId = req.sid
         const costumeId = req.params.costumeId
-        const userCart = await Order.findOne({
+        const cart = await Order.findOne({
             where: {
-                userId,
+                sessionId,
                 isPaid: false,
             }, 
             include: [Costume]
         })
-        const orderId = userCart.id
+        const orderId = cart.id
         console.log(costumeId, orderId)
         const lineitem = await Lineitem.findOne({
             where: { costumeId, orderId }

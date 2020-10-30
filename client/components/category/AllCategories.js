@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCategories } from '../../redux/categories'
+import { fetchCategories } from '../../redux/categories/allCategories'
 import { Link } from "react-router-dom";
 
 class AllCategories extends Component {

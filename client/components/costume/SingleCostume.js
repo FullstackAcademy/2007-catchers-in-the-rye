@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import { loadSCostumeDispatch } from "../../redux/actions"
+import { loadSCostumeDispatch } from "../../redux/costumes/singleCostume"
 
 class SingleCostume extends Component {
   constructor(props) {

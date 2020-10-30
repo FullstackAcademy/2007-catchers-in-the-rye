@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchCategories } from '../../redux/categories'
-import { createCostume } from '../../redux/actions/createCostume'
+import { fetchCategories } from '../../redux/categories/allCategories'
+import { createCostume } from '../../redux/costumes/allCostumes'
 
 class CreateCostume extends Component {
-    constructor () {
-        super()
+    constructor (props) {
+        super(props)
         this.state = {
             costumeName: '',
             price: 0,
@@ -17,7 +17,7 @@ class CreateCostume extends Component {
         this.handleChange = this.handleChange.bind(this)
     }
     componentDidMount() {
-        this.props.fetchCategories();
+        this.props.fetchCategories()
     }
     submitCostume (ev) {
         const { state, props } = this
@@ -79,7 +79,7 @@ const mapStateToProps = (state) => {
     return {
         categories: state.categories
     }
-};
+}
 
 const mapDispatchToProps = dispatch => {
 	return {

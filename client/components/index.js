@@ -8,7 +8,7 @@ import NavBar from './NavBar'
 import Home from './Home'
 import Login from './authentication/Login'
 import SingleCostume from "../components/costume/SingleCostume"
-import loadCostumesDispatch from '../redux/actions/loadCostumes';
+import loadCostumesDispatch from '../redux/costumes/allCostumes';
 import Cart from './Cart'
 
 const Routes = () => {
@@ -24,7 +24,7 @@ const Routes = () => {
           <Route path="/categories" exact component={AllCategories} />
           <Route path="/categories/:title" component={SingleCategory} />
           <Route path="/costumes/:name/:id" component={SingleCostume} />
-          <Route path= "costumes/add" exact component={CreateCostume} />
+          <Route path= "/costumes/add" exact component={CreateCostume} />
           <Route path= "/login" exact component={Login} />
           <Route path= "/cart" exact component={Cart} />
         </Switch>

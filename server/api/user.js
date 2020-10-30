@@ -1,9 +1,9 @@
 const router = require('express').Router()
-const { User, Order, Costume } = require('../db')
+const { User, Order, Costume, Session } = require('../db')
 
 router.get('/', async(req, res, next) => {
     try{
-        const users = await User.findAll()
+        const users = await User.findAll({ include: [Session] })
         res.send(users)
     } catch(err) { 
         next(err) 

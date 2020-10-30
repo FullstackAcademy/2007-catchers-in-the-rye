@@ -4,8 +4,8 @@ import { fetchCategories } from '../../redux/categories'
 import { createCostume } from '../../redux/actions/createCostume'
 
 class CreateCostume extends Component {
-    constructor () {
-        super()
+    constructor (props) {
+        super(props)
         this.state = {
             costumeName: '',
             price: 0,
@@ -17,7 +17,7 @@ class CreateCostume extends Component {
         this.handleChange = this.handleChange.bind(this)
     }
     componentDidMount() {
-        this.props.fetchCategories();
+        this.props.fetchCategories()
     }
     submitCostume (ev) {
         const { state, props } = this
@@ -27,7 +27,7 @@ class CreateCostume extends Component {
         if (!costumeName) {
             alert("What is this costume's name?")
         } else if (price <= 0) {
-            alert("Our prices may be so low they're scary, but not THIS scary! Add a price greater than 0!")
+            alert("Our prices may be so low they're scary, but not THIS scary! Price must be greater than 0!")
         } else if (quantity < 0) {
             alert("Quantity must be at least 0")
         } else {
@@ -79,7 +79,7 @@ const mapStateToProps = (state) => {
     return {
         categories: state.categories
     }
-};
+}
 
 const mapDispatchToProps = dispatch => {
 	return {

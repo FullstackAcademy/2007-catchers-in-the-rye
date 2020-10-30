@@ -9,13 +9,17 @@ import Home from './Home'
 import Login from './authentication/Login'
 import SingleCostume from './costume/SingleCostume'
 import Cart from './Cart'
-import { createGuestSession } from '../redux/authentication/session'
+import { createGuestSession, refreshSession } from '../redux/authentication/session'
 
 class Routes extends Component {
-  async componentDidMount () {
-    //const {data} = await axios.post('/api/auth/guest')
-    console.log('step 1: componentDidMount is working')
-    this.props.createGuestSession()
+  componentDidMount () {
+    const { session } = this.props
+    console.log(session)
+    if (session.id) {
+      this.props.refreshSession(session.id)
+    } else {
+      this.props.createGuestSession()
+    }
   }
   render() {
     return (
@@ -54,8 +58,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     createGuestSession: () => {
-      console.log('step 2: dispatch action is working'),
       dispatch(createGuestSession())
+    },
+    refreshSession: (sessionId) => {
+      dispatch(refreshSession(sessionId))
     }
   }
 }

@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const CREATE_GUEST_SESSION = 'CREATE_GUEST_SESSION'
+const REFRESH_SESSION = 'REFRESH_SESSION'
 
 const _createGuestSession = (session) => {
     return {
@@ -9,12 +10,29 @@ const _createGuestSession = (session) => {
     }
 }
 
+const _refreshSession = (session) => {
+    return {
+        type: REFRESH_SESSION,
+        session
+    }
+}
+
 export const createGuestSession = () => {
     return async(dispatch) => {
         try{
             const {data} = await axios.post('/api/auth/guest');
-            console.log('step 3 action is dispatched is working:', data)
             dispatch(_createGuestSession(data));
+        } catch(err){
+            console.log(err)
+        }
+    }
+}
+
+export const refreshSession = (sessionId) => {
+    return async(dispatch) => {
+        try{
+            const {data} = await axios.put(`/api/auth/${sessionId}`);
+            dispatch(_refreshSession(data));
         } catch(err){
             console.log(err)
         }

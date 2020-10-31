@@ -55,12 +55,12 @@ const _addCostumeToCart = (costume) => {
     }
 }
 
-
 const addCostumeToCart = (costumeId) => {
-    return async(dispatch) => {
-        const { data } = await axios.post(`/api/orders/userCart/${costumeId}`)
-        dispatch(_addCostumeToCart(data))
-    }
+    console.log(costumeId)
+    // return async(dispatch) => {
+    //     const { data } = await axios.post(`/api/orders/userCart/${costumeId}`)
+    //     dispatch(_addCostumeToCart(data))
+    // }
 }
 
 export default function cartReducer(state = {}, action) {

@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { loadSCostumeDispatch } from "../../redux/costumes/singleCostume"
-import { addCostumeToCart } from "'../../redux/cart/cart'"
+import { addCostumeToCart } from "../../redux/cart/cart"
 
 class SingleCostume extends Component {
   constructor(props) {

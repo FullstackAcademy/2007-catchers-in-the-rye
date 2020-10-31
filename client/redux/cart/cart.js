@@ -48,19 +48,11 @@ const removeItem = (costumeId) => {
     }
 }
 
-const _addCostumeToCart = (costume) => {
-    return {
-        type: ADD_COSTUME_TO_CART,
-        costume
-    }
-}
-
 const addCostumeToCart = (costumeId, quantity) => {
     console.log(costumeId)
     return async(dispatch) => {
         const { data } = await axios.post(`/api/orders/userCart/${costumeId}`, { quantity })
         console.log(data)
-        // dispatch(_addCostumeToCart(data))
     }
 }
 

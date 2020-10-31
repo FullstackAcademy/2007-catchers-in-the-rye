@@ -17,7 +17,6 @@ class SingleCostume extends Component {
     await this.props.dispatchLoadSCostume(this.state.id)
   }
   changeQuantity(ev){
-    console.log(ev.target.value)
     this.setState({quantity: ev.target.value})
   }
   render() {
@@ -28,6 +27,7 @@ class SingleCostume extends Component {
         <div>{thisCostume.price}</div>
         <img src={thisCostume.imageUrl}></img>
         <select onChange={this.changeQuantity}>
+          <option>Select quantity below:</option>
           <option value={1}>1</option>
           <option value={2}>2</option>
           <option value={3}>3</option>
@@ -49,6 +49,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
+
   return {
     dispatchLoadSCostume: (id) => dispatch(loadSCostumeDispatch(id)),
     addCostumeToCart: (costumeId, quantity) => dispatch(addCostumeToCart(costumeId, quantity))

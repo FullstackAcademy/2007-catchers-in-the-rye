@@ -1,26 +1,28 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect, browserHistory } from 'react-router-dom';
-import { connect } from "react-redux"
-import AllCategories from './category/AllCategories'
-import SingleCategory from './category/SingleCategory'
-import CreateCostume from './costume/CreateCostume'
-import NavBar from './NavBar'
-import Home from './Home'
-import Login from './authentication/Login'
-import SingleCostume from './costume/SingleCostume'
-import Cart from './Cart'
-import { checkCookiesSetSession } from '../redux/authentication/session'
+import {
+  BrowserRouter as Router, Route, Switch, Redirect, browserHistory,
+} from 'react-router-dom';
+import { connect } from 'react-redux';
+import AllCategories from './category/AllCategories';
+import SingleCategory from './category/SingleCategory';
+import CreateCostume from './costume/CreateCostume';
+import NavBar from './NavBar';
+import Home from './Home';
+import Login from './authentication/Login';
+import SingleCostume from './costume/SingleCostume';
+import Cart from './Cart';
+import { checkCookiesSetSession } from '../redux/authentication/session';
 
 class Routes extends Component {
-  componentDidMount () {
-    this.props.checkCookiesSetSession ()
-
+  componentDidMount() {
+    this.props.checkCookiesSetSession();
   }
+
   render() {
     return (
       <Router>
         <div>
-          <Route render={() => <NavBar /> } />
+          <Route render={() => <NavBar />} />
           <div className="container">
             <main>
               <Switch>
@@ -40,29 +42,24 @@ class Routes extends Component {
           </div>
         </div>
       </Router>
-    )
+    );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    session: state.session,
-  }
-}
+const mapStateToProps = (state) => ({
+  session: state.session,
+});
 
+const mapDispatchToProps = (dispatch) => ({
+  createGuestSession: () => {
+    dispatch(createGuestSession());
+  },
+  refreshSession: (sessionId) => {
+    dispatch(refreshSession(sessionId));
+  },
+  checkCookiesSetSession: () => {
+    dispatch(checkCookiesSetSession());
+  },
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    createGuestSession: () => {
-      dispatch(createGuestSession())
-    },
-    refreshSession: (sessionId) => {
-      dispatch(refreshSession(sessionId))
-    },
-    checkCookiesSetSession : () => {
-      dispatch(checkCookiesSetSession ())
-    },
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Routes)
+export default connect(mapStateToProps, mapDispatchToProps)(Routes);

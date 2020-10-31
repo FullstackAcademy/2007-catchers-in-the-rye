@@ -1,13 +1,12 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux"
-import "../../server/public/css/styles.css"
-
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import '../../server/public/css/styles.css';
 
 export default class NavBar extends Component {
   render() {
     return (
-      <div >
+      <div>
         <nav className="navbar is-link" role="navigation" aria-label="main navigation">
           <div id="navbarBasicExample" className="navbar-menu">
             <div className="navbar-start">
@@ -22,7 +21,8 @@ export default class NavBar extends Component {
                 <a className="navbar-item">Welcome, Guest!</a>
                 <div className="buttons">
                   <a className="button is-black">
-                    <strong>Register</strong></a>
+                    <strong>Register</strong>
+                  </a>
                   <Link to="/login" className="button is-black">Log in</Link>
                 </div>
               </div>
@@ -40,7 +40,7 @@ export default class NavBar extends Component {
             <Link to="/categories/Superheroes">Superheroes</Link>
           </div>
         </div>
-      </div >
-    )
+      </div>
+    );
   }
 }

@@ -1,31 +1,33 @@
-import React, { Component } from "react"
-import { connect } from "react-redux"
-import { loadSCostumeDispatch } from "../../redux/costumes/singleCostume"
-import { addCostumeToCart } from "../../redux/cart/cart"
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { loadSCostumeDispatch } from '../../redux/costumes/singleCostume';
+import { addCostumeToCart } from '../../redux/cart/cart';
 
 class SingleCostume extends Component {
   constructor(props) {
     super(props);
     this.state = {
       id: this.props.match.params.id,
-      quantity: 0
-    }
-    this.changeQuantity = this.changeQuantity.bind(this)
+      quantity: 0,
+    };
+    this.changeQuantity = this.changeQuantity.bind(this);
   }
 
   async componentDidMount() {
-    await this.props.dispatchLoadSCostume(this.state.id)
+    await this.props.dispatchLoadSCostume(this.state.id);
   }
-  changeQuantity(ev){
-    this.setState({quantity: ev.target.value})
+
+  changeQuantity(ev) {
+    this.setState({ quantity: ev.target.value });
   }
+
   render() {
-    const thisCostume = this.props.sCostume
+    const thisCostume = this.props.sCostume;
     return (
       <div className="container">
         <div>{thisCostume.costumeName}</div>
         <div>{thisCostume.price}</div>
-        <img src={thisCostume.imageUrl}></img>
+        <img src={thisCostume.imageUrl} />
         <select onChange={this.changeQuantity}>
           <option>Select quantity below:</option>
           <option value={1}>1</option>
@@ -34,26 +36,19 @@ class SingleCostume extends Component {
           <option value={4}>4</option>
           <option value={5}>5</option>
         </select>
-        <button onClick={() => this.props.addCostumeToCart(thisCostume.id, this.state.quantity*1)}>Add costume to cart</button>
+        <button onClick={() => this.props.addCostumeToCart(thisCostume.id, this.state.quantity * 1)}>Add costume to cart</button>
       </div>
-    )
+    );
   }
 }
 
+const mapStateToProps = (state) => ({
+  sCostume: state.sCostume,
+});
 
+const mapDispatchToProps = (dispatch) => ({
+  dispatchLoadSCostume: (id) => dispatch(loadSCostumeDispatch(id)),
+  addCostumeToCart: (costumeId, quantity) => dispatch(addCostumeToCart(costumeId, quantity)),
+});
 
-const mapStateToProps = (state) => {
-  return {
-    sCostume: state.sCostume
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-
-  return {
-    dispatchLoadSCostume: (id) => dispatch(loadSCostumeDispatch(id)),
-    addCostumeToCart: (costumeId, quantity) => dispatch(addCostumeToCart(costumeId, quantity))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SingleCostume)
+export default connect(mapStateToProps, mapDispatchToProps)(SingleCostume);

@@ -27,6 +27,22 @@ router.get('/userCart', async (req, res, next) => {
   }
 });
 
+router.get('/orderHistory', async (req, res, next) => {
+  try {
+    const sessionId = req.session.id;
+    const orders = await Order.findAll({
+      where: {
+        sessionId,
+        isPaid: true,
+      },
+      include: [Costume]
+    });
+    res.send(orders);
+  } catch (err) {
+    next(err)
+  }
+});
+
 router.put('/userCart/:costumeId', async (req, res, next) => {
   try {
     const sessionId = req.session.id;

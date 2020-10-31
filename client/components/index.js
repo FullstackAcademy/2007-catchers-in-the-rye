@@ -11,6 +11,7 @@ import Home from './Home';
 import Login from './authentication/Login';
 import SingleCostume from './costume/SingleCostume';
 import Cart from './Cart';
+import EditCostume from './costume/EditCostume';
 import { checkCookiesSetSession } from '../redux/authentication/session';
 
 class Routes extends Component {

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { login } from '../../redux/authentication/login';
 
-export default class UserInfo extends Component {
+class UserInfo extends Component {
   constructor() {
     super();
     this.state = {
@@ -25,11 +27,10 @@ export default class UserInfo extends Component {
   async submit(ev) {
     ev.preventDefault();
     try {
-      let response;
-      if (this.props.type === 'login') response = (await axios.post('/api/auth/login', this.state)).data;
+      if (this.props.type === 'login') this.props.login(this.state);
       // can use below code when we have option to create user
       // else if(this.props.type === 'create') response = (await axios.post('/api/user/create',this.state)).data
-      this.setState({ message: response.message });
+      this.setState({ message: this.props.message });
     } catch (err) {
       // eslint-disable-next-line no-console
       console.error(err);
@@ -63,3 +64,14 @@ export default class UserInfo extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  message: state.message,
+  loginUser: state.loginUser,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  login: () => dispatch(login()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserInfo)

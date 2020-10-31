@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect, browserHistory } from 'react-router-dom';
 import { connect } from "react-redux"
 import AllCategories from './category/AllCategories'
 import SingleCategory from './category/SingleCategory'
@@ -9,24 +9,18 @@ import Home from './Home'
 import Login from './authentication/Login'
 import SingleCostume from './costume/SingleCostume'
 import Cart from './Cart'
-import EditCostume from './costume/EditCostume'
-import { createGuestSession, refreshSession } from '../redux/authentication/session'
+import { checkCookiesSetSession } from '../redux/authentication/session'
 
 class Routes extends Component {
-  componentDidMount() {
-    //   const { session } = this.props
-    //   console.log(req.cookie)
-    //   if (session.id) {
-    //     this.props.refreshSession(session.id)
-    //   } else {
-    //     this.props.createGuestSession()
-    //   }
+  componentDidMount () {
+    this.props.checkCookiesSetSession ()
+
   }
   render() {
     return (
       <Router>
         <div>
-          <Route render={() => <NavBar />} />
+          <Route render={() => <NavBar /> } />
           <div className="container">
             <main>
               <Switch>
@@ -64,7 +58,10 @@ const mapDispatchToProps = (dispatch) => {
     },
     refreshSession: (sessionId) => {
       dispatch(refreshSession(sessionId))
-    }
+    },
+    checkCookiesSetSession : () => {
+      dispatch(checkCookiesSetSession ())
+    },
   }
 }
 

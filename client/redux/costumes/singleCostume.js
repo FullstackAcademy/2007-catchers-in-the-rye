@@ -10,7 +10,6 @@ function loadSCostume(costume) {
   }
   
 export function loadSCostumeDispatch(id) {
-    console.log(id)
     return async (dispatch) => {
       return await axios
         .get(`/api/costumes/${id}`)

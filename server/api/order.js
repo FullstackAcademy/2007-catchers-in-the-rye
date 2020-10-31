@@ -13,7 +13,7 @@ router.get('/', async(req, res, next) => {
 //for the below routes, we are currently re-finding the order based on user ID on req.user. This may be updated based on how we handle guest. also, we could probably put an orderId on the req.user object or something when user creates an order, so that we can just reference the orderId that references user's cart.
 router.get('/userCart', async(req,res,next) => {
     try{
-        const sessionId = req.sid
+        const sessionId = req.session.id
         const cart = await Order.findOne({
             where: {
                 sessionId,
@@ -29,7 +29,7 @@ router.get('/userCart', async(req,res,next) => {
 
 router.put('/userCart/:costumeId', async(req,res,next) => {
     try{
-        const sessionId = req.sid
+        const sessionId = req.session.id
         const costumeId = req.params.costumeId
         const { sign } = req.body
         const cart = await Order.findOne({
@@ -59,7 +59,7 @@ router.put('/userCart/:costumeId', async(req,res,next) => {
 
 router.delete('/userCart/:costumeId', async(req,res,next) => {
     try{
-        const sessionId = req.sid
+        const sessionId = req.session.id
         const costumeId = req.params.costumeId
         const cart = await Order.findOne({
             where: {

@@ -139,7 +139,7 @@ while(users.length < 20) {
 }
 
 const orders = []
-while(orders.length < 20){
+while(orders.length < 10){
     orders.push(
         { 
             total: faker.finance.amount(),

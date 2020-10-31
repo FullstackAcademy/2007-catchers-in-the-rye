@@ -31,6 +31,7 @@ export default class UserInfo extends Component {
       // else if(this.props.type === 'create') response = (await axios.post('/api/user/create',this.state)).data
       this.setState({ message: response.message });
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.error(err);
       if (this.props.type === 'login') this.setState({ message: 'Log in failed - check username and/or password' });
       else if (this.props.type === 'create') this.setState({ message: 'Could not create account' });
@@ -39,6 +40,7 @@ export default class UserInfo extends Component {
 
   render() {
     return (
+      // eslint-disable-next-line react/jsx-filename-extension
       <>
         <form onSubmit={this.submit}>
           <label>

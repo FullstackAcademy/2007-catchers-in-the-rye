@@ -12,7 +12,7 @@ Category.hasMany(Costume)
 Costume.belongsToMany(Order, { through: Lineitem })
 Order.belongsToMany(Costume, { through: Lineitem })
 
-User.hasMany(Session)
+User.hasOne(Session)
 Session.belongsTo(User)
 
 Session.hasMany(Order)

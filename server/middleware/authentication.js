@@ -21,7 +21,7 @@ const authMiddleware = async(req, res, next) => {
             req.session = null
         }
         else {
-            if (session) {
+            if (session.user) {
                 console.log(chalk.magenta(`Session User Identified: ${session.user.username}`));
             } else {
                 console.log(chalk.magenta(`Session User Identified: Guest`))

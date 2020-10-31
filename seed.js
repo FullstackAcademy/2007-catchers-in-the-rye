@@ -161,7 +161,7 @@ const seed = async() => {
         const ordersCreated = await Order.findAll()
         const costumesCreated = await Costume.findAll()
         // assign a user to each session - while a user can have multiple sessions, for seeding purposes only assigning one
-        for(let i = 0; i < usersCreated.length; i++){
+        for(let i = 0; i < usersCreated.length - 1; i++){
             const session = await Session.create()
             await session.setUser(usersCreated[i])
         }

@@ -13,13 +13,13 @@ import { createGuestSession, refreshSession } from '../redux/authentication/sess
 
 class Routes extends Component {
   componentDidMount () {
-    const { session } = this.props
-    console.log(session)
-    if (session.id) {
-      this.props.refreshSession(session.id)
-    } else {
-      this.props.createGuestSession()
-    }
+  //   const { session } = this.props
+  //   console.log(req.cookie)
+  //   if (session.id) {
+  //     this.props.refreshSession(session.id)
+  //   } else {
+  //     this.props.createGuestSession()
+  //   }
   }
   render() {
     return (

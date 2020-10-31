@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { loadSCostumeDispatch } from "../../redux/costumes/singleCostume"
+import { addCostumeToCart } from "'../../redux/cart/cart'"
 
 class SingleCostume extends Component {
   constructor(props) {
@@ -22,6 +23,8 @@ class SingleCostume extends Component {
       <div className="container">
         <div>{thisCostume.costumeName}</div>
         <div>{thisCostume.price}</div>
+        <img src={thisCostume.imageUrl}></img>
+        <button onClick={() => this.props.addCostumeToCart(thisCostume.id)}>Add costume to cart</button>
       </div>
     )
   }
@@ -38,7 +41,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 
   return {
-    dispatchLoadSCostume: (id) => dispatch(loadSCostumeDispatch(id))
+    dispatchLoadSCostume: (id) => dispatch(loadSCostumeDispatch(id)),
+    addCostumeToCart: (costumeId) => dispatch(addCostumeToCart)
   }
 }
 

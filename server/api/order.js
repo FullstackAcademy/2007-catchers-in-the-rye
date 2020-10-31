@@ -77,7 +77,7 @@ router.post('/userCart/:costumeId', async(req,res,next) => {
             }
         })
         if(!lineitem) lineitem = await Lineitem.create({ orderId: cart.id, costumeId, quantity })
-        else lineitem.increment({quantity})
+        else await lineitem.increment({quantity})
         res.sendStatus(201)
     } catch(err) {
         next(err)

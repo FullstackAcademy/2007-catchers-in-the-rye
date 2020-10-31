@@ -1,5 +1,8 @@
 dist: trusty
 language: node_js
 node_js:
-- '12'
+  - '14'
 script:
+# - npm run lint
+  - npm run build 
+  - npm run test

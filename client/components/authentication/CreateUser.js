@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
-import UserInfo from './UserInfo'
+import React, { Component } from 'react';
+import UserInfo from './UserInfo';
 
-function CreateUser () {
-  return(
+function CreateUser() {
+  return (
     <>
       <h1>Create Account</h1>
-      <UserInfo type='create'></UserInfo>
+      <UserInfo type="create" />
     </>
-  )
+  );
 }
 
-export default CreateUser
+export default CreateUser;

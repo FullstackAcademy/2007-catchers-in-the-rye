@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loadSCostumeDispatch } from "../../redux/costumes/singleCostume"
-import { fetchCategories } from "../../redux/categories/allCategories"
+import { loadSCostumeDispatch } from '../../redux/costumes/singleCostume';
+import { fetchCategories } from '../../redux/categories/allCategories';
 
 class EditCostume extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       id: this.props.match.params.id,
       // costumeName: this.props.costume.costumeName,
@@ -13,66 +13,63 @@ class EditCostume extends Component {
       // quantity: this.props.costume.quantity,
       // imageUrl: this.props.costume.imageUrl,
       // categoryId: this.props.costume.categoryId
-    }
+    };
   }
 
   async componentDidMount() {
-    await this.props.dispatchLoadSCostume(this.state.id)
-    await this.props.dispatchFetchCategories()
+    await this.props.dispatchLoadSCostume(this.state.id);
+    await this.props.dispatchFetchCategories();
   }
 
   render() {
-
-    let thisCostume = this.props.sCostume
-    let categories = this.props.categories
+    const thisCostume = this.props.sCostume;
+    const { categories } = this.props;
 
     return (
 
       <div className="container">
-        <h2>Update Costume Information: {thisCostume.costumeName} </h2>
-        <div>Name: <input value={thisCostume.costumeName}></input></div>
-        <div>Price: <input value={thisCostume.price}></input></div>
-        <div>Quantity: <input value={thisCostume.quantity}></input></div>
-        <div>ImageUrl: <input value={thisCostume.imageUrl}></input></div>
-        <div>Category: <input value={thisCostume.categoryId}></input></div>
+        <h2>
+          Update Costume Information:
+          {thisCostume.costumeName}
+        </h2>
+        <div>
+          Name:
+          <input value={thisCostume.costumeName} />
+        </div>
+        <div>
+          Price:
+          <input value={thisCostume.price} />
+        </div>
+        <div>
+          Quantity:
+          <input value={thisCostume.quantity} />
+        </div>
+        <div>
+          ImageUrl:
+          <input value={thisCostume.imageUrl} />
+        </div>
+        <div>
+          Category:
+          <input value={thisCostume.categoryId} />
+        </div>
         <div><button>Submit Changes</button></div>
         {/* <div><input value={categories.find(element => { element.id === thisCostume.categoryId }).id}></input><button>update</button></div> */}
-      </div >
-    )
+      </div>
+    );
   }
 }
 
+const mapStateToProps = (state) => ({
+  sCostume: state.sCostume,
+  categories: state.categories,
+});
 
+const mapDispatchToProps = (dispatch) => ({
+  dispatchLoadSCostume: (id) => dispatch(loadSCostumeDispatch(id)),
+  dispatchFetchCategories: () => dispatch(fetchCategories()),
+});
 
-const mapStateToProps = (state) => {
-  return {
-    sCostume: state.sCostume,
-    categories: state.categories
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-
-  return {
-    dispatchLoadSCostume: (id) => dispatch(loadSCostumeDispatch(id)),
-    dispatchFetchCategories: () => dispatch(fetchCategories())
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(EditCostume)
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default connect(mapStateToProps, mapDispatchToProps)(EditCostume);
 
 //   componentDidMount() {
 //     this.props.fetchCostume(this.props.id)

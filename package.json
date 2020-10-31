@@ -13,7 +13,7 @@
     "css-build": "node-sass --omit-source-map-url sass/mystyles.scss css/mystyles.css",
     "css-watch": "npm run css-build -- --watch",
     "build": "webpack --mode=\"production\"",
-    "lint": "eslint client"
+    "lint": "eslint client server"
   },
   "author": "",
   "license": "ISC",

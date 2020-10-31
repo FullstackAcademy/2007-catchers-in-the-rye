@@ -14,6 +14,7 @@ import { checkCookiesSetSession } from '../redux/authentication/session'
 class Routes extends Component {
   componentDidMount () {
     this.props.checkCookiesSetSession ()
+
   }
   render() {
     return (
@@ -30,9 +31,10 @@ class Routes extends Component {
                 <Route path="/categories" exact component={AllCategories} />
                 <Route path="/categories/:title" exact component={SingleCategory} />
                 <Route path="/costumes/:name/:id" exact component={SingleCostume} />
-                <Route path= "/costumes/add" exact component={CreateCostume} />
-                <Route path= "/login" exact component={Login} />
-                <Route path= "/cart" exact component={Cart} />
+                <Route path="/costumes/add" exact component={CreateCostume} />
+                <Route exact path="/costumes/:name/:id/admin" component={EditCostume} />
+                <Route path="/login" exact component={Login} />
+                <Route path="/cart" exact component={Cart} />
               </Switch>
             </main>
           </div>

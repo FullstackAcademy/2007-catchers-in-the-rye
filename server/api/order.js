@@ -57,6 +57,33 @@ router.put('/userCart/:costumeId', async(req,res,next) => {
     }
 })
 
+router.post('/userCart/:costumeId', async(req,res,next) => {
+    try {
+        const sessionId = req.session.id
+        const costumeId = req.params.costumeId
+        const { quantity } = req.body
+        let cart = await Order.findOne({
+            where: {
+                sessionId,
+                isPaid: false,
+            }, 
+            include: [Costume]
+        })
+        if(!cart) cart = await Order.create({sessionId})
+        let lineitem = await Lineitem.findOne({
+            where: {
+                orderId: cart.id,
+                costumeId
+            }
+        })
+        if(!lineitem) lineitem = await Lineitem.create({ orderId: cart.id, costumeId, quantity })
+        else lineitem.increment({quantity})
+        res.sendStatus(201)
+    } catch(err) {
+        next(err)
+    }
+})
+
 router.delete('/userCart/:costumeId', async(req,res,next) => {
     try{
         const sessionId = req.session.id

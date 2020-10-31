@@ -7,24 +7,34 @@ class SingleCostume extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: this.props.match.params.id
+      id: this.props.match.params.id,
+      quantity: 0
     }
+    this.changeQuantity = this.changeQuantity.bind(this)
   }
 
   async componentDidMount() {
     await this.props.dispatchLoadSCostume(this.state.id)
   }
-
+  changeQuantity(ev){
+    console.log(ev.target.value)
+    this.setState({quantity: ev.target.value})
+  }
   render() {
-
-
     const thisCostume = this.props.sCostume
     return (
       <div className="container">
         <div>{thisCostume.costumeName}</div>
         <div>{thisCostume.price}</div>
         <img src={thisCostume.imageUrl}></img>
-        <button onClick={() => this.props.addCostumeToCart(thisCostume.id)}>Add costume to cart</button>
+        <select onChange={this.changeQuantity}>
+          <option value={1}>1</option>
+          <option value={2}>2</option>
+          <option value={3}>3</option>
+          <option value={4}>4</option>
+          <option value={5}>5</option>
+        </select>
+        <button onClick={() => this.props.addCostumeToCart(thisCostume.id, this.state.quantity*1)}>Add costume to cart</button>
       </div>
     )
   }
@@ -39,10 +49,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-
   return {
     dispatchLoadSCostume: (id) => dispatch(loadSCostumeDispatch(id)),
-    addCostumeToCart: (costumeId) => dispatch(addCostumeToCart)
+    addCostumeToCart: (costumeId, quantity) => dispatch(addCostumeToCart(costumeId, quantity))
   }
 }
 

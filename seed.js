@@ -125,7 +125,40 @@ const costumes = [
 ]
 
 
-const users = []
+const users = [
+    {
+        userType: 'admin',
+        firstName: 'Cynthia',
+        lastName: 'Ellison',
+        userEmail: 'Cynthia8499@hotmail.com',
+        username: 'CynthiaEllison',
+        password: 'GraceShockers2020!'
+    },
+    {
+        userType: 'admin',
+        firstName: 'Fu',
+        lastName: 'Goto',
+        userEmail: 'fu.goto@gmail.com',
+        username: 'FuGoto',
+        password: 'GraceShockers2020!'
+    },
+    {
+        userType: 'admin',
+        firstName: 'Mark',
+        lastName: 'Guinn',
+        userEmail: 'mxavier927@gmail.com',
+        username: 'MarkGuinn',
+        password: 'GraceShockers2020!'
+    },
+    {
+        userType: 'admin',
+        firstName: 'Doug',
+        lastName: 'Miller',
+        userEmail: 'djmiller1717@gmail.com',
+        username: 'DougMiller',
+        password: 'GraceShockers2020!'
+    },
+]
 while(users.length < 20) {
     users.push(
       {
@@ -148,25 +181,37 @@ while(orders.length < 10){
     )  
 }
 
+const sessions = []
+while (sessions.length < 20) {
+    sessions.push(
+        {
+            uuid: faker.random.uuid()
+        }
+    )
+}
+
 const seed = async() => {
     try {
         console.log('seeding')
-        await db.sync({ force: true })
-        await Category.bulkCreate(categories)
-        await User.bulkCreate(users)
-        await Costume.bulkCreate(costumes)
-        await Order.bulkCreate(orders)
-
-        const usersCreated = await User.findAll()
-        const ordersCreated = await Order.findAll()
-        const costumesCreated = await Costume.findAll()
+        await db.sync({ force: true})
+        await Promise.all([
+            Category.bulkCreate(categories),
+            User.bulkCreate(users),
+            Costume.bulkCreate(costumes),
+            Order.bulkCreate(orders),
+            Session.bulkCreate(sessions)
+        ])
+        const [usersCreated, costumesCreated, ordersCreated, sessionsCreated] = await Promise.all([
+            User.findAll(),
+            Costume.findAll(),
+            Order.findAll(),
+            Session.findAll()
+        ])
         // assign a user to each session - while a user can have multiple sessions, for seeding purposes only assigning one
         for(let i = 0; i < usersCreated.length - 1; i++){
-            const session = await Session.create()
-            await session.setUser(usersCreated[i])
+            await sessionsCreated[i].setUser(usersCreated[i])
         }
         // assign a session to each order - while a user can have multiple orders, for seeding purposes only assigning one order per user, since default setting is not paid (i.e. it's a cart and each user only has one open cart)
-        const sessionsCreated = await Session.findAll()
         for(let i = 0; i < ordersCreated.length; i++){
             await ordersCreated[i].setSession(sessionsCreated[i])
         }
@@ -175,7 +220,6 @@ const seed = async() => {
             let rand = Math.floor(Math.random() * (costumesCreated.length-1))
             await ordersCreated[i].setCostumes([costumesCreated[rand], costumesCreated[rand+1]])
         }
-
         await db.close()
         console.log('seeded')
     } catch(err) { console.error(err) }

@@ -12,7 +12,7 @@ function loadCostumes(costumes) {
   
 export function loadCostumesDispatch() {
     return async (dispatch) => {
-      return await axios
+      await axios
         .get("/api/costumes")
         .then((res) => {
           dispatch(loadCostumes(res.data));

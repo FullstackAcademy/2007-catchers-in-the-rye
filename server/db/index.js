@@ -5,7 +5,6 @@ const Category = require('./models/Category')
 const Order = require('./models/Order')
 const Session = require('./models/Session')
 const Lineitem = require('./models/Lineitem')
-const TrackedOrder = require('./models/TrackedOrder')
 
 Costume.belongsTo(Category)
 Category.hasMany(Costume)
@@ -13,10 +12,10 @@ Category.hasMany(Costume)
 Costume.belongsToMany(Order, { through: Lineitem })
 Order.belongsToMany(Costume, { through: Lineitem })
 
-User.hasMany(Session)
+User.hasOne(Session)
 Session.belongsTo(User)
 
-Session.belongsToMany(Order, { through: TrackedOrder })
-Order.belongsToMany(Session, { through: TrackedOrder })
+Session.hasMany(Order)
+Order.belongsTo(Session)
 
 module.exports = { db, User, Costume, Category, Order, Session, Lineitem }

@@ -161,14 +161,14 @@ const seed = async() => {
         const ordersCreated = await Order.findAll()
         const costumesCreated = await Costume.findAll()
         // assign a user to each session - while a user can have multiple sessions, for seeding purposes only assigning one
-        for(let i = 0; i < usersCreated.length; i++){
+        for(let i = 0; i < usersCreated.length - 1; i++){
             const session = await Session.create()
             await session.setUser(usersCreated[i])
         }
         // assign a session to each order - while a user can have multiple orders, for seeding purposes only assigning one order per user, since default setting is not paid (i.e. it's a cart and each user only has one open cart)
         const sessionsCreated = await Session.findAll()
         for(let i = 0; i < ordersCreated.length; i++){
-            await ordersCreated[i].setSessions(sessionsCreated[i])
+            await ordersCreated[i].setSession(sessionsCreated[i])
         }
         // assign costumes to each order
         for(let i = 0; i < ordersCreated.length; i++){

@@ -19,7 +19,8 @@ class Home extends Component {
           {this.props.costumes.map((costume) => {
             return (
               <li key={costume.id} className="costumes" >
-                <Link to={`/costumes/${costume.costumeName}/${costume.id}`}>{costume.costumeName}</Link>
+                <div><Link to={`/costumes/${costume.costumeName}/${costume.id}`}>{costume.costumeName}</Link></div>
+                <div><Link to={`/costumes/${costume.costumeName}/${costume.id}/admin`}>Update {costume.costumeName}</Link></div>
                 <div>{costume.price}</div>
               </li>
             )

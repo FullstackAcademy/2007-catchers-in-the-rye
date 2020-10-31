@@ -3,26 +3,21 @@ const { User, Session } = require('../db')
 
 const A_WEEK_IN_SECONDS = 1000 * 60 * 60 * 24 * 7;
 
-router.put('/:id', async(req,res,next)=> {
+router.post('/mount', async(req,res,next)=> {
     try {
-        const session = await Session.findbyPk(req.params.id);
-        res.cookie('sid', guestSession.uuid, {
-            maxAge: A_WEEK_IN_SECONDS,
-            path: '/'
-        }).send(session)
-    }
-    catch (err){
-        next(err);
-    }
-})
-
-router.post('/guest', async(req,res,next)=> {
-    try {
-        const guestSession = await Session.create()
-        res.cookie('sid', guestSession.uuid, {
-            maxAge: A_WEEK_IN_SECONDS,
-            path: '/'
-        }).status(201).send(guestSession)
+        if (req.session) {
+            const refreshedSession = await Session.findByPk(req.session.id)
+            res.cookie('sid', refreshedSession.uuid, {
+                maxAge: A_WEEK_IN_SECONDS,
+                path: '/',
+              }).send(refreshedSession)
+        } else {
+            const guestSession = await Session.create()
+            res.cookie('sid', guestSession.uuid, {
+                maxAge: A_WEEK_IN_SECONDS,
+                path: '/'
+            }).status(201).send(guestSession)
+        }
     } catch(err) {
         next(err)
     }

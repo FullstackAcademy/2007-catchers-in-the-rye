@@ -9,17 +9,11 @@ import Home from './Home'
 import Login from './authentication/Login'
 import SingleCostume from './costume/SingleCostume'
 import Cart from './Cart'
-import { createGuestSession, refreshSession } from '../redux/authentication/session'
+import { checkCookiesSetSession } from '../redux/authentication/session'
 
 class Routes extends Component {
   componentDidMount () {
-  //   const { session } = this.props
-  //   console.log(req.cookie)
-  //   if (session.id) {
-  //     this.props.refreshSession(session.id)
-  //   } else {
-  //     this.props.createGuestSession()
-  //   }
+    this.props.checkCookiesSetSession ()
   }
   render() {
     return (
@@ -62,7 +56,10 @@ const mapDispatchToProps = (dispatch) => {
     },
     refreshSession: (sessionId) => {
       dispatch(refreshSession(sessionId))
-    }
+    },
+    checkCookiesSetSession : () => {
+      dispatch(checkCookiesSetSession ())
+    },
   }
 }
 

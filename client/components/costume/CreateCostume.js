@@ -27,7 +27,7 @@ class CreateCostume extends Component {
         if (!costumeName) {
             alert("What is this costume's name?")
         } else if (price <= 0) {
-            alert("Our prices may be so low they're scary, but not THIS scary! Add a price greater than 0!")
+            alert("Our prices may be so low they're scary, but not THIS scary! Price must be greater than 0!")
         } else if (quantity < 0) {
             alert("Quantity must be at least 0")
         } else {

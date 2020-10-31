@@ -49,10 +49,8 @@ const removeItem = (costumeId) => {
 }
 
 const addCostumeToCart = (costumeId, quantity) => {
-    console.log(costumeId)
     return async(dispatch) => {
         const { data } = await axios.post(`/api/orders/userCart/${costumeId}`, { quantity })
-        console.log(data)
     }
 }
 

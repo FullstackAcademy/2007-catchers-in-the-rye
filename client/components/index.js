@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect, browserHistory } from 'react-router-dom';
 import { connect } from "react-redux"
 import AllCategories from './category/AllCategories'
 import SingleCategory from './category/SingleCategory'
@@ -19,7 +19,7 @@ class Routes extends Component {
     return (
       <Router>
         <div>
-          <Route render={() => <NavBar />} />
+          <Route render={() => <NavBar /> } />
           <div className="container">
             <main>
               <Switch>

@@ -34,8 +34,8 @@ class Routes extends Component {
                 </Route>
                 <Route path="/home" exact component={Home} />
                 <Route path="/categories" exact component={AllCategories} />
-                <Route path="/categories/:title" component={SingleCategory} />
-                <Route path="/costumes/:name/:id" component={SingleCostume} />
+                <Route path="/categories/:title" exact component={SingleCategory} />
+                <Route path="/costumes/:name/:id" exact component={SingleCostume} />
                 <Route path= "/costumes/add" exact component={CreateCostume} />
                 <Route path= "/login" exact component={Login} />
                 <Route path= "/cart" exact component={Cart} />

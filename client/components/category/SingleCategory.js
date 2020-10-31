@@ -21,7 +21,8 @@ class SingleCategory extends Component {
               return (
                 <li key={costume.id}>
                     <div>{costume.costumeName}</div>
-                    <div>{costume.imageUrl}</div>
+                    <img src={costume.imageUrl}></img>
+                    <div>{costume.price}</div>
                 </li>
               )
             })}

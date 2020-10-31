@@ -3,6 +3,7 @@ import axios from 'axios'
 const FETCH_CART = 'FETCH_CART'
 const UPDATE_QUANTITY = 'UPDATE_QUANTITY'
 const REMOVE_ITEM = 'REMOVE_ITEM'
+const ADD_COSTUME_TO_CART = 'ADD_COSTUME_TO_CART'
 
 const _fetchCart = (cart) => {
     return {
@@ -47,6 +48,22 @@ const removeItem = (costumeId) => {
     }
 }
 
+const _addCostumeToCart = (costume) => {
+    return {
+        type: ADD_COSTUME_TO_CART,
+        costume
+    }
+}
+
+const addCostumeToCart = (costumeId, quantity) => {
+    console.log(costumeId)
+    return async(dispatch) => {
+        const { data } = await axios.post(`/api/orders/userCart/${costumeId}`, { quantity })
+        console.log(data)
+        // dispatch(_addCostumeToCart(data))
+    }
+}
+
 export default function cartReducer(state = {}, action) {
     switch(action.type) {
         case FETCH_CART:
@@ -65,4 +82,4 @@ export default function cartReducer(state = {}, action) {
     }
 }
 
-export { fetchCart, updateCartQuantity, removeItem }
+export { fetchCart, updateCartQuantity, removeItem, addCostumeToCart }

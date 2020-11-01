@@ -26,10 +26,11 @@ class UserInfo extends Component {
   async submit(ev) {
     ev.preventDefault();
     try {
+      // eslint-disable-next-line react/destructuring-assignment
       if (this.props.type === 'login') this.props.login(this.state);
       // can use below code when we have option to create user
       // else if(this.props.type === 'create') response = (await axios.post('/api/user/create',this.state)).data
-      this.setState({ message: this.props.message });
+      this.setState({ message: this.props.user.message });
     } catch (err) {
       // eslint-disable-next-line no-console
       console.error(err);
@@ -58,7 +59,7 @@ class UserInfo extends Component {
           </label>
           <button type="submit">Login</button>
         </form>
-        <p>{this.props.user.message}</p>
+        <p>{this.state.message}</p>
       </>
     );
   }

@@ -48,21 +48,26 @@ class UserInfo extends Component {
     } = this.state;
     const {
       // eslint-disable-next-line react/prop-types
-      type, login, createUser, user,
+      type, login, createUser,
     } = this.props;
+
     try {
       // eslint-disable-next-line react/destructuring-assignment
-      console.log(this.state)
       if (!username.length || !password.length) this.setState({ message: 'All fields are required' });
-      if (type === 'login') login(this.state);
-      else if (type === 'create') {
-        if (!firstName.length || !lastName.length || !userEmail.length) this.setState({ message: 'All fields are required' });
-        else {
-          createUser(this.state);
-          // eslint-disable-next-line react/prop-types
-          this.setState({ message: user.message });
+      else {
+        if (type === 'login') {
+          await login(this.state);
+          this.setState({ message: this.props.user.message });
+        }
+        if (type === 'create') {
+          if (!firstName.length || !lastName.length || !userEmail.length) this.setState({ message: 'All fields are required' });
+          else {
+            await createUser(this.state);
+            this.setState({ message: this.props.user.message });
+          }
         }
       }
+      // eslint-disable-next-line react/prop-types
     } catch (err) {
       // eslint-disable-next-line no-console
       console.error(err);
@@ -72,7 +77,6 @@ class UserInfo extends Component {
   }
 
   render() {
-    const { message } = this.state;
     return (
       // eslint-disable-next-line react/jsx-filename-extension
       <>
@@ -115,12 +119,12 @@ class UserInfo extends Component {
             : null }
           <button type="submit">{this.props.type === 'login' ? 'Login' : 'Create Account' }</button>
         </form>
-        <p>{ message }</p>
+        <p>{ this.state.message }</p>
       </>
     );
   }
 }
-// need to have boxes for all user fields for create user!
+
 const mapStateToProps = (state) => ({
   user: state.user,
 });

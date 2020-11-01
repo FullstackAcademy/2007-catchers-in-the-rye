@@ -1,12 +1,12 @@
 import axios from 'axios';
 
 const LOGIN = 'LOGIN';
-const CREATE_USER = 'CREATE_USER'
+const CREATE_USER = 'CREATE_USER';
 
 // eslint-disable-next-line no-underscore-dangle
-const _login = (response) => ({
+const _login = (loginUser) => ({
   type: LOGIN,
-  response,
+  loginUser,
 });
 
 const login = (loginInfo) => async (dispatch) => {
@@ -22,14 +22,15 @@ const _createUser = (newUser) => ({
 
 const createUser = (newUserInfo) => async (dispatch) => {
   const { data } = await (axios.post('/api/auth/createUser', newUserInfo));
-  console.log(data)
   dispatch(_createUser(data));
 };
 
 export default function userReducer(state = {}, action) {
   switch (action.type) {
     case LOGIN:
-      return action.response;
+      return action.loginUser;
+    case CREATE_USER:
+      return action.newUser;
     default:
       return state;
   }

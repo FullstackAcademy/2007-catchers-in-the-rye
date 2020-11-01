@@ -12,6 +12,7 @@ import Login from './authentication/Login';
 import SingleCostume from './costume/SingleCostume';
 import Cart from './Cart';
 import EditCostume from './costume/EditCostume';
+import CreateUser from './authentication/CreateUser';
 import { checkCookiesSetSession } from '../redux/authentication/session';
 
 class Routes extends Component {
@@ -21,6 +22,7 @@ class Routes extends Component {
 
   render() {
     return (
+      // eslint-disable-next-line react/jsx-filename-extension
       <Router>
         <div>
           <Route render={() => <NavBar />} />
@@ -38,6 +40,7 @@ class Routes extends Component {
                 <Route exact path="/costumes/:name/:costId/:catId/admin" component={EditCostume} />
                 <Route path="/login" exact component={Login} />
                 <Route path="/cart" exact component={Cart} />
+                <Route path="/createUser" exact component={CreateUser} />
               </Switch>
             </main>
           </div>

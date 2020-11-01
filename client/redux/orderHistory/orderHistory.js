@@ -7,11 +7,15 @@ const _fetchOrders = (orders) => ({
     orders
 })
 export const fetchOrders = () => async (dispatch) => {
-    const response = (await axios.get('/api/orders/orderHistory')).data;
-    dispatch(_fetchOrders(response));
+    try {
+        const response = (await axios.get('/api/orders/orderHistory')).data;
+        dispatch(_fetchOrders(response));
+    } catch(err){
+        console.log('Unable to fetch previous orders.')
+    }
 }
 
-export default function orderReducer(state = {}, action){
+export default function orderReducer(state = [], action){
     switch (action.type){
         case FETCH_ORDERS:
             return action.orders;

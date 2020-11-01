@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
-import { login } from '../../redux/authentication/login';
+import { login } from '../../redux/authentication/user';
 
 class UserInfo extends Component {
   constructor() {
@@ -59,19 +58,18 @@ class UserInfo extends Component {
           </label>
           <button type="submit">Login</button>
         </form>
-        <p>{this.state.message}</p>
+        <p>{this.props.user.message}</p>
       </>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  message: state.message,
-  loginUser: state.loginUser,
+  user: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  login: () => dispatch(login()),
+  login: (loginInfo) => dispatch(login(loginInfo)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserInfo)
+export default connect(mapStateToProps, mapDispatchToProps)(UserInfo);

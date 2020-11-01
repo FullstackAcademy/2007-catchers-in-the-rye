@@ -25,6 +25,7 @@ router.post('/mount', async (req, res, next) => {
 
 router.post('/login', async (req, res, next) => {
   const { username, password } = req.body;
+  console.log('body',req.body)
   if (typeof username !== 'string' || typeof password !== 'string') {
     res.status(400).send({
       message: 'Username and password must both be strings.',

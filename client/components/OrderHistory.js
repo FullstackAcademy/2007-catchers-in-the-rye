@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchOrders } from '../redux/orderHistory/orderHistory'
 
+//username: "Orion.Dickinson",
+//password: "njHt7wUeYV1Heq9",
+
 class OrderHistory extends Component {
     componentDidMount(){
         this.props.fetchOrders()

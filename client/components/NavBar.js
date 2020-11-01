@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import '../../server/public/css/styles.css';
 
+// eslint-disable-next-line react/prefer-stateless-function
 export default class NavBar extends Component {
   render() {
     return (
+      // eslint-disable-next-line react/jsx-filename-extension
       <div>
         <div className="navContainer">
-          <nav className="navbar is-fixed-top is-link" role=" navigation" aria-label="main navigation">
+          <nav className="navbar is-fixed-top is-link" role="navigation" aria-label="main navigation">
             <div id="navbarBasicExample" className="navbar-menu">
               <div className="navbar-start">
                 <a className="navbar-item">Grace Shockers</a>
@@ -21,9 +22,7 @@ export default class NavBar extends Component {
                 <div className="navbar-item">
                   <a className="navbar-item">Welcome, Guest!</a>
                   <div className="buttons">
-                    <a className="button is-black">
-                      <strong>Register</strong>
-                    </a>
+                    <Link to="/createUser" className="button is-black">Register</Link>
                     <Link to="/login" className="button is-black">Log in</Link>
                   </div>
                 </div>
@@ -42,7 +41,7 @@ export default class NavBar extends Component {
             <Link to="/categories/Superheroes">Superheroes</Link>
           </div>
         </div>
-      </div >
+      </div>
     );
   }
 }

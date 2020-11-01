@@ -77,6 +77,8 @@ class UserInfo extends Component {
   }
 
   render() {
+    // eslint-disable-next-line react/prop-types
+    const { type } = this.props;
     return (
       // eslint-disable-next-line react/jsx-filename-extension
       <>
@@ -94,7 +96,7 @@ class UserInfo extends Component {
               type="password"
             />
           </label>
-          { this.props.type === 'create' ? (
+          { type === 'create' ? (
             <div>
               <label>
                 First Name
@@ -117,7 +119,7 @@ class UserInfo extends Component {
             </div>
           )
             : null }
-          <button type="submit">{this.props.type === 'login' ? 'Login' : 'Create Account' }</button>
+          <button type="submit">{ type === 'login' ? 'Login' : 'Create Account' }</button>
         </form>
         <p>{ this.state.message }</p>
       </>

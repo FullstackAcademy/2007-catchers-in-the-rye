@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const LOGIN = 'LOGIN';
+const CREATE_USER = 'CREATE_USER'
 
 // eslint-disable-next-line no-underscore-dangle
 const _login = (response) => ({
@@ -13,6 +14,18 @@ const login = (loginInfo) => async (dispatch) => {
   dispatch(_login(data));
 };
 
+// eslint-disable-next-line no-underscore-dangle
+const _createUser = (newUser) => ({
+  type: CREATE_USER,
+  newUser,
+});
+
+const createUser = (newUserInfo) => async (dispatch) => {
+  const { data } = await (axios.post('/api/auth/createUser', newUserInfo));
+  console.log(data)
+  dispatch(_createUser(data));
+};
+
 export default function userReducer(state = {}, action) {
   switch (action.type) {
     case LOGIN:
@@ -22,4 +35,4 @@ export default function userReducer(state = {}, action) {
   }
 }
 
-export { login };
+export { login, createUser };

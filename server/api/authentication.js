@@ -25,7 +25,6 @@ router.post('/mount', async (req, res, next) => {
 
 router.post('/login', async (req, res, next) => {
   const { username, password } = req.body;
-  console.log('body',req.body)
   if (typeof username !== 'string' || typeof password !== 'string') {
     res.status(400).send({
       message: 'Username and password must both be strings.',
@@ -65,6 +64,19 @@ router.post('/login', async (req, res, next) => {
     } catch (err) {
       next(err);
     }
+  }
+});
+
+router.post('/createUser', async (req, res, next) => {
+  try {
+    console.log(req.body)
+    const newUser = await User.create(req.body);
+    res.send({
+      newUser,
+      message: 'Welcome! Your account has been created.',
+    });
+  } catch (err) {
+    next(err);
   }
 });
 

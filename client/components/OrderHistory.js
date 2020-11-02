@@ -15,19 +15,24 @@ class OrderHistory extends Component {
         <div>
           <h1>Previous Orders:</h1>
           <ul>
-            {orders.map((order) => (
+            {orders.map((order) => {
+                const date = new Date(order.createdAt)
+                const readableDate = date.toDateString()
+               return (
               <li key={order.id}>
-                Total: $
-                {order.total}
+                <div>{readableDate}</div>
+                <div>Total: $
+                {order.total.toFixed(2)}
+                </div>
                 <ul>
                   {order.costumes.map((costume) => (
                     <li key={costume.id}>
-                      <Link to={`/costumes/${costume.costumeName}/${costume.id}`}>{costume.costumeName}</Link>
+                      <Link to={`/costumes/${costume.costumeName}`}>{costume.costumeName}</Link>
                     </li>
                   ))}
                 </ul>
               </li>
-            ))}
+            )})}
           </ul>
         </div>
       );

@@ -22,8 +22,8 @@ class Routes extends Component {
   }
 
   render() {
+    console.log(this.props.session)
     return (
-      // eslint-disable-next-line react/jsx-filename-extension
       <Router>
         <div>
           <Route render={() => <NavBar />} />
@@ -34,8 +34,8 @@ class Routes extends Component {
                   <Redirect to="/home" />
                 </Route>
                 <Route path="/home" exact component={Home} />
-                <Route path="/categories" exact component={AllCategories} />
-                <Route path="/categories/:title" exact component={SingleCategory} />
+                {/* <Route path="/categories" exact component={AllCategories} /> */}
+                <Route path="/categories/:id" exact component={AllCostumes} />
                 <Route path="/costumes/:name/:id" exact component={SingleCostume} />
                 <Route path="/costumes/add" exact component={CreateCostume} />
                 <Route exact path="/costumes/:name/:costId/:catId/admin" component={EditCostume} />

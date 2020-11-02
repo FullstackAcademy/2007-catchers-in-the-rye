@@ -1,40 +1,42 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { fetchCategories } from '../../redux/categories/allCategories';
+// Not in use now, but may be re-appropriated for admin use later
 
-class AllCategories extends Component {
-  componentDidMount() {
-    this.props.fetchCategories();
-  }
+// import React, { Component } from 'react';
+// import { connect } from 'react-redux';
+// import { Link } from 'react-router-dom';
+// import { fetchCategories } from '../../redux/categories/allCategories';
 
-  render() {
-    const { categories } = this.props;
-    return (
-      <div id="allCategories">
-        <h1>All Categories</h1>
-        <ul id="categoryList">
-          {
-                            categories.map((category) => (
-                              <li key={category.id} className="category">
-                                <Link to={`/categories/${category.title}`}>{category.title}</Link>
-                              </li>
-                            ))
-                        }
-        </ul>
-      </div>
-    );
-  }
-}
+// class AllCategories extends Component {
+//   componentDidMount() {
+//     this.props.fetchCategories();
+//   }
 
-const mapStateToProps = (state) => ({
-  categories: state.categories,
-});
+//   render() {
+//     const { categories } = this.props;
+//     return (
+//       <div id="allCategories">
+//         <h1>All Categories</h1>
+//         <ul id="categoryList">
+//           {
+//                             categories.map((category) => (
+//                               <li key={category.id} className="category">
+//                                 <Link to={`/categories/${category.title}`}>{category.title}</Link>
+//                               </li>
+//                             ))
+//                         }
+//         </ul>
+//       </div>
+//     );
+//   }
+// }
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchCategories: () => {
-    dispatch(fetchCategories());
-  },
-});
+// const mapStateToProps = (state) => ({
+//   categories: state.categories,
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AllCategories);
+// const mapDispatchToProps = (dispatch) => ({
+//   fetchCategories: () => {
+//     dispatch(fetchCategories());
+//   },
+// });
+
+// export default connect(mapStateToProps, mapDispatchToProps)(AllCategories);

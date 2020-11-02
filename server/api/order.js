@@ -141,6 +141,7 @@ router.get('/admin/pending', async (req, res, next) => {
       const orders = await Order.findAll({
         where: {
           isShipped: false,
+          isPaid: true,
         },
         order: [
           ['updatedAt', 'ASC'],

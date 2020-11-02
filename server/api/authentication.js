@@ -78,9 +78,10 @@ router.post('/createUser', async (req, res, next) => {
     const {
       username, password, firstName, lastName, userEmail,
     } = req.body;
-    console.log(username, password, firstName, lastName, userEmail)
     const hashedPassword = await hash(password);
-    const newUser = await User.create({ username, password: hashedPassword, firstName, lastName, userEmail });
+    const newUser = await User.create({
+      username, password: hashedPassword, firstName, lastName, userEmail,
+    });
     res.send({
       newUser,
       message: `Welcome ${newUser.firstName}! Your account has been created.`,

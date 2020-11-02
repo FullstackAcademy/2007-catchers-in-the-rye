@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
 const Lineitem = require('./Lineitem');
+const Costume = require('./Costume');
 
 const {
   STRING, BOOLEAN, FLOAT, ENUM,
@@ -32,18 +33,48 @@ const Order = db.define('order', {
   },
 });
 
-Order.beforeValidate(order => {
-  const lineitems = Lineitem.findAll({
+Order.prototype.calcTotal = async function () {
+  // const orders = Order.findAll({ include: [Costume] });
+  // orders.map(order => {
+  //   order.costumes.map(costume => {
+  //     order.total += costume.price * costume.lineitem.quantity;
+  //   });
+  // });
+  const lineitems = await Lineitem.findAll({
     where: {
-      orderId: order.id,
+      orderId: this.id,
     },
     include: [Costume],
   });
-  order.total = lineitems.reduce((acc, lineitem) => {
-    acc += lineitem.
-  }, 0)
+  console.log(lineitems);
+  // this.total = lineitems.reduce((acc, lineitem) => {
+  //   acc += lineitem.quantity * lineitem.costume.price;
+  //   return acc;
+  // }, 0);
+  // this.save();
 }
 
-)
+// Order.beforeValidate = (order => {
+//   console.log('costumes',order.costumes)
+//   order.costumes.map(costume => {
+//     order.total += costume.price * costume.lineitem.quantity
+//   })
+//   order.save()
+  // const orders = Order.findAll({ include: [Costume] });
+  // orders.map(order => {
+  //   order.costumes.map(costume => {
+  //     order.total += costume.price * costume.lineitem.quantity;
+  //   });
+  // });
+  // const lineitems = Lineitem.findAll({
+  //   where: {
+  //     orderId: order.id,
+  //   },
+  //   include: [Costume],
+  // });
+  // order.total = lineitems.reduce((acc, lineitem) => {
+  //   acc += lineitem.
+  // }, 0)
+// });
 
 module.exports = Order;

@@ -227,6 +227,12 @@ const seed = async () => {
       Order.findAll(),
       Session.findAll(),
     ]);
+
+    for (let i = 0; i < ordersCreated.length; i++) {
+      const order = ordersCreated[i];
+      await order.calcTotal();
+    }
+
     // assign a user to each session - while a user can have multiple sessions, for seeding purposes only assigning one
     for (let i = 0; i < usersCreated.length - 1; i++) {
       await sessionsCreated[i].setUser(usersCreated[i]);

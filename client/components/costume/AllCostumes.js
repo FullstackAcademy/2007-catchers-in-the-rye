@@ -67,7 +67,6 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   loadCostumesDispatch: () => dispatch(loadCostumesDispatch()),
-  selectCategory: (id) => dispatch(selectCategory(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllCostumes);

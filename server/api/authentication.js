@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const brcypt = require('bcrypt');
+const hash = require('../hash');
 const { User, Session } = require('../db');
 
 const A_WEEK_IN_SECONDS = 1000 * 60 * 60 * 24 * 7;
@@ -34,10 +36,14 @@ router.post('/login', async (req, res, next) => {
       const loginUser = await User.findOne({
         where: {
           username,
-          password,
         },
         include: [Session],
       });
+
+      const comparisonResult = await brcypt.compare(password, loginUser.password);
+      if (!comparisonResult) {
+        throw new Error('Wrong password!');
+      }
       if (loginUser) {
         if (loginUser.session) {
           res.cookie('sid', loginUser.session.uuid, {
@@ -69,11 +75,15 @@ router.post('/login', async (req, res, next) => {
 
 router.post('/createUser', async (req, res, next) => {
   try {
-    console.log(req.body)
-    const newUser = await User.create(req.body);
+    const {
+      username, password, firstName, lastName, userEmail,
+    } = req.body;
+    console.log(username, password, firstName, lastName, userEmail)
+    const hashedPassword = await hash(password);
+    const newUser = await User.create({ username, password: hashedPassword, firstName, lastName, userEmail });
     res.send({
       newUser,
-      message: 'Welcome! Your account has been created.',
+      message: `Welcome ${newUser.firstName}! Your account has been created.`,
     });
   } catch (err) {
     next(err);

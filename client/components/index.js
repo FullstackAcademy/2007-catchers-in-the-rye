@@ -13,7 +13,7 @@ import SingleCostume from './costume/SingleCostume';
 import Cart from './Cart';
 import EditCostume from './costume/EditCostume';
 import { checkCookiesSetSession } from '../redux/authentication/session';
-import OrderHistory from './OrderHistory'
+import OrderHistory from './OrderHistory';
 
 class Routes extends Component {
   componentDidMount() {
@@ -39,7 +39,7 @@ class Routes extends Component {
                 <Route exact path="/costumes/:name/:id/admin" component={EditCostume} />
                 <Route path="/login" exact component={Login} />
                 <Route path="/cart" exact component={Cart} />
-                <Route path='/orderHistory' exact component={OrderHistory} />
+                <Route path="/orderHistory" exact component={OrderHistory} />
               </Switch>
             </main>
           </div>

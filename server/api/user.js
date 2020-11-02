@@ -7,9 +7,9 @@ router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({
       include: [Session],
-      // attributes: {
-      //   exclude: ['password', 'userEmail'],
-      // },
+      attributes: {
+        exclude: ['password', 'userEmail'],
+      },
     });
     res.send(users);
   } catch (err) {

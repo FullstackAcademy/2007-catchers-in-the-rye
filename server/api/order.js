@@ -35,11 +35,11 @@ router.get('/orderHistory', async (req, res, next) => {
         sessionId,
         isPaid: true,
       },
-      include: [Costume]
+      include: [Costume],
     });
     res.send(orders);
   } catch (err) {
-    next(err)
+    next(err);
   }
 });
 

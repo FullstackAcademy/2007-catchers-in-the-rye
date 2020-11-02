@@ -16,7 +16,7 @@ const appReducer = combineReducers({
   sCostume: singleCostumeReducer,
   cart: cartReducer,
   session: sessionReducer,
-  orders: orderReducer
+  orders: orderReducer,
 });
 
 const middleware = [

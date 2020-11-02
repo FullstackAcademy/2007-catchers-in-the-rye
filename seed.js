@@ -1,5 +1,6 @@
 const faker = require('faker');
-const bcrypt = require('bcrypt');
+const hash = require('./server/hash');
+
 const {
   db, Category, Costume, Order, User, Session,
 } = require('./server/db');
@@ -134,7 +135,7 @@ const users = [
     lastName: 'Ellison',
     userEmail: 'Cynthia8499@hotmail.com',
     username: 'CynthiaEllison',
-    password: 'GraceShockers2020!',
+    password: '',
   },
   {
     userType: 'admin',
@@ -142,7 +143,7 @@ const users = [
     lastName: 'Goto',
     userEmail: 'fu.goto@gmail.com',
     username: 'FuGoto',
-    password: 'GraceShockers2020!',
+    password: '',
   },
   {
     userType: 'admin',
@@ -150,7 +151,7 @@ const users = [
     lastName: 'Guinn',
     userEmail: 'mxavier927@gmail.com',
     username: 'MarkGuinn',
-    password: 'GraceShockers2020!',
+    password: '',
   },
   {
     userType: 'admin',
@@ -158,7 +159,7 @@ const users = [
     lastName: 'Miller',
     userEmail: 'djmiller1717@gmail.com',
     username: 'DougMiller',
-    password: 'GraceShockers2020!',
+    password: '',
   },
 ];
 while (users.length < 20) {
@@ -168,19 +169,29 @@ while (users.length < 20) {
       lastName: faker.name.lastName(),
       userEmail: faker.internet.email(),
       username: faker.internet.userName(),
-      password: faker.internet.password(),
+      password: '',
     },
   );
 }
 
 const orders = [];
 while (orders.length < 10) {
-  orders.push(
-    {
-      total: faker.finance.amount(),
-      shippingAddress: faker.address.streetAddress(),
-    },
-  );
+  if (orders.length % 2 === 0) {
+    orders.push(
+      {
+        total: faker.finance.amount(),
+        shippingAddress: faker.address.streetAddress(),
+      },
+    );
+  } else {
+    orders.push(
+      {
+        isPaid: true,
+        total: faker.finance.amount(),
+        shippingAddress: faker.address.streetAddress(),
+      },
+    );
+  }
 }
 
 const sessions = [];
@@ -192,11 +203,19 @@ while (sessions.length < 20) {
   );
 }
 
+async function hashPasswords() {
+  for (let i = 0; i < users.length; i++) {
+    const { username } = users[i];
+    users[i].password = await hash(username)
+  }
+}
+
 const seed = async () => {
   try {
     // eslint-disable-next-line no-console
     console.log('seeding');
     await db.sync({ force: true });
+    await hashPasswords();
     await Promise.all([
       Category.bulkCreate(categories),
       User.bulkCreate(users),

@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {
-  User, Order, Costume, Session,
+  User, Costume, Session,
 } = require('../db');
 
 router.get('/', async (req, res, next) => {

@@ -10,7 +10,7 @@ class OrderHistory extends Component {
 
   render() {
     const { orders } = this.props;
-    if (orders.length > 0) {
+    if (orders.length) {
       return (
         <div>
           <h1>Previous Orders:</h1>

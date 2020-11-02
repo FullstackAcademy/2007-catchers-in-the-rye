@@ -8,6 +8,7 @@ import singleCostumeReducer from './costumes/singleCostume';
 import cartReducer from './cart/cart';
 import sessionReducer from './authentication/session';
 import orderReducer from './orderHistory/orderHistory';
+import userReducer from './authentication/user';
 
 const appReducer = combineReducers({
   categories: allCategoriesReducer,
@@ -17,6 +18,7 @@ const appReducer = combineReducers({
   cart: cartReducer,
   session: sessionReducer,
   orders: orderReducer,
+  user: userReducer,
 });
 
 const middleware = [

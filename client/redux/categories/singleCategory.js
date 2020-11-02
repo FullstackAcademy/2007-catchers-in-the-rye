@@ -8,6 +8,7 @@ const _selectCategory = (category) => ({
 });
 
 export const selectCategory = (id) => async (dispatch) => {
+  console.log('selectedCat thunk being called')
   try {
     const { data } = await axios.get(`/api/categories/${id}`);
     dispatch(_selectCategory(data));

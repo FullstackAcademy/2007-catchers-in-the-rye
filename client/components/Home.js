@@ -5,9 +5,12 @@ import { loadCostumesDispatch } from '../redux/costumes/allCostumes';
 import { fetchCategories } from '../redux/categories/allCategories';
 
 class Home extends Component {
+
   async componentDidMount() {
-    await this.props.dispatchLoadCostumes();
-    await this.props.fetchCategories();
+    if (!this.props.costumes.length) {
+      await this.props.dispatchLoadCostumes();
+      await this.props.fetchCategories();
+    }
   }
 
   render() {
@@ -16,11 +19,11 @@ class Home extends Component {
       <div className="costumesList">
         <h5>Costume List</h5>
         <div>
-          {this.props.costumes.map((costume) => (
+          {this.props.costumes.length && this.props.costumes.map((costume) => (
             <li key={costume.id} className="costumes">
               <div><Link to={`/costumes/${costume.costumeName}/${costume.id}`}>{costume.costumeName}</Link></div>
               <div>
-                <Link to={`/costumes/${costume.costumeName}/${costume.id}/admin`}>
+                <Link to={`/costumes/${costume.costumeName}/${costume.id}/${costume.categoryId}/admin`}>
                   Update
                   {costume.costumeName}
                 </Link>

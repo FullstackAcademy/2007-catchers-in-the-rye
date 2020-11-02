@@ -67,6 +67,19 @@ router.post('/login', async (req, res, next) => {
   }
 });
 
+router.post('/createUser', async (req, res, next) => {
+  try {
+    console.log(req.body)
+    const newUser = await User.create(req.body);
+    res.send({
+      newUser,
+      message: 'Welcome! Your account has been created.',
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.get('/whoami', (req, res, next) => {
   if (req.user) {
     res.send({

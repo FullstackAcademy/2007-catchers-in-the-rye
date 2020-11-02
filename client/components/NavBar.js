@@ -8,6 +8,7 @@ export default class NavBar extends Component {
     return (
       // eslint-disable-next-line react/jsx-filename-extension
       <div>
+      
         <div className="navContainer">
           <nav className="navbar is-fixed-top is-link" role="navigation" aria-label="main navigation">
             <div id="navbarBasicExample" className="navbar-menu">
@@ -15,8 +16,10 @@ export default class NavBar extends Component {
                 <a className="navbar-item">Grace Shockers</a>
                 <Link to="/home" className="navbar-item">Home</Link>
                 <Link to="/cart" className="navbar-item">Cart</Link>
+                <Link to="/orderHistory" className="navbar-item">Order History</Link>
                 {/* <Link to="/categories" className="navbar-item">Category View</Link> */}
               </div>
+
 
               <div className="navbar-end">
                 <div className="navbar-item">

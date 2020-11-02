@@ -173,12 +173,22 @@ while(users.length < 20) {
 
 const orders = []
 while(orders.length < 10){
-    orders.push(
-        { 
-            total: faker.finance.amount(),
-            shippingAddress: faker.address.streetAddress()
-        }
-    )  
+    if (orders.length % 2 === 0){
+        orders.push(
+            { 
+                total: faker.finance.amount(),
+                shippingAddress: faker.address.streetAddress()
+            }
+        )
+    } else {
+        orders.push(
+            { 
+                isPaid: true,
+                total: faker.finance.amount(),
+                shippingAddress: faker.address.streetAddress()
+            }
+        )
+    } 
 }
 
 const sessions = []

@@ -7,6 +7,7 @@ import allCostumesReducer from './costumes/allCostumes';
 import singleCostumeReducer from './costumes/singleCostume';
 import cartReducer from './cart/cart';
 import sessionReducer from './authentication/session';
+import orderReducer from './orderHistory/orderHistory';
 import userReducer from './authentication/user';
 
 const appReducer = combineReducers({
@@ -16,6 +17,7 @@ const appReducer = combineReducers({
   sCostume: singleCostumeReducer,
   cart: cartReducer,
   session: sessionReducer,
+  orders: orderReducer,
   user: userReducer,
 });
 

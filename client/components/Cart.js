@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-filename-extension */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCart, updateCartQuantity, removeItem } from '../redux/cart/cart';
@@ -16,7 +17,7 @@ class Cart extends Component {
   }
 
   render() {
-    const { cart } = this.props;
+    const { cart, updateCartQuantity, removeItem } = this.props;
     const costumes = cart.costumes ? cart.costumes : [];
     const cartTotal = costumes.length ? this.calcTotal(costumes) : 0;
     return (
@@ -37,21 +38,21 @@ class Cart extends Component {
               <strong>Quantity:</strong>
               {costume.lineitem.quantity}
             </p>
-            <button onClick={() => this.props.updateCartQuantity(costume.id, '+')}>+</button>
-            <button onClick={() => this.props.updateCartQuantity(costume.id, '-')}>-</button>
+            <button onClick={() => updateCartQuantity(costume.id, '+')}>+</button>
+            <button onClick={() => updateCartQuantity(costume.id, '-')}>-</button>
             <p>
               <strong>Sub Total:</strong>
               $
               { (costume.price * costume.lineitem.quantity).toFixed(2) }
             </p>
-            <button onClick={() => this.props.removeItem(costume.id)}>Remove from Cart</button>
+            <button onClick={() => removeItem(costume.id)}>Remove from Cart</button>
             <img src={costume.imageUrl} />
           </div>
         ))}
         <h2>
           <strong>Cart Total: </strong>
           $
-          {cartTotal}
+          { cartTotal }
         </h2>
         <button>Check Out Now</button>
         <button>Keep Shopping</button>

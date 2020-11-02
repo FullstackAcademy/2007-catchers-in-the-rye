@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { fetchCategories } from '../redux/categories/allCategories';
 import '../../server/public/css/styles.css';
 
-// eslint-disable-next-line react/prefer-stateless-function
-export default class NavBar extends Component {
+class NavBar extends Component {
+  componentDidMount() {
+    this.props.fetchCategories();
+  }
+
   render() {
+    const { categories } = this.props;
     return (
-      // eslint-disable-next-line react/jsx-filename-extension
       <div>
       
         <div className="navContainer">
@@ -17,7 +22,6 @@ export default class NavBar extends Component {
                 <Link to="/home" className="navbar-item">Home</Link>
                 <Link to="/cart" className="navbar-item">Cart</Link>
                 <Link to="/orderHistory" className="navbar-item">Order History</Link>
-                {/* <Link to="/categories" className="navbar-item">Category View</Link> */}
               </div>
 
 
@@ -34,17 +38,28 @@ export default class NavBar extends Component {
           </nav>
         </div>
 
-        <div>
-          <div className="sidenav">
-            <Link to="/home">All Costumes</Link>
-            <Link to="/categories/Disney">Disney</Link>
-            <Link to="/categories/Adult">Adult</Link>
-            <Link to="/categories/Villains">Villians</Link>
-            <Link to="/categories/Inanimateobjects">Inanimate Objects</Link>
-            <Link to="/categories/Superheroes">Superheroes</Link>
-          </div>
+        <div className="sidenav">
+          <p>Select a Category:</p>
+          <Link to="/categories/all">All</Link>
+          {
+                                categories.map((category) => (
+                                  <Link key={category.id} to={`/categories/${category.id}`}>{category.title}</Link>
+                                ))
+                          }
         </div>
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  categories: state.categories,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchCategories: () => {
+    dispatch(fetchCategories());
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

@@ -179,7 +179,6 @@ while (orders.length < 10) {
   if (orders.length % 2 === 0) {
     orders.push(
       {
-        total: faker.finance.amount(),
         shippingAddress: faker.address.streetAddress(),
       },
     );
@@ -187,7 +186,6 @@ while (orders.length < 10) {
     orders.push(
       {
         isPaid: true,
-        total: faker.finance.amount(),
         shippingAddress: faker.address.streetAddress(),
       },
     );

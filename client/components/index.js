@@ -15,6 +15,7 @@ import EditCostume from './costume/EditCostume';
 import CreateUser from './authentication/CreateUser';
 import { checkCookiesSetSession } from '../redux/authentication/session';
 import OrderHistory from './OrderHistory';
+import PendingOrders from './admin/PendingOrders';
 
 class Routes extends Component {
   componentDidMount() {
@@ -43,6 +44,7 @@ class Routes extends Component {
                 <Route path="/cart" exact component={Cart} />
                 <Route path="/createUser" exact component={CreateUser} />
                 <Route path="/orderHistory" exact component={OrderHistory} />
+                <Route path="/admin/pending" exact component={PendingOrders} />
               </Switch>
             </main>
           </div>

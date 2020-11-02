@@ -1,5 +1,8 @@
 const router = require('express').Router();
-const { Order, Costume, Lineitem } = require('../db');
+const {
+  Order, Costume, Lineitem, Session,
+} = require('../db');
+const User = require('../db/models/User');
 
 router.get('/', async (req, res, next) => {
   try {
@@ -112,7 +115,6 @@ router.delete('/userCart/:costumeId', async (req, res, next) => {
       include: [Costume],
     });
     const orderId = cart.id;
-    console.log(costumeId, orderId);
     const lineitem = await Lineitem.findOne({
       where: { costumeId, orderId },
     });
@@ -121,6 +123,34 @@ router.delete('/userCart/:costumeId', async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+});
+
+router.get('/admin/pending', async (req, res, next) => {
+  try {
+    const sessionId = req.session.id;
+    const session = await Session.findOne({
+      where: sessionId,
+    });
+    const user = await User.findOne({
+      where: {
+        id: session.userId,
+      },
+    });
+    if (!user || user.userType !== 'admin') res.sendStatus(403);
+    else {
+      const orders = await Order.findAll({
+        where: {
+          isShipped: false,
+        },
+        order: [
+          ['updatedAt', 'ASC'],
+        ],
+        include: [
+          { model: Session, include: [User] }, Costume],
+      });
+      res.send(orders);
+    }
+  } catch (err) { next(err); }
 });
 
 // commented out for now - we do not need this route anymore given we are using cookies to identify cart

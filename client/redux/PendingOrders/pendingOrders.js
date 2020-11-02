@@ -2,20 +2,38 @@
 import axios from 'axios';
 
 const PENDING_ORDERS = 'PENDING_ORDERS';
+// const UPDATE_SHIPPING = 'UPDATE_SHIPPING';
 
 const _fetchPendingOrders = (orders) => ({
   type: PENDING_ORDERS,
   orders,
 });
 
-const fetchPendingOrders = () => async(dispatch) => {
-  const { data } = await axios.get('/api/orders/admin/pending');
-  console.log(data);
-  dispatch(_fetchPendingOrders(data));
+const fetchPendingOrders = () => async (dispatch) => {
+  try {
+    const { data } = await axios.get('/api/orders/admin/pending');
+    dispatch(_fetchPendingOrders(data));
+  } catch (err) {
+    console.error(err);
+  }
 };
 
-// export default const pendingOrderReducer = (state = [], action) => {
-//     switch (action.type){
-//         case PENDING_ORDERS
-//     } 
+// future functionality
+// const _updateShipping = () => ({
+//   type: UPDATE_SHIPPING,
+// });
+
+// const updateShipping = (orderId) => async (dispatch) => {
+//   const { data }
 // }
+
+export default function pendingOrderReducer(state = [], action) {
+  switch (action.type) {
+    case PENDING_ORDERS:
+      return action.orders;
+    default:
+      return state;
+  }
+}
+
+export { fetchPendingOrders };

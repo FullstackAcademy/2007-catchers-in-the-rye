@@ -5,6 +5,7 @@ import {
 import { connect } from 'react-redux';
 import AllCategories from './category/AllCategories';
 import SingleCategory from './category/SingleCategory';
+import AllCostumes from './costume/AllCostumes';
 import CreateCostume from './costume/CreateCostume';
 import NavBar from './NavBar';
 import Home from './Home';
@@ -15,6 +16,7 @@ import EditCostume from './costume/EditCostume';
 import CreateUser from './authentication/CreateUser';
 import { checkCookiesSetSession } from '../redux/authentication/session';
 import OrderHistory from './OrderHistory';
+import PendingOrders from './admin/PendingOrders';
 
 class Routes extends Component {
   componentDidMount() {
@@ -23,7 +25,6 @@ class Routes extends Component {
 
   render() {
     return (
-      // eslint-disable-next-line react/jsx-filename-extension
       <Router>
         <div>
           <Route render={() => <NavBar />} />
@@ -33,9 +34,8 @@ class Routes extends Component {
                 <Route exact path="/">
                   <Redirect to="/home" />
                 </Route>
-                <Route path="/home" exact component={Home} />
-                <Route path="/categories" exact component={AllCategories} />
-                <Route path="/categories/:title" exact component={SingleCategory} />
+                <Route path="/home" exact component={AllCostumes} />
+                <Route path="/categories/:id" exact component={AllCostumes} />
                 <Route path="/costumes/:name/:id" exact component={SingleCostume} />
                 <Route path="/costumes/add" exact component={CreateCostume} />
                 <Route exact path="/costumes/:name/:costId/:catId/admin" component={EditCostume} />
@@ -43,6 +43,7 @@ class Routes extends Component {
                 <Route path="/cart" exact component={Cart} />
                 <Route path="/createUser" exact component={CreateUser} />
                 <Route path="/orderHistory" exact component={OrderHistory} />
+                <Route path="/admin/pending" exact component={PendingOrders} />
               </Switch>
             </main>
           </div>

@@ -13,6 +13,7 @@ const Order = db.define('order', {
   },
   total: {
     type: FLOAT,
+    defaultValue: 0,
   },
   paymentMethod: {
     type: ENUM('credit', 'cash'),
@@ -24,6 +25,10 @@ const Order = db.define('order', {
   shippingMethod: {
     type: ENUM('ground', 'express'),
     defaultValue: 'ground',
+  },
+  isShipped: {
+    type: BOOLEAN,
+    defaultValue: false,
   },
 });
 

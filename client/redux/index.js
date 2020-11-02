@@ -9,6 +9,7 @@ import cartReducer from './cart/cart';
 import sessionReducer from './authentication/session';
 import orderReducer from './orderHistory/orderHistory';
 import userReducer from './authentication/user';
+import pendingOrderReducer from './PendingOrders/pendingOrders';
 
 const appReducer = combineReducers({
   categories: allCategoriesReducer,
@@ -19,6 +20,7 @@ const appReducer = combineReducers({
   session: sessionReducer,
   orders: orderReducer,
   user: userReducer,
+  pendingOrders: pendingOrderReducer,
 });
 
 const middleware = [

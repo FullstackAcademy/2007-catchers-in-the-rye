@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
+const Lineitem = require('./Lineitem');
 
 const {
   STRING, BOOLEAN, FLOAT, ENUM,
@@ -25,5 +26,19 @@ const Order = db.define('order', {
     defaultValue: 'ground',
   },
 });
+
+Order.beforeValidate(order => {
+  const lineitems = Lineitem.findAll({
+    where: {
+      orderId: order.id,
+    },
+    include: [Costume],
+  });
+  order.total = lineitems.reduce((acc, lineitem) => {
+    acc += lineitem.
+  }, 0)
+}
+
+)
 
 module.exports = Order;

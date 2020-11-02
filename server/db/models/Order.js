@@ -1,10 +1,8 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
-const Lineitem = require('./Lineitem');
-const Costume = require('./Costume');
 
 const {
-  STRING, BOOLEAN, FLOAT, ENUM,
+  STRING, BOOLEAN, DECIMAL, ENUM,
 } = Sequelize;
 
 const Order = db.define('order', {
@@ -13,7 +11,7 @@ const Order = db.define('order', {
     defaultValue: false,
   },
   total: {
-    type: FLOAT,
+    type: DECIMAL(10, 2),
     defaultValue: 0,
   },
   paymentMethod: {
@@ -34,47 +32,12 @@ const Order = db.define('order', {
 });
 
 Order.prototype.calcTotal = async function () {
-  // const orders = Order.findAll({ include: [Costume] });
-  // orders.map(order => {
-  //   order.costumes.map(costume => {
-  //     order.total += costume.price * costume.lineitem.quantity;
-  //   });
-  // });
-  const lineitems = await Lineitem.findAll({
-    where: {
-      orderId: this.id,
-    },
-    include: [Costume],
-  });
-  console.log(lineitems);
-  // this.total = lineitems.reduce((acc, lineitem) => {
-  //   acc += lineitem.quantity * lineitem.costume.price;
-  //   return acc;
-  // }, 0);
-  // this.save();
-}
-
-// Order.beforeValidate = (order => {
-//   console.log('costumes',order.costumes)
-//   order.costumes.map(costume => {
-//     order.total += costume.price * costume.lineitem.quantity
-//   })
-//   order.save()
-  // const orders = Order.findAll({ include: [Costume] });
-  // orders.map(order => {
-  //   order.costumes.map(costume => {
-  //     order.total += costume.price * costume.lineitem.quantity;
-  //   });
-  // });
-  // const lineitems = Lineitem.findAll({
-  //   where: {
-  //     orderId: order.id,
-  //   },
-  //   include: [Costume],
-  // });
-  // order.total = lineitems.reduce((acc, lineitem) => {
-  //   acc += lineitem.
-  // }, 0)
-// });
+  const thisOrderCostumes = await this.getCostumes();
+  this.total = thisOrderCostumes.reduce((acc, costume) => {
+    acc += costume.price * costume.lineitem.quantity;
+    return acc;
+  }, 0);
+  await this.save();
+};
 
 module.exports = Order;

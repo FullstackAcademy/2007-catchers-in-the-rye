@@ -24,6 +24,7 @@ router.get('/userCart', async (req, res, next) => {
       },
       include: [Costume],
     });
+    await cart.calcTotal();
     res.send(cart);
   } catch (err) {
     next(err);

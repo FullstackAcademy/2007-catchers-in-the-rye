@@ -40,10 +40,10 @@ class NavBar extends Component {
 
         <div className="sidenav">
           <p>Select a Category:</p>
-          <Link to="/home">All</Link>
+          <Link to="/categories/all">All</Link>
           {
                                 categories.map((category) => (
-                                  <Link key={category.id} to={`/categories/${category.title}`}>{category.title}</Link>
+                                  <Link key={category.id} to={`/categories/${category.id}`}>{category.title}</Link>
                                 ))
                           }
         </div>

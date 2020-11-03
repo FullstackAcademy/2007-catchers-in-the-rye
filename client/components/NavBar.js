@@ -15,7 +15,7 @@ class NavBar extends Component {
     return (
       <div>
         <div className="navContainer">
-          <nav className="navbar is-fixed-top is-link" role="navigation" aria-label="main navigation">
+          <nav className="navbar is-fixed-top is-link" role="navigation" aria-label="main navigation" id= 'topNav'>
             <div id="navbarBasicExample" className="navbar-menu">
               <div className="navbar-start">
                 <a className="navbar-item">Grace Shockers</a>

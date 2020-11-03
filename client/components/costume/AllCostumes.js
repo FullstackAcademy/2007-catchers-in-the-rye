@@ -5,8 +5,7 @@ import { loadCostumesDispatch } from '../../redux/costumes/allCostumes';
 
 class AllCostumes extends Component {
   componentDidMount () {
-    const { loadCostumesDispatch } = this.props;
-    loadCostumesDispatch()
+    this.props.loadCostumesDispatch()
   };
   render() {
     const { 

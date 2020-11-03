@@ -22,7 +22,7 @@ class OrderHistory extends Component {
               <li key={order.id}>
                 <div>{readableDate}</div>
                 <div>Total: $
-                {order.total.toFixed(2)}
+                {order.total}
                 </div>
                 <ul>
                   {order.costumes.map((costume) => (

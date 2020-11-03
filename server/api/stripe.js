@@ -1,5 +1,4 @@
 const router = require('express').Router();
-// const uuid = require('uuid')
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();

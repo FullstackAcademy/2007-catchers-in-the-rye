@@ -21,9 +21,9 @@ const CardElementContainer = styled.div`
   }
 `;
 
-const CheckoutForm = () => {
+const CheckoutForm = (props) => {
   const history = useHistory();
-  const price = 10;
+  const price = props.location.state.total;
   const [isProcessing, setProcessingTo] = useState(false);
   const [checkoutError, setCheckoutError] = useState();
 
@@ -54,13 +54,13 @@ const CheckoutForm = () => {
 
     try {
       const { data: clientSecret } = await axios.post('/api/stripe/charge', {
-        amount: price * 100
+        amount: price * 100,
       });
 
       const paymentMethodReq = await stripe.createPaymentMethod({
         type: "card",
         card: cardElement,
-        billing_details: billingDetails
+        billing_details: billingDetails,
       });
 
       if (paymentMethodReq.error) {

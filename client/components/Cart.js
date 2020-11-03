@@ -7,6 +7,7 @@ class Cart extends Component {
   constructor() {
     super();
     this.checkout = this.checkout.bind(this);
+    this.keepShopping = this.keepShopping.bind(this);
   }
   componentDidMount() {
     this.props.fetchCart();
@@ -22,11 +23,23 @@ class Cart extends Component {
 
   checkout(ev) {
     ev.preventDefault();
-    this.props.history.push('/checkout');
+    this.props.history.push({
+      pathname: '/checkout',
+      state: {
+        total: this.props.cart.total,
+        orderId: this.props.cart.id,
+      },
+    });
+  }
+
+  keepShopping(ev) {
+    ev.preventDefault();
+    this.props.history.push('/Home');
   }
 
   render() {
     const { cart } = this.props;
+    console.log(cart);
     const costumes = cart.costumes ? cart.costumes : [];
     const cartTotal = costumes.length ? this.calcTotal(costumes) : 0;
     return (
@@ -65,7 +78,7 @@ class Cart extends Component {
           {cartTotal}
         </h2>
         <button type="button" onClick={(ev) => this.checkout(ev)}>Check Out Now</button>
-        <button>Keep Shopping</button>
+        <button type="button" onClick={(ev) => this.keepShopping(ev)}>Keep Shopping</button>
       </div>
     );
   }

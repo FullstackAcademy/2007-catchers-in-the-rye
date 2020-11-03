@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-filename-extension */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { login, createUser } from '../../redux/authentication/user';
@@ -47,40 +48,28 @@ class UserInfo extends Component {
       username, password, firstName, lastName, userEmail,
     } = this.state;
     const {
-      // eslint-disable-next-line react/prop-types
       type, login, createUser,
     } = this.props;
-
-    try {
-      // eslint-disable-next-line react/destructuring-assignment
-      if (!username.length || !password.length) this.setState({ message: 'All fields are required' });
-      else {
-        if (type === 'login') {
-          await login(this.state);
-          this.setState({ message: this.props.user.message });
-        }
-        if (type === 'create') {
-          if (!firstName.length || !lastName.length || !userEmail.length) this.setState({ message: 'All fields are required' });
-          else {
-            await createUser(this.state);
-            this.setState({ message: this.props.user.message });
-          }
+    if (!username.length || !password.length) this.setState({ message: 'All fields are required' });
+    else {
+      this.setState({ message: '' });
+      if (type === 'login') {
+        await login(this.state);
+        if (!this.props.user.id) this.setState({ message: 'Check username or password' });
+      }
+      if (type === 'create') {
+        if (!firstName.length || !lastName.length || !userEmail.length) this.setState({ message: 'All fields are required' });
+        else {
+          await createUser(this.state);
+          if (!user.id) this.setState({ message: 'Could not create account' });
         }
       }
-      // eslint-disable-next-line react/prop-types
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.error(err);
-      if (type === 'login') this.setState({ message: 'Log in failed - check username and/or password' });
-      else if (type === 'create') this.setState({ message: 'Could not create account' });
     }
   }
 
   render() {
-    // eslint-disable-next-line react/prop-types
     const { type } = this.props;
     return (
-      // eslint-disable-next-line react/jsx-filename-extension
       <>
         <form onSubmit={this.submit}>
           <label>

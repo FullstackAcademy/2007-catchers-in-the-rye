@@ -40,20 +40,17 @@ router.post('/login', async (req, res, next) => {
         include: [Session],
       });
 
-      const comparisonResult = await brcypt.compare(password, user.password);
-      if (!comparisonResult) {
-        throw new Error('Wrong password!');
-      }
       if (user) {
+        const comparisonResult = await brcypt.compare(password, user.password);
+        if (!comparisonResult) {
+          throw new Error('Wrong password!');
+        }
         if (user.session) {
           res.cookie('sid', user.session.uuid, {
             maxAge: A_WEEK_IN_SECONDS,
             path: '/',
           });
-          res.status(200).send({
-            user,
-            message: `Welcome back, ${username}!`,
-          });
+          res.status(200).send(user);
         } else {
           const createdSession = await Session.create({});
           await createdSession.setUser(user);
@@ -61,10 +58,7 @@ router.post('/login', async (req, res, next) => {
             maxAge: A_WEEK_IN_SECONDS,
             path: '/',
           });
-          res.status(201).send({
-            user,
-            message: `Welcome, ${username}!`,
-          });
+          res.status(201).send(user);
         }
       } else res.sendStatus(404);
     } catch (err) {
@@ -82,10 +76,7 @@ router.post('/createUser', async (req, res, next) => {
     const user = await User.create({
       username, password: hashedPassword, firstName, lastName, userEmail,
     });
-    res.send({
-      user,
-      message: `Welcome ${user.firstName}! Your account has been created.`,
-    });
+    res.send(user);
   } catch (err) {
     next(err);
   }

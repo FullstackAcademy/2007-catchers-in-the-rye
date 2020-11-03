@@ -26,7 +26,7 @@ class NavBar extends Component {
 
               <div className="navbar-end">
                 <div className="navbar-item">
-                  <a className="navbar-item">Welcome, { user.user ? user.user.firstName : 'Guest' }!</a>
+                  <a className="navbar-item">Welcome, { user.id ? user.firstName : 'Guest' }!</a>
                   <div className="buttons">
                     <Link to="/createUser" className="button is-black">Register</Link>
                     <Link to="/login" className="button is-black">Log in</Link>

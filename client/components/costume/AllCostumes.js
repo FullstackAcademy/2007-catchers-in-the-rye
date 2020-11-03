@@ -10,49 +10,49 @@ class AllCostumes extends Component {
   };
   render() {
     const { 
-      categories, selectedCategoryId, costumes 
+      categories, selectedCategoryName, costumes 
     } = this.props
+    const selectedCategory = categories.find((category) => category.title === selectedCategoryName)
     return (
       <div className="costumesList">
-          <h5>{!selectedCategoryId || isNaN(selectedCategoryId) ? 'All' : 
-          categories.map((category) => category.id === selectedCategoryId ? category.title : null)} Costumes</h5>
-          <div>
-            {!selectedCategoryId || isNaN(selectedCategoryId) ?
-            costumes.map((costume) => (
+        <div>
+          <h5>{selectedCategory ? selectedCategoryName : 'All'} Costumes</h5>
+            {selectedCategory ?
+            costumes.map((costume) => costume.categoryId === selectedCategory.id ? (
               <div key={costume.id} className="costumes">
                 <div>
                   <Link to={`/costumes/${costume.costumeName}/${costume.id}`}>{costume.costumeName}</Link>
                 </div>
-                <img src={costume.imageUrl} />
+                  <img src={costume.imageUrl} />
                 <div>
                   <Link to={`/costumes/${costume.costumeName}/${costume.id}/${costume.categoryId}/admin`}>
                     Update
                     {costume.costumeName}
                   </Link>
                 </div>
-                <div>{costume.price}</div>
-                <br />
-              </ div> 
-            ))
-            :
-            costumes.map((costume) => costume.categoryId === selectedCategoryId ? (
-              <div key={costume.id} className="costumes">
-                <div>
-                  <Link to={`/costumes/${costume.costumeName}/${costume.id}`}>{costume.costumeName}</Link>
-                </div>
-                <img src={costume.imageUrl} />
-                <div>
-                  <Link to={`/costumes/${costume.costumeName}/${costume.id}/${costume.categoryId}/admin`}>
-                    Update
-                    {costume.costumeName}
-                  </Link>
-                </div>
-                <div>{costume.price}</div>
+                <div>${costume.price}</div>
                 <br />
               </div>
               )
-              : null
-            )}
+              : null)
+            :
+              costumes.map((costume) => (
+                <div key={costume.id} className="costumes">
+                  <div>
+                    <Link to={`/costumes/${costume.costumeName}/${costume.id}`}>{costume.costumeName}</Link>
+                  </div>
+                  <img src={costume.imageUrl} />
+                  <div>
+                    <Link to={`/costumes/${costume.costumeName}/${costume.id}/${costume.categoryId}/admin`}>
+                      Update
+                      {costume.costumeName}
+                    </Link>
+                  </div>
+                  <div>{costume.price}</div>
+                  <br />
+                </ div> 
+              ))
+            }
           </div>
       </div>
     )
@@ -60,7 +60,7 @@ class AllCostumes extends Component {
 };
 
 const mapStateToProps = (state, ownProps) => ({
-    selectedCategoryId: ownProps.match.params.id * 1,
+    selectedCategoryName: ownProps.match.params.name,
     categories: state.categories,
     costumes: state.costumes,
 });

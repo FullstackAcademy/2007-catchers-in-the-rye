@@ -49,7 +49,7 @@ class NavBar extends Component {
           <Link to="/categories/all">All</Link>
           {
             categories.map((category) => (
-              <Link key={category.id} to={`/categories/${category.id}`}>{category.title}</Link>
+              <Link key={category.id} to={`/categories/${category.title}`}>{category.title}</Link>
             ))
           }
         </div>

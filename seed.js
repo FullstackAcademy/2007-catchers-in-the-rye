@@ -11,7 +11,7 @@ const categories = [
   { title: 'Villains' },
   { title: 'Inanimate objects' },
   { title: 'Superheroes' },
-  { title: 'Pets' },
+  { title: 'Animals' },
   { title: 'Monsters' },
 ];
 
@@ -108,23 +108,33 @@ const costumes = [
   },
   {
     costumeName: 'Werewolf',
-    price: 49.99,
+    price: 52.99,
     categoryId: 7,
+    imageUrl: '/costumeImages/monsters/werewolf.jpg',
   },
   {
     costumeName: 'Creature from the Black Lagoon',
-    price: 159.99,
+    price: 299.99,
     categoryId: 7,
+    imageUrl: '/costumeImages/monsters/blackLagoon.jpg',
   },
   {
-    costumeName: 'Frankenstein',
-    price: 39.99,
+    costumeName: 'Frankenstein\'s Monster',
+    price: 74.99,
     categoryId: 7,
+    imageUrl: '/costumeImages/monsters/frankenstein.jpg',
   },
   {
-    costumeName: "Frankenstein's Monster",
-    price: 109.99,
+    costumeName: "Mummy",
+    price: 46.99,
     categoryId: 7,
+    imageUrl: '/costumeImages/monsters/mummy.jpg',
+  },
+  {
+    costumeName: "Vampire",
+    price: 44.99,
+    categoryId: 7,
+    imageUrl: '/costumeImages/monsters/vampire.jpg',
   },
 ];
 

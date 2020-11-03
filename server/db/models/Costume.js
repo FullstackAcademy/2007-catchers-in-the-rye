@@ -25,7 +25,7 @@ const Costume = db.define('costume', {
   },
   imageUrl: {
     type: STRING,
-    defaultValue: '/notFound.png',
+    defaultValue: '/costumeImages/notFound.png',
   },
 });
 

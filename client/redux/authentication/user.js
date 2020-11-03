@@ -12,6 +12,7 @@ const _login = (loginUser) => ({
 const login = (loginInfo) => async (dispatch) => {
   try {
     const { data } = await (axios.post('/api/auth/login', loginInfo));
+    console.log(data)
     dispatch(_login(data));
   } catch (err) { console.error(err); }
 };

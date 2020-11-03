@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-filename-extension */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -10,10 +11,9 @@ class NavBar extends Component {
   }
 
   render() {
-    const { categories } = this.props;
+    const { categories, user } = this.props;
     return (
       <div>
-      
         <div className="navContainer">
           <nav className="navbar is-fixed-top is-link" role="navigation" aria-label="main navigation">
             <div id="navbarBasicExample" className="navbar-menu">
@@ -24,10 +24,9 @@ class NavBar extends Component {
                 <Link to="/orderHistory" className="navbar-item">Order History</Link>
               </div>
 
-
               <div className="navbar-end">
                 <div className="navbar-item">
-                  <a className="navbar-item">Welcome, Guest!</a>
+                  <a className="navbar-item">Welcome, { user.user ? user.user.firstName : 'Guest' }!</a>
                   <div className="buttons">
                     <Link to="/createUser" className="button is-black">Register</Link>
                     <Link to="/login" className="button is-black">Log in</Link>
@@ -42,10 +41,10 @@ class NavBar extends Component {
           <p>Select a Category:</p>
           <Link to="/categories/all">All</Link>
           {
-                                categories.map((category) => (
-                                  <Link key={category.id} to={`/categories/${category.id}`}>{category.title}</Link>
-                                ))
-                          }
+            categories.map((category) => (
+              <Link key={category.id} to={`/categories/${category.id}`}>{category.title}</Link>
+            ))
+          }
         </div>
       </div>
     );
@@ -54,6 +53,7 @@ class NavBar extends Component {
 
 const mapStateToProps = (state) => ({
   categories: state.categories,
+  user: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({

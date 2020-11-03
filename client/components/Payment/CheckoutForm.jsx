@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { useState } from 'react';
+// import { useState } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import styled from '@emotion/styled';
 import axios from 'axios';
@@ -21,24 +21,63 @@ const CardElementContainer = styled.div`
   }
 `;
 
-// const CheckoutForm = ({ price, onSuccessfulCheckout }) => {
-const CheckoutForm = () => {
-  const price = 10;
-  const [isProcessing, setProcessingTo] = useState(false);
-  const [checkoutError, setCheckoutError] = useState();
+const stripe = useStripe();
+const elements = useElements();
 
-  const stripe = useStripe();
-  const elements = useElements();
+const iframeStyles = {
+  base: {
+    color: "#fff",
+    fontSize: "16px",
+    iconColor: "#fff",
+    "::placeholder": {
+      color: "#87bbfd"
+    }
+  },
+  invalid: {
+    iconColor: "#FFC7EE",
+    color: "#FFC7EE"
+  },
+  complete: {
+    iconColor: "#cbf4c9"
+  },
+};
+
+const cardElementOpts = {
+  iconStyle: "solid",
+  style: iframeStyles,
+  hidePostalCode: true
+};
+
+// const CheckoutForm = ({ price, onSuccessfulCheckout }) => {
+class CheckoutForm extends Component {
+  constructor() {
+    super()
+    this.state = {
+      price: 10,
+      isProcessing: false,
+      checkoutError: '',
+    }
+    this.handleCardDetailsChange = this.handleCardDetailsChange.bind(this)
+    this.handleFormSubmit = this.handleFormSubmit(this)
+  }
+  // const price = 10;
+  // const [isProcessing, setProcessingTo] = useState(false);
+  //const [checkoutError, setCheckoutError] = useState(); => returns undefined
+
+  // const stripe = useStripe();
+  // const elements = useElements();
 
   // TIP
   // use the cardElements onChange prop to add a handler
   // for setting any errors:
 
-  const handleCardDetailsChange = ev => {
-    ev.error ? setCheckoutError(ev.error.message) : setCheckoutError();
+  handleCardDetailsChange(ev) {
+    // ev.error ? setCheckoutError(ev.error.message) : setCheckoutError();
+    // ev.error ? this.setState({checkoutError: ev.error.message}) : this.setState({checkoutError: ''});
+    ev.error ? this.setState({checkoutError: ev.error.message}) : null;
   };
 
-  const handleFormSubmit = async ev => {
+  async handleFormSubmit(ev) {
     ev.preventDefault();
 
     const billingDetails = {
@@ -52,7 +91,8 @@ const CheckoutForm = () => {
       }
     };
 
-    setProcessingTo(true);
+    this.setState({isPorcessing: true})
+    // setProcessingTo(true);
 
     const cardElement = elements.getElement("card");
 
@@ -68,8 +108,10 @@ const CheckoutForm = () => {
       });
 
       if (paymentMethodReq.error) {
-        setCheckoutError(paymentMethodReq.error.message);
-        setProcessingTo(false);
+        this.setState({checkoutError: paymentMethodReq.error.message})
+        // setCheckoutError(paymentMethodReq.error.message);
+        // setProcessingTo(false);
+        this.setState({isProcessing: false})
         return;
       }
 
@@ -78,14 +120,17 @@ const CheckoutForm = () => {
       });
 
       if (error) {
-        setCheckoutError(error.message);
-        setProcessingTo(false);
+        //setCheckoutError(error.message);
+        this.setState({checkoutError: error.message})
+        //setProcessingTo(false);
+        this.setState({isProcessing: false})
         return;
       }
 
       onSuccessfulCheckout();
     } catch (err) {
-      setCheckoutError(err.message);
+      // setCheckoutError(err.message);
+      this.setState({checkoutError: err.message})
     }
   };
 
@@ -101,61 +146,64 @@ const CheckoutForm = () => {
   // the card element is housed within an iframe and:
   // > styles do not cascade from a parent window down into its iframes
 
-  const iframeStyles = {
-    base: {
-      color: "#fff",
-      fontSize: "16px",
-      iconColor: "#fff",
-      "::placeholder": {
-        color: "#87bbfd"
-      }
-    },
-    invalid: {
-      iconColor: "#FFC7EE",
-      color: "#FFC7EE"
-    },
-    complete: {
-      iconColor: "#cbf4c9"
-    }
-  };
+  // const iframeStyles = {
+  //   base: {
+  //     color: "#fff",
+  //     fontSize: "16px",
+  //     iconColor: "#fff",
+  //     "::placeholder": {
+  //       color: "#87bbfd"
+  //     }
+  //   },
+  //   invalid: {
+  //     iconColor: "#FFC7EE",
+  //     color: "#FFC7EE"
+  //   },
+  //   complete: {
+  //     iconColor: "#cbf4c9"
+  //   }
+  // };
 
-  const cardElementOpts = {
-    iconStyle: "solid",
-    style: iframeStyles,
-    hidePostalCode: true
-  };
+  // const cardElementOpts = {
+  //   iconStyle: "solid",
+  //   style: iframeStyles,
+  //   hidePostalCode: true
+  // };
 
-  return (
-    <div>
-      <div>Checkout:</div>
-      <form onSubmit={handleFormSubmit}>
-        <Row>
-          <BillingDetailsFields />
-        </Row>
-        <Row>
-          <CardElementContainer>
-            <CardElement
-              options={cardElementOpts}
-              onChange={handleCardDetailsChange}
-            />
-          </CardElementContainer>
-        </Row>
-        {checkoutError && <CheckoutError>{checkoutError}</CheckoutError>}
-        <Row>
-          {/* TIP always disable your submit button while processing payments */}
-          <SubmitButton disabled={isProcessing || !stripe}>
-            {isProcessing ? "Processing..." : `Pay $${price}`}
-          </SubmitButton>
-        </Row>
-      </form>
-    </div>
-  );
-};
+  render() {
+    const { price, isProcessing, checkoutError } = this.state;
+    return (
+      <div>
+        <div>Checkout:</div>
+        <form onSubmit={this.handleFormSubmit}>
+          <Row>
+            <BillingDetailsFields />
+          </Row>
+          <Row>
+            <CardElementContainer>
+              <CardElement
+                options={cardElementOpts}
+                onChange={(ev) => this.handleCardDetailsChange(ev)}
+              />
+            </CardElementContainer>
+          </Row>
+          {checkoutError && <CheckoutError>{checkoutError}</CheckoutError>}
+          <Row>
+            {/* TIP always disable your submit button while processing payments */}
+            <SubmitButton disabled={isProcessing || !stripe}>
+              {isProcessing ? "Processing..." : `Pay $${price}`}
+            </SubmitButton>
+          </Row>
+        </form>
+      </div>
+    );
+  }
+}
 
-const mapStateToProps = (state) => ({
-  cart: state.cart,
-});
+// const mapStateToProps = (state) => ({
+//   cart: state.cart,
+// });
 
-connect(mapStateToProps)(CheckoutForm);
+// connect(mapStateToProps)(CheckoutForm);
 
 export default CheckoutForm;

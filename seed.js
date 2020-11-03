@@ -6,135 +6,102 @@ const {
 } = require('./server/db');
 
 const categories = [
-  { title: 'Disney' },
-  { title: 'Adult' },
-  { title: 'Villains' },
-  { title: 'Inanimate objects' },
-  { title: 'Superheroes' },
   { title: 'Animals' },
+  { title: 'Disney' },
   { title: 'Monsters' },
+  { title: 'Superheroes' },
 ];
 
 const costumes = [
   {
+    costumeName: 'Bumble Bee',
+    price: 14.99,
+    categoryId: 1,
+    imageUrl: '/costumeImages/animals/bee.jpg',
+  },
+  {
+    costumeName: 'Crab',
+    price: 69.99,
+    categoryId: 1,
+    imageUrl: '/costumeImages/animals/crab.jpg',
+  },
+  {
+    costumeName: 'Dilophosaurus',
+    price: 59.99,
+    categoryId: 1,
+    imageUrl: '/costumeImages/animals/dilophosaurus.jpg',
+  },
+  {
+    costumeName: 'Ostrich',
+    price: 54.99,
+    categoryId: 1,
+    imageUrl: '/costumeImages/animals/ostrich.jpg',
+  },
+  {
+    costumeName: 'Turkey',
+    price: 54.99,
+    categoryId: 1,
+    imageUrl: '/costumeImages/animals/turkey.jpg',
+  },
+  {
     costumeName: 'Cinderella',
     price: 199.99,
-    categoryId: 1,
+    categoryId: 2,
   },
   {
     costumeName: 'Elsa',
     price: 159.99,
-    categoryId: 1,
+    categoryId: 2,
   },
   {
     costumeName: 'Mrs. Potts',
     price: 299.99,
-    categoryId: 1,
-  },
-  {
-    costumeName: 'Hot nun',
-    price: 99.99,
     categoryId: 2,
-  },
-  {
-    costumeName: 'Hot nurse',
-    price: 89.99,
-    categoryId: 2,
-  },
-  {
-    costumeName: 'Hot computer programmer',
-    price: 109.99,
-    categoryId: 2,
-  },
-  {
-    costumeName: 'Joker',
-    price: 39.99,
-    categoryId: 3,
-  },
-  {
-    costumeName: 'Devil',
-    price: 6.66,
-    categoryId: 3,
-  },
-  {
-    costumeName: 'Man',
-    price: 12.99,
-    categoryId: 3,
-  },
-  {
-    costumeName: 'Stapler',
-    price: 1.99,
-    categoryId: 4,
-  },
-  {
-    costumeName: 'Pickle Moustache Guy',
-    price: .79,
-    categoryId: 4,
-  },
-  {
-    costumeName: 'Cactus',
-    price: 19.99,
-    categoryId: 4,
-  },
-  {
-    costumeName: 'Wonder Woman',
-    price: 109.99,
-    categoryId: 5,
-  },
-  {
-    costumeName: 'Captain America',
-    price: 99.99,
-    categoryId: 5,
-  },
-  {
-    costumeName: 'Black Widow',
-    price: 79.99,
-    categoryId: 5,
-  },
-  {
-    costumeName: 'Hot Dog',
-    price: 24.99,
-    categoryId: 6,
-  },
-  {
-    costumeName: 'Lion',
-    price: 22.99,
-    categoryId: 6,
-  },
-  {
-    costumeName: 'Cowboy Riding a Pet',
-    price: 18.99,
-    categoryId: 6,
   },
   {
     costumeName: 'Werewolf',
     price: 52.99,
-    categoryId: 7,
+    categoryId: 3,
     imageUrl: '/costumeImages/monsters/werewolf.jpg',
   },
   {
     costumeName: 'Creature from the Black Lagoon',
     price: 299.99,
-    categoryId: 7,
+    categoryId: 3,
     imageUrl: '/costumeImages/monsters/blackLagoon.jpg',
   },
   {
     costumeName: 'Frankenstein\'s Monster',
     price: 74.99,
-    categoryId: 7,
+    categoryId: 3,
     imageUrl: '/costumeImages/monsters/frankenstein.jpg',
   },
   {
-    costumeName: "Mummy",
+    costumeName: 'Mummy',
     price: 46.99,
-    categoryId: 7,
+    categoryId: 3,
     imageUrl: '/costumeImages/monsters/mummy.jpg',
   },
   {
-    costumeName: "Vampire",
+    costumeName: 'Vampire',
     price: 44.99,
-    categoryId: 7,
+    categoryId: 3,
     imageUrl: '/costumeImages/monsters/vampire.jpg',
+  },
+  {
+    costumeName: 'Wonder Woman',
+    price: 109.99,
+    categoryId: 4,
+  },
+  {
+    costumeName: 'Captain America',
+    price: 99.99,
+    categoryId: 4,
+  },
+  {
+    costumeName: 'Black Widow',
+    price: 79.99,
+    categoryId: 4,
   },
 ];
 

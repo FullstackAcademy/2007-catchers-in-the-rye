@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import {
-  BrowserRouter as Router, Route, Switch, Redirect, browserHistory,
+  BrowserRouter as Router, Route, Switch, Redirect,
 } from 'react-router-dom';
 import { connect } from 'react-redux';
-import AllCategories from './category/AllCategories';
-import SingleCategory from './category/SingleCategory';
 import AllCostumes from './costume/AllCostumes';
 import CreateCostume from './costume/CreateCostume';
 import NavBar from './NavBar';
-import Home from './Home';
 import Login from './authentication/Login';
 import SingleCostume from './costume/SingleCostume';
 import Cart from './Cart';
@@ -35,7 +32,7 @@ class Routes extends Component {
                   <Redirect to="/home" />
                 </Route>
                 <Route path="/home" exact component={AllCostumes} />
-                <Route path="/categories/:id" exact component={AllCostumes} />
+                <Route path="/categories/:name" exact component={AllCostumes} />
                 <Route path="/costumes/:name/:id" exact component={SingleCostume} />
                 <Route path="/costumes/add" exact component={CreateCostume} />
                 <Route exact path="/costumes/:name/:costId/:catId/admin" component={EditCostume} />
@@ -58,12 +55,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  createGuestSession: () => {
-    dispatch(createGuestSession());
-  },
-  refreshSession: (sessionId) => {
-    dispatch(refreshSession(sessionId));
-  },
   checkCookiesSetSession: () => {
     dispatch(checkCookiesSetSession());
   },

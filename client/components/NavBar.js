@@ -10,7 +10,10 @@ class NavBar extends Component {
   }
 
   render() {
-    const { categories } = this.props;
+    const { 
+      categories,user 
+    } = this.props;
+    console.log(user)
     return (
       <div>
       
@@ -24,8 +27,15 @@ class NavBar extends Component {
                 <Link to="/orderHistory" className="navbar-item">Order History</Link>
               </div>
 
-
               <div className="navbar-end">
+              {user.firstName ?
+                <div className="navbar-item">
+                  <a className="navbar-item">Welcome, {user.firstName}!</a>
+                  <div className="buttons">
+                    <Link to="/login" className="button is-black">Log Out</Link>
+                  </div>
+                </div>
+              :  
                 <div className="navbar-item">
                   <a className="navbar-item">Welcome, Guest!</a>
                   <div className="buttons">
@@ -33,6 +43,7 @@ class NavBar extends Component {
                     <Link to="/login" className="button is-black">Log in</Link>
                   </div>
                 </div>
+              } 
               </div>
             </div>
           </nav>
@@ -43,7 +54,7 @@ class NavBar extends Component {
           <Link to="/categories/all">All</Link>
           {
                                 categories.map((category) => (
-                                  <Link key={category.id} to={`/categories/${category.id}`}>{category.title}</Link>
+                                  <Link key={category.id} to={`/categories/${category.title}`}>{category.title}</Link>
                                 ))
                           }
         </div>
@@ -54,6 +65,7 @@ class NavBar extends Component {
 
 const mapStateToProps = (state) => ({
   categories: state.categories,
+  user: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -27,10 +27,17 @@ class NavBar extends Component {
               <div className="navbar-end">
                 <div className="navbar-item">
                   <a className="navbar-item">Welcome, { user.id ? user.firstName : 'Guest' }!</a>
-                  <div className="buttons">
-                    <Link to="/createUser" className="button is-black">Register</Link>
-                    <Link to="/login" className="button is-black">Log in</Link>
-                  </div>
+                  { user.id ? 
+                    <div className="buttons">
+                      <Link to="/home" className="button is-black">Account Settings</Link>
+                      <Link to="/home" className="button is-black">Log out</Link>
+                    </div>
+                  :
+                    <div className="buttons">
+                      <Link to="/createUser" className="button is-black">Register</Link>
+                      <Link to="/login" className="button is-black">Log in</Link>
+                    </div>
+                  }
                 </div>
               </div>
             </div>

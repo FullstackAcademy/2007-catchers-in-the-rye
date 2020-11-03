@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import Confetti from 'react-confetti';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, React } from 'react';
 
 // import Layout from '../components/Layout';
 // import Row from './prebuilt/Row';
@@ -33,11 +33,11 @@ export default () => {
 
   return (
     <div>
-      <Container>
+      {/* <Container>
         <Confetti width={width} height={height} numberOfPieces={450} />
         <Title>congrats!</Title>
         <Message>Stripe has successfully processed your payment</Message>
-      </Container>
+      </Container> */}
       </div>
   );
 };

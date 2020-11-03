@@ -237,6 +237,7 @@ const seed = async () => {
       Order.findAll(),
       Session.findAll(),
     ]);
+
     // assign a user to each session - while a user can have multiple sessions, for seeding purposes only assigning one
     for (let i = 0; i < usersCreated.length - 1; i++) {
       await sessionsCreated[i].setUser(usersCreated[i]);
@@ -250,6 +251,12 @@ const seed = async () => {
       let rand = Math.floor(Math.random() * (costumesCreated.length-1));
       await ordersCreated[i].setCostumes([costumesCreated[rand], costumesCreated[rand+1]]);
     }
+    // calculate total for each order from costumes
+    for (let i = 0; i < ordersCreated.length; i++) {
+      const order = ordersCreated[i];
+      await order.calcTotal();
+    }
+
     await db.close();
     console.log('seeded');
   } catch (err) { console.error(err); }

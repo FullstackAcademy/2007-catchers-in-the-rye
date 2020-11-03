@@ -21,13 +21,13 @@ class PendingOrders extends Component {
   }
 
   render() {
-    const pendingOrders = this.props.pendingOrders.length ? this.props.pendingOrders : [];
+    const { pendingOrders } = this.props;
     return (
       this.state.message.length
         ? <h1>{this.state.message}</h1>
         :
         <div>
-          <h1>Orders to be shipped</h1>
+          <h1>Paid Orders to be Shipped</h1>
           { pendingOrders.map((order) => (
             <div key={order.id}>
               <p>
@@ -53,7 +53,7 @@ class PendingOrders extends Component {
               <p>
                 <strong>Total: </strong>
                 $
-                {order.total.toFixed(2)}
+                {order.total}
               </p>
               { order.costumes.map((costume) => (
                 <div key={costume.id}>

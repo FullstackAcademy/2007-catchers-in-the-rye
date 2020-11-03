@@ -70,6 +70,7 @@ router.put('/userCart/:costumeId', async (req, res, next) => {
       // if quantity goes down to 0 as result of decrement, destroy so costume is removed from cart
       if (!lineitem.quantity) lineitem.destroy();
     }
+    await cart.calcTotal();
     if (lineitem) res.send(lineitem);
   } catch (err) {
     next(err);
@@ -97,6 +98,7 @@ router.post('/userCart/:costumeId', async (req, res, next) => {
     });
     if (!lineitem) lineitem = await Lineitem.create({ orderId: cart.id, costumeId, quantity });
     else await lineitem.increment({ quantity });
+    await cart.calcTotal();
     res.sendStatus(201);
   } catch (err) {
     next(err);
@@ -119,6 +121,7 @@ router.delete('/userCart/:costumeId', async (req, res, next) => {
       where: { costumeId, orderId },
     });
     await lineitem.destroy();
+    await cart.calcTotal();
     res.sendStatus(200);
   } catch (err) {
     next(err);

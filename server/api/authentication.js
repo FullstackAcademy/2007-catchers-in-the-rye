@@ -52,7 +52,7 @@ router.post('/login', async (req, res, next) => {
           });
           res.status(200).send(user);
         } else {
-          const createdSession = await Session.create({});
+          const createdSession = await Session.create();
           await createdSession.setUser(user);
           res.cookie('sid', createdSession.uuid, {
             maxAge: A_WEEK_IN_SECONDS,
@@ -76,7 +76,19 @@ router.post('/createUser', async (req, res, next) => {
     const user = await User.create({
       username, password: hashedPassword, firstName, lastName, userEmail,
     });
-    res.send(user);
+    if (user) {
+      const session = await Session.findOne({
+        where: {
+          uuid: req.session.uuid,
+        },
+      });
+      await session.setUser(user);
+      res.cookie('sid', session.uuid, {
+        maxAge: A_WEEK_IN_SECONDS,
+        path: '/',
+      });
+      res.send(user);
+    } else res.sendStatus(500);
   } catch (err) {
     next(err);
   }

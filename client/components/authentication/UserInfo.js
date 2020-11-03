@@ -48,20 +48,20 @@ class UserInfo extends Component {
       username, password, firstName, lastName, userEmail,
     } = this.state;
     const {
-      type, login, createUser,
+      type, login, createUser, user,
     } = this.props;
     if (!username.length || !password.length) this.setState({ message: 'All fields are required' });
     else {
       this.setState({ message: '' });
       if (type === 'login') {
         await login(this.state);
-        if (!this.props.user.id) this.setState({ message: 'Check username or password' });
+        if (!user.id) this.setState({ message: 'Check username or password' });
       }
       if (type === 'create') {
         if (!firstName.length || !lastName.length || !userEmail.length) this.setState({ message: 'All fields are required' });
         else {
           await createUser(this.state);
-          if (!user.id) this.setState({ message: 'Could not create account' });
+          if (!this.props.user.id) this.setState({ message: 'Could not create account' });
         }
       }
     }

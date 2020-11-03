@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCart, updateCartQuantity, removeItem } from '../redux/cart/cart';
+import { CheckoutForm } from './Payment/CheckoutForm';
 // buttons that still need functionality: Checkout / keep shopping
 class Cart extends Component {
+  constructor() {
+    super();
+    this.checkout = this.checkout.bind(this);
+  }
   componentDidMount() {
     this.props.fetchCart();
   }
@@ -15,11 +20,17 @@ class Cart extends Component {
     return cartTotal.toFixed(2);
   }
 
+  checkout(ev) {
+    ev.preventDefault();
+    this.props.history.push('/checkout');
+  }
+
   render() {
     const { cart } = this.props;
     const costumes = cart.costumes ? cart.costumes : [];
     const cartTotal = costumes.length ? this.calcTotal(costumes) : 0;
     return (
+      // eslint-disable-next-line react/jsx-filename-extension
       <div>
         <h1>Your cart</h1>
         {costumes.map((costume) => (
@@ -53,7 +64,7 @@ class Cart extends Component {
           $
           {cartTotal}
         </h2>
-        <button>Check Out Now</button>
+        <button type="button" onClick={(ev) => this.checkout(ev)}>Check Out Now</button>
         <button>Keep Shopping</button>
       </div>
     );

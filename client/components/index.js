@@ -3,6 +3,8 @@ import {
   BrowserRouter as Router, Route, Switch, Redirect, browserHistory,
 } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
 import AllCategories from './category/AllCategories';
 import SingleCategory from './category/SingleCategory';
 import CreateCostume from './costume/CreateCostume';
@@ -15,6 +17,11 @@ import EditCostume from './costume/EditCostume';
 import CreateUser from './authentication/CreateUser';
 import { checkCookiesSetSession } from '../redux/authentication/session';
 import OrderHistory from './OrderHistory';
+import CheckoutForm from './Payment/CheckoutForm';
+import PaymentSuccess from './Payment/PaymentSuccess';
+
+// const stripePromise = loadStripe(process.env.STRIPE_PUBLIC_KEY);
+const stripePromise = loadStripe('pk_test_51Hj94RFSm62mRLAhb5em7vKTTRm9V6zoY3mvXE2tSlpdSPIMhW5lFXqwFgoCb3mPeCoWQJLqMqImtV65kktYaO8d00s0YJmJjb')
 
 class Routes extends Component {
   componentDidMount() {
@@ -24,30 +31,34 @@ class Routes extends Component {
   render() {
     return (
       // eslint-disable-next-line react/jsx-filename-extension
-      <Router>
-        <div>
-          <Route render={() => <NavBar />} />
-          <div className="container">
-            <main>
-              <Switch>
-                <Route exact path="/">
-                  <Redirect to="/home" />
-                </Route>
-                <Route path="/home" exact component={Home} />
-                <Route path="/categories" exact component={AllCategories} />
-                <Route path="/categories/:title" exact component={SingleCategory} />
-                <Route path="/costumes/:name" exact component={SingleCostume} />
-                <Route path="/costumes/add" exact component={CreateCostume} />
-                <Route exact path="/costumes/:name/:costId/:catId/admin" component={EditCostume} />
-                <Route path="/login" exact component={Login} />
-                <Route path="/cart" exact component={Cart} />
-                <Route path="/createUser" exact component={CreateUser} />
-                <Route path="/orderHistory" exact component={OrderHistory} />
-              </Switch>
-            </main>
+      <Elements stripe={stripePromise}>
+        <Router>
+          <div>
+            <Route render={() => <NavBar />} />
+            <div className="container">
+              <main>
+                <Switch>
+                  <Route exact path="/">
+                    <Redirect to="/home" />
+                  </Route>
+                  <Route path="/home" exact component={Home} />
+                  <Route path="/categories" exact component={AllCategories} />
+                  <Route path="/categories/:title" exact component={SingleCategory} />
+                  <Route path="/costumes/:name" exact component={SingleCostume} />
+                  <Route path="/costumes/add" exact component={CreateCostume} />
+                  <Route exact path="/costumes/:name/:costId/:catId/admin" component={EditCostume} />
+                  <Route path="/login" exact component={Login} />
+                  <Route path="/cart" exact component={Cart} />
+                  <Route path="/createUser" exact component={CreateUser} />
+                  <Route path="/orderHistory" exact component={OrderHistory} />
+                  <Route path="/checkout" exact component={CheckoutForm} />
+                  <Route path="/successfulCheckout" exact component={PaymentSuccess} />
+                </Switch>
+              </main>
+            </div>
           </div>
-        </div>
-      </Router>
+        </Router>
+      </Elements>
     );
   }
 }

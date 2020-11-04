@@ -94,6 +94,14 @@ router.post('/createUser', async (req, res, next) => {
   }
 });
 
+router.post('/logout', async (req, res, next) => {
+  try {
+    res.clearCookie('sid');
+    req.session = null;
+    res.sendStatus(200);
+  } catch (err) { next(err); }
+});
+
 router.get('/whoami', (req, res, next) => {
   if (req.user) {
     res.send({

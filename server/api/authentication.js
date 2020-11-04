@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const brcypt = require('bcrypt');
+const hash = require('../hash');
 const { User, Session } = require('../db');
 
 const A_WEEK_IN_SECONDS = 1000 * 60 * 60 * 24 * 7;
@@ -31,34 +33,32 @@ router.post('/login', async (req, res, next) => {
     });
   } else {
     try {
-      const loginUser = await User.findOne({
+      const user = await User.findOne({
         where: {
           username,
-          password,
         },
         include: [Session],
       });
-      if (loginUser) {
-        if (loginUser.session) {
-          res.cookie('sid', loginUser.session.uuid, {
+
+      if (user) {
+        const comparisonResult = await brcypt.compare(password, user.password);
+        if (!comparisonResult) {
+          throw new Error('Wrong password!');
+        }
+        if (user.session) {
+          res.cookie('sid', user.session.uuid, {
             maxAge: A_WEEK_IN_SECONDS,
             path: '/',
           });
-          res.status(200).send({
-            loginUser,
-            message: `Welcome back, ${username}!`,
-          });
+          res.status(200).send(user);
         } else {
-          const createdSession = await Session.create({});
-          await createdSession.setUser(loginUser);
+          const createdSession = await Session.create();
+          await createdSession.setUser(user);
           res.cookie('sid', createdSession.uuid, {
             maxAge: A_WEEK_IN_SECONDS,
             path: '/',
           });
-          res.status(201).send({
-            loginUser,
-            message: `Welcome, ${username}!`,
-          });
+          res.status(201).send(user);
         }
       } else res.sendStatus(404);
     } catch (err) {
@@ -69,12 +69,26 @@ router.post('/login', async (req, res, next) => {
 
 router.post('/createUser', async (req, res, next) => {
   try {
-    console.log(req.body);
-    const newUser = await User.create(req.body);
-    res.send({
-      newUser,
-      message: 'Welcome! Your account has been created.',
+    const {
+      username, password, firstName, lastName, userEmail,
+    } = req.body;
+    const hashedPassword = await hash(password);
+    const user = await User.create({
+      username, password: hashedPassword, firstName, lastName, userEmail,
     });
+    if (user) {
+      const session = await Session.findOne({
+        where: {
+          uuid: req.session.uuid,
+        },
+      });
+      await session.setUser(user);
+      res.cookie('sid', session.uuid, {
+        maxAge: A_WEEK_IN_SECONDS,
+        path: '/',
+      });
+      res.send(user);
+    } else res.sendStatus(500);
   } catch (err) {
     next(err);
   }

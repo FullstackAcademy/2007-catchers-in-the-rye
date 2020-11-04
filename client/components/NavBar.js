@@ -1,49 +1,73 @@
+/* eslint-disable react/jsx-filename-extension */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { fetchCategories } from '../redux/categories/allCategories';
 import '../../server/public/css/styles.css';
 
-// eslint-disable-next-line react/prefer-stateless-function
-export default class NavBar extends Component {
+class NavBar extends Component {
+  componentDidMount() {
+    this.props.fetchCategories();
+  }
+
   render() {
+    const { categories, user } = this.props;
     return (
-      // eslint-disable-next-line react/jsx-filename-extension
       <div>
 
         <div className="navContainer">
-          <nav className="navbar is-fixed-top is-link" role="navigation" aria-label="main navigation">
+          <nav className="navbar is-fixed-top is-link" role="navigation" aria-label="main navigation" id= 'topNav'>
             <div id="navbarBasicExample" className="navbar-menu">
               <div className="navbar-start">
                 <a className="navbar-item">Grace Shockers</a>
                 <Link to="/home" className="navbar-item">Home</Link>
                 <Link to="/cart" className="navbar-item">Cart</Link>
                 <Link to="/orderHistory" className="navbar-item">Order History</Link>
-                {/* <Link to="/categories" className="navbar-item">Category View</Link> */}
               </div>
 
               <div className="navbar-end">
                 <div className="navbar-item">
-                  <a className="navbar-item">Welcome, Guest!</a>
-                  <div className="buttons">
-                    <Link to="/createUser" className="button is-black">Register</Link>
-                    <Link to="/login" className="button is-black">Log in</Link>
-                  </div>
+                  <a className="navbar-item">Welcome, { user.id ? user.firstName : 'Guest' }!</a>
+                  { user.id ? 
+                    <div className="buttons">
+                      <Link to="/home" className="button is-black">Account Settings</Link>
+                      <Link to="/home" className="button is-black">Log out</Link>
+                    </div>
+                  :
+                    <div className="buttons">
+                      <Link to="/createUser" className="button is-black">Register</Link>
+                      <Link to="/login" className="button is-black">Log in</Link>
+                    </div>
+                  }
                 </div>
               </div>
             </div>
           </nav>
         </div>
 
-        <div>
-          <div className="sidenav">
-            <Link to="/home">All Costumes</Link>
-            <Link to="/categories/Disney">Disney</Link>
-            <Link to="/categories/Adult">Adult</Link>
-            <Link to="/categories/Villains">Villians</Link>
-            <Link to="/categories/Inanimateobjects">Inanimate Objects</Link>
-            <Link to="/categories/Superheroes">Superheroes</Link>
-          </div>
+        <div className="sidenav">
+          <p>Select a Category:</p>
+          <Link to="/categories/all">All</Link>
+          {
+            categories.map((category) => (
+              <Link key={category.id} to={`/categories/${category.title}`}>{category.title}</Link>
+            ))
+          }
         </div>
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  categories: state.categories,
+  user: state.user,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchCategories: () => {
+    dispatch(fetchCategories());
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

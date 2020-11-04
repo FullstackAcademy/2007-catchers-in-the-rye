@@ -15,7 +15,7 @@ export default class PaymentSuccess extends Component {
     return (
       <div>
         <div>You payment was processed!</div>
-        <button type="button" onClick={(ev) => this.keepShopping(ev)}>Continue Shopping</button>
+        <button type="button" onClick={this.keepShopping}>Continue Shopping</button>
       </div>
     );
   }

@@ -77,8 +77,8 @@ class Cart extends Component {
           $
           { cartTotal }
         </h2>
-        <button type="button" onClick={(ev) => this.checkout(ev)}>Check Out Now</button>
-        <button type="button" onClick={(ev) => this.keepShopping(ev)}>Keep Shopping</button>
+        <button type="button" onClick={this.checkout}>Check Out Now</button>
+        <button type="button" onClick={this.keepShopping}>Keep Shopping</button>
       </div>
     );
   }

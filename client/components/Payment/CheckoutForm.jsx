@@ -23,7 +23,7 @@ const CardElementContainer = styled.div`
 
 const CheckoutForm = (props) => {
   const history = useHistory();
-  const price = props.location.state.total;
+  const price = props.location.state.total === undefined ? 0 : props.location.state.total;
   const orderId = props.location.state.orderId;
   const [isProcessing, setProcessingTo] = useState(false);
   const [checkoutError, setCheckoutError] = useState();

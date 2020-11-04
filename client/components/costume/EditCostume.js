@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { loadSCostumeDispatch } from '../../redux/costumes/singleCostume';
 import { updateCostumeDispatch } from '../../redux/costumes/allCostumes'
 import { fetchCategories } from '../../redux/categories/allCategories';
+import { selectCategory } from '../../redux/categories/singleCategory'
 
 class EditCostume extends Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class EditCostume extends Component {
   async componentDidMount() {
     await this.props.dispatchLoadSCostume(this.state.costumeId);
     await this.props.dispatchFetchCategories()
+    await this.props.dispatchSelectCategory(this.state.costumeCategoryId)
   }
 
   handleInputChange(ev) {
@@ -35,7 +37,8 @@ class EditCostume extends Component {
   render() {
     const thisCostume = this.props.sCostume;
     const categories = this.props.categories
-    console.log(thisCostume)
+    const thisCategory = this.props.sCateogry
+    console.log(thisCategory)
     return (
 
       <div className="container">
@@ -105,16 +108,16 @@ class EditCostume extends Component {
         </form>
         <hr></hr>
 
-        <form onSubmit={() => { this.props.dispatchUpdateCostume(this.state.costumeId, { categoryId: this.state.categoryId }) }}>
+        {/* <form onSubmit={() => { this.props.dispatchUpdateCostume(this.state.costumeId, { categoryId: this.state.categoryId }) }}>
           <label>
-            Current Category: {' '}{categories.length && categories.filter(category => category.id === thisCostume.categoryId)[0].title}
+            Current Category: {' '}{thisCategory.title}
             <div>New Category: {''}
               <select
                 name="categoryId"
                 value={this.state.categoryId}
                 onChange={this.handleInputChange}
               >
-                {this.props.categories
+                {!!categories && categories
                   .map((category) => (
                     <option key={category.title} value={category.id}>
                       {category.title}
@@ -123,7 +126,7 @@ class EditCostume extends Component {
               </select></div>
             <input type="submit" value="Update" />
           </label>
-        </form>
+        </form> */}
         <hr></hr>
       </div>
     );
@@ -132,13 +135,15 @@ class EditCostume extends Component {
 
 const mapStateToProps = (state) => ({
   sCostume: state.sCostume,
-  categories: state.categories
+  categories: state.categories,
+  sCategory: state.selectedCategory
 });
 
 const mapDispatchToProps = (dispatch) => ({
   dispatchLoadSCostume: (id) => dispatch(loadSCostumeDispatch(id)),
   dispatchUpdateCostume: (costumeId, changeObj) => dispatch(updateCostumeDispatch(costumeId, changeObj)),
-  dispatchFetchCategories: () => dispatch(fetchCategories())
+  dispatchFetchCategories: () => dispatch(fetchCategories()),
+  dispatchSelectCategory: (id) => dispatch(selectCategory(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditCostume);

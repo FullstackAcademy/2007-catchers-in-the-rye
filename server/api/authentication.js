@@ -50,6 +50,7 @@ router.post('/login', async (req, res, next) => {
             maxAge: A_WEEK_IN_SECONDS,
             path: '/',
           });
+
           const guestSession = req.session;
           const guestCart = await Order.findOne({
             where: {
@@ -57,18 +58,20 @@ router.post('/login', async (req, res, next) => {
               isPaid: false,
             },
           });
-          const existingUserCart = await Order.findOne({
-            where: {
-              sessionId: user.session.id,
-              isPaid: false,
-            },
-          });
-
-          if (existingUserCart) {
-            const guestCartCostumes = await guestCart.getCostumes();
-            await existingUserCart.addCostumes(guestCartCostumes);
-          } else await guestCart.setSession(user.session);
-
+          if (guestCart) {
+            const existingUserCart = await Order.findOne({
+              where: {
+                sessionId: user.session.id,
+                isPaid: false,
+              },
+            });
+            if (existingUserCart) {
+              const guestCartCostumes = await guestCart.getCostumes();
+              await existingUserCart.addCostumes(guestCartCostumes);
+              await existingUserCart.calcTotal();
+              await guestCart.destroy();
+            } else await guestCart.setSession(user.session);
+          }
           await guestSession.destroy();
           res.status(200).send(user);
         } else {

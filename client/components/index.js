@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-filename-extension */
 import React, { Component } from 'react';
 import {
   BrowserRouter as Router, Route, Switch, Redirect, browserHistory,
@@ -17,10 +18,12 @@ import CreateUser from './authentication/CreateUser';
 import { checkCookiesSetSession } from '../redux/authentication/session';
 import OrderHistory from './OrderHistory';
 import PendingOrders from './admin/PendingOrders';
+// import { getUser } from '../redux/authentication/user';
 
 class Routes extends Component {
   componentDidMount() {
     this.props.checkCookiesSetSession();
+    // this.props.getUser();
   }
 
   render() {
@@ -67,6 +70,9 @@ const mapDispatchToProps = (dispatch) => ({
   checkCookiesSetSession: () => {
     dispatch(checkCookiesSetSession());
   },
+  // getUser: () => {
+  //   dispatch(getUser());
+  // },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Routes);

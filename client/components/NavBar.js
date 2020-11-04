@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchCategories } from '../redux/categories/allCategories';
-import { logout, getUser } from '../redux/authentication/user';
+import { logout } from '../redux/authentication/user';
 import '../../server/public/css/styles.css';
+import { getUser } from '../redux/authentication/user';
 
 class NavBar extends Component {
   componentDidMount() {

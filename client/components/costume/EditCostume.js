@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadSCostumeDispatch } from '../../redux/costumes/singleCostume';
-import { selectCategory } from '../../redux/categories/singleCategory'
+import { selectCategory } from '../../redux/categories/singleCategory';
 
 class EditCostume extends Component {
   constructor(props) {
     super(props);
     this.state = {
       costId: this.props.match.params.costId,
-      catId: this.props.match.params.catId
+      catId: this.props.match.params.catId,
       // costumeName: this.props.costume.costumeName,
       // price: this.props.costume.price,
       // quantity: this.props.costume.quantity,
@@ -24,7 +24,7 @@ class EditCostume extends Component {
 
   render() {
     const thisCostume = this.props.sCostume;
-    const thisCategory = this.props.sCategory
+    const thisCategory = this.props.sCategory;
 
     return (
 
@@ -34,23 +34,31 @@ class EditCostume extends Component {
           {thisCostume.costumeName}
         </h2>
         <div>
-          Name:{' '}
+          Name:
+          {' '}
           <input value={thisCostume.costumeName} />
         </div>
         <div>
-          Price:{' '}
+          Price:
+          {' '}
           <input value={thisCostume.price} />
         </div>
         <div>
-          Quantity: {' '}
+          Quantity:
+          {' '}
+          {' '}
           <input value={thisCostume.quantity} />
         </div>
         <div>
-          ImageUrl: {' '}
+          ImageUrl:
+          {' '}
+          {' '}
           <input value={thisCostume.imageUrl} />
         </div>
         <div>
-          Category: {' '}
+          Category:
+          {' '}
+          {' '}
           <input value={thisCategory.title} />
         </div>
         <div><button>Submit Changes</button></div>

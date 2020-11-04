@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 export default class PaymentSuccess extends Component {
-  constructor(){
-    super()
+  constructor() {
+    super();
     this.keepShopping = this.keepShopping.bind(this);
   }
 

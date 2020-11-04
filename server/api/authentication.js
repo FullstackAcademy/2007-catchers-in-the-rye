@@ -69,7 +69,7 @@ router.post('/login', async (req, res, next) => {
 
 router.post('/createUser', async (req, res, next) => {
   try {
-    console.log(req.body)
+    console.log(req.body);
     const newUser = await User.create(req.body);
     res.send({
       newUser,

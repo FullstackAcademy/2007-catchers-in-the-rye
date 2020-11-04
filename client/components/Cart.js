@@ -9,6 +9,7 @@ class Cart extends Component {
     this.checkout = this.checkout.bind(this);
     this.keepShopping = this.keepShopping.bind(this);
   }
+
   componentDidMount() {
     this.props.fetchCart();
   }
@@ -39,11 +40,9 @@ class Cart extends Component {
 
   render() {
     const { cart } = this.props;
-    console.log(cart);
     const costumes = cart.costumes ? cart.costumes : [];
     const cartTotal = costumes.length ? this.calcTotal(costumes) : 0;
     return (
-      // eslint-disable-next-line react/jsx-filename-extension
       <div>
         <h1>Your cart</h1>
         {costumes.map((costume) => (

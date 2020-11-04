@@ -123,6 +123,16 @@ router.delete('/userCart/:costumeId', async (req, res, next) => {
   }
 });
 
+router.put('/isPaid/:id', async (req, res, next) => {
+  try {
+    const order = await Order.findByPk(req.params.id);
+    await order.update({ isPaid: true });
+    res.send(order);
+  } catch (err) {
+    next(err);
+  }
+});
+
 // commented out for now - we do not need this route anymore given we are using cookies to identify cart
 // router.get('/:id', async(req, res, next) => {
 //     try {

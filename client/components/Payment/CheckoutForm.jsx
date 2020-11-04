@@ -24,6 +24,7 @@ const CardElementContainer = styled.div`
 const CheckoutForm = (props) => {
   const history = useHistory();
   const price = props.location.state.total;
+  const orderId = props.location.state.orderId;
   const [isProcessing, setProcessingTo] = useState(false);
   const [checkoutError, setCheckoutError] = useState();
 
@@ -79,10 +80,9 @@ const CheckoutForm = (props) => {
         return;
       }
 
-      // onSuccessfulCheckout();
-      // history.push({
-      //   pathname: '/successfulCheckout',
-      // });
+      await axios.put(`/api/orders/isPaid/${orderId}`, {
+        amount: price * 100,
+      });
       history.push('/successfulCheckout');
     } catch (err) {
       setCheckoutError(err.message);

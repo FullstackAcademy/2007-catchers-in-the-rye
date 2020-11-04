@@ -80,9 +80,7 @@ const CheckoutForm = (props) => {
         return;
       }
 
-      await axios.put(`/api/orders/isPaid/${orderId}`, {
-        amount: price * 100,
-      });
+      await axios.put(`/api/orders/isPaid/${orderId}`
       history.push('/successfulCheckout');
     } catch (err) {
       setCheckoutError(err.message);

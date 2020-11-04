@@ -136,6 +136,7 @@ router.put('/isPaid/:id', async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+});
 
 router.get('/admin/pending', async (req, res, next) => {
   try {

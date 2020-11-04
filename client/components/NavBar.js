@@ -12,7 +12,8 @@ class NavBar extends Component {
   }
 
   render() {
-    const { categories, user } = this.props;
+    console.log(this.props.user)
+    const { categories } = this.props;
     return (
       <div>
         <div className="navContainer">
@@ -27,11 +28,11 @@ class NavBar extends Component {
 
               <div className="navbar-end">
                 <div className="navbar-item">
-                  <a className="navbar-item">Welcome, { user.id ? user.firstName : 'Guest' }!</a>
-                  { user.id ? (
+                  <a className="navbar-item">Welcome, { this.props.user.id ? this.props.user.firstName : 'Guest' }!</a>
+                  { this.props.user.id ? (
                     <div className="buttons">
                       <Link to="/home" className="button is-black">Account Settings</Link>
-                      <Link to="/home" className="button is-black" onClick={this.props.logout}>Log out</Link>
+                      <Link to="/login" className="button is-black" onClick={this.props.logout}>Log out</Link>
                     </div>
                   )
                     : (

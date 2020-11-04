@@ -6,12 +6,18 @@ import { fetchCategories } from '../redux/categories/allCategories';
 import { logout } from '../redux/authentication/user';
 import '../../server/public/css/styles.css';
 import { getUser } from '../redux/authentication/user';
+import { checkCookiesSetSession } from '../redux/authentication/session';
 
 class NavBar extends Component {
   componentDidMount() {
     this.props.fetchCategories();
     this.props.getUser();
   }
+
+  // async logoutThenSetNewCookies() {
+  //   await this.props.logout();
+  //   this.props.checkCookiesSetSession();
+  // }
 
   render() {
     const { categories, user, logout } = this.props;
@@ -76,6 +82,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   getUser: () => {
     dispatch(getUser());
+  },
+  checkCookiesSetSession: () => {
+    dispatch(checkCookiesSetSession());
   },
 });
 

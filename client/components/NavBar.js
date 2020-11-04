@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchCategories } from '../redux/categories/allCategories';
+import { logout } from '../redux/authentication/user';
 import '../../server/public/css/styles.css';
 
 class NavBar extends Component {
@@ -30,7 +31,7 @@ class NavBar extends Component {
                   { user.id ? (
                     <div className="buttons">
                       <Link to="/home" className="button is-black">Account Settings</Link>
-                      <Link to="/home" className="button is-black">Log out</Link>
+                      <Link to="/home" className="button is-black" onClick={this.props.logout}>Log out</Link>
                     </div>
                   )
                     : (
@@ -67,6 +68,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   fetchCategories: () => {
     dispatch(fetchCategories());
+  },
+  logout: () => {
+    dispatch(logout());
   },
 });
 

@@ -36,9 +36,12 @@ const _logout = (emptyUser) => ({
   emptyUser,
 });
 
-const logout = (dispatch) => async (dispatch) => {
-  await axios.post('/api/auth/logout');
-  dispatch(_logout({}));
+const logout = () => async (dispatch) => {
+  try {
+    await axios.post('/api/auth/logout');
+    const emptyUser = {};
+    dispatch(_logout(emptyUser));
+  } catch (err) { console.error(err); }
 };
 
 export default function userReducer(state = {}, action) {

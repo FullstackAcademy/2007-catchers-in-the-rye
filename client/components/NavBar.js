@@ -14,16 +14,22 @@ class NavBar extends Component {
     const { categories, user } = this.props;
     return (
       <div>
-        <div className="navContainer">
+        {/* <div className="navContainer"> */}
           <nav className="navbar is-fixed-top is-link" role="navigation" aria-label="main navigation" id= 'topNav'>
+            <div className="navbar-brand">
+              <a className="navbar-item">Grace Shockers</a>
+              <a role="button" className="navbar-burger is-active" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
             <div id="navbarBasicExample" className="navbar-menu">
               <div className="navbar-start">
-                <a className="navbar-item">Grace Shockers</a>
                 <Link to="/home" className="navbar-item">Home</Link>
                 <Link to="/cart" className="navbar-item">Cart</Link>
                 <Link to="/orderHistory" className="navbar-item">Order History</Link>
               </div>
-
               <div className="navbar-end">
                 <div className="navbar-item">
                   <a className="navbar-item">Welcome, { user.id ? user.firstName : 'Guest' }!</a>
@@ -42,7 +48,7 @@ class NavBar extends Component {
               </div>
             </div>
           </nav>
-        </div>
+        {/* </div> */}
 
         <div className="sidenav">
           <p>Select a Category:</p>

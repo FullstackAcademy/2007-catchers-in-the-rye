@@ -34,7 +34,7 @@ export const createCostume = (costume) => async (dispatch) => {
 export default function allCostumesReducer(state = [], action) {
   switch (action.type) {
     case LOAD_COSTUMES:
-      return [...state, ...action.payload];
+      return [...action.payload];
     case CREATE_COSTUME:
       return [...state, action.costume];
     default:

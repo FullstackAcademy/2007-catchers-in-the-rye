@@ -1,44 +1,46 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { selectCategory } from '../../redux/categories/singleCategory';
+// Not in use now, but may be re-appropriated for admin use later
 
-class SingleCategory extends Component {
-  async componentDidMount() {
-    const category = this.props.categories.find((c) => c.title.toLowerCase() === this.props.match.params.title.toLowerCase());
-    await this.props.selectCategory(category.id);
-  }
+// import React, { Component } from 'react';
+// import { connect } from 'react-redux';
+// import { selectCategory } from '../../redux/categories/singleCategory';
 
-  render() {
-    const { selectedCategory } = this.props;
-    const costumesInCategory = selectedCategory.costumes;
-    if (costumesInCategory) {
-      return (
-        <div id="singleCategory">
-          <h1>{selectedCategory.title}</h1>
-          <ul>
-            {costumesInCategory.map((costume) => (
-              <li key={costume.id}>
-                <div>{costume.costumeName}</div>
-                <img src={costume.imageUrl} />
-                <div>{costume.price}</div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      );
-    } return null;
-  }
-}
+// class SingleCategory extends Component {
+//   async componentDidMount() {
+//     const category = this.props.categories.find((c) => c.title.toLowerCase() === this.props.match.params.title.toLowerCase());
+//     await this.props.selectCategory(category.id);
+//   }
 
-const mapStateToProps = (state) => ({
-  categories: state.categories,
-  selectedCategory: state.selectedCategory,
-});
+//   render() {
+//     const { selectedCategory } = this.props;
+//     const costumesInCategory = selectedCategory.costumes;
+//     if (costumesInCategory) {
+//       return (
+//         <div id="singleCategory">
+//           <h1>{selectedCategory.title}</h1>
+//           <ul>
+//             {costumesInCategory.map((costume) => (
+//               <li key={costume.id}>
+//                 <div>{costume.costumeName}</div>
+//                 <img src={costume.imageUrl} />
+//                 <div>{costume.price}</div>
+//               </li>
+//             ))}
+//           </ul>
+//         </div>
+//       );
+//     } return null;
+//   }
+// }
 
-const mapDispatchToProps = (dispatch) => ({
-  selectCategory: (id) => {
-    dispatch(selectCategory(id));
-  },
-});
+// const mapStateToProps = (state) => ({
+//   categories: state.categories,
+//   selectedCategory: state.selectedCategory,
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SingleCategory);
+// const mapDispatchToProps = (dispatch) => ({
+//   selectCategory: (id) => {
+//     dispatch(selectCategory(id));
+//   },
+// });
+
+// export default connect(mapStateToProps, mapDispatchToProps)(SingleCategory);

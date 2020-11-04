@@ -7,6 +7,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import AllCategories from './category/AllCategories';
 import SingleCategory from './category/SingleCategory';
+import AllCostumes from './costume/AllCostumes';
 import CreateCostume from './costume/CreateCostume';
 import NavBar from './NavBar';
 import Home from './Home';
@@ -17,6 +18,7 @@ import EditCostume from './costume/EditCostume';
 import CreateUser from './authentication/CreateUser';
 import { checkCookiesSetSession } from '../redux/authentication/session';
 import OrderHistory from './OrderHistory';
+import PendingOrders from './admin/PendingOrders';
 import CheckoutForm from './Payment/CheckoutForm';
 import PaymentSuccess from './Payment/PaymentSuccess';
 
@@ -30,32 +32,30 @@ class Routes extends Component {
 
   render() {
     return (
-      // eslint-disable-next-line react/jsx-filename-extension
-      <Elements stripe={stripePromise}>
-        <Router>
-          <div>
-            <Route render={() => <NavBar />} />
-            <div className="container">
-              <main>
-                <Switch>
-                  <Route exact path="/">
-                    <Redirect to="/home" />
-                  </Route>
-                  <Route path="/home" exact component={Home} />
-                  <Route path="/categories" exact component={AllCategories} />
-                  <Route path="/categories/:title" exact component={SingleCategory} />
-                  <Route path="/costumes/:name" exact component={SingleCostume} />
-                  <Route path="/costumes/add" exact component={CreateCostume} />
-                  <Route exact path="/costumes/:name/:costId/:catId/admin" component={EditCostume} />
-                  <Route path="/login" exact component={Login} />
-                  <Route path="/cart" exact component={Cart} />
-                  <Route path="/createUser" exact component={CreateUser} />
-                  <Route path="/orderHistory" exact component={OrderHistory} />
-                  <Route path="/checkout" exact component={CheckoutForm} />
-                  <Route path="/successfulCheckout" exact component={PaymentSuccess} />
-                </Switch>
-              </main>
-            </div>
+    <Elements stripe={stripePromise}>
+      <Router>
+        <div>
+          <Route render={() => <NavBar />} />
+          <div className="container">
+            <main>
+              <Switch>
+                <Route exact path="/">
+                  <Redirect to="/home" />
+                </Route>
+                <Route path="/home" exact component={AllCostumes} />
+                <Route path="/categories/:name" exact component={AllCostumes} />
+                <Route path="/costumes/:name/:id" exact component={SingleCostume} />
+                <Route path="/costumes/add" exact component={CreateCostume} />
+                <Route exact path="/costumes/:name/:costId/:catId/admin" component={EditCostume} />
+                <Route path="/login" exact component={Login} />
+                <Route path="/cart" exact component={Cart} />
+                <Route path="/createUser" exact component={CreateUser} />
+                <Route path="/orderHistory" exact component={OrderHistory} />
+                <Route path="/admin/pending" exact component={PendingOrders} />
+                <Route path="/checkout" exact component={CheckoutForm} />
+                <Route path="/successfulCheckout" exact component={PaymentSuccess} />
+              </Switch>
+            </main>
           </div>
         </Router>
       </Elements>

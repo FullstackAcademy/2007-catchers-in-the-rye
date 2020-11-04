@@ -10,8 +10,10 @@ const _login = (loginUser) => ({
 });
 
 const login = (loginInfo) => async (dispatch) => {
-  const { data } = await (axios.post('/api/auth/login', loginInfo));
-  dispatch(_login(data));
+  try {
+    const { data } = await (axios.post('/api/auth/login', loginInfo));
+    dispatch(_login(data));
+  } catch (err) { console.error(err); }
 };
 
 // eslint-disable-next-line no-underscore-dangle
@@ -21,8 +23,10 @@ const _createUser = (newUser) => ({
 });
 
 const createUser = (newUserInfo) => async (dispatch) => {
-  const { data } = await (axios.post('/api/auth/createUser', newUserInfo));
-  dispatch(_createUser(data));
+  try {
+    const { data } = await (axios.post('/api/auth/createUser', newUserInfo));
+    dispatch(_createUser(data));
+  } catch (err) { console.error(err); }
 };
 
 export default function userReducer(state = {}, action) {

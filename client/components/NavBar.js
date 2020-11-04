@@ -14,11 +14,6 @@ class NavBar extends Component {
     this.props.getUser();
   }
 
-  // async logoutThenSetNewCookies() {
-  //   await this.props.logout();
-  //   this.props.checkCookiesSetSession();
-  // }
-
   render() {
     const { categories, user, logout } = this.props;
     return (
@@ -39,7 +34,7 @@ class NavBar extends Component {
                   { user.id ? (
                     <div className="buttons">
                       <Link to="/home" className="button is-black">Account Settings</Link>
-                      <Link to="/login" className="button is-black" onClick={logout}>Log out</Link>
+                      <Link to="/home" className="button is-black" onClick={logout}>Log out</Link>
                     </div>
                   )
                     : (

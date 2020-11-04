@@ -102,6 +102,20 @@ router.post('/logout', async (req, res, next) => {
   } catch (err) { next(err); }
 });
 
+router.get('/thisUser', async (req, res, next) => {
+  try {
+    const { uuid } = req.session;
+    const userSession = await Session.findOne({
+      where: { uuid },
+    });
+    const user = await User.findByPk(userSession.userId);
+    if (user) res.send(user);
+    else res.sendStatus(404);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.get('/whoami', (req, res, next) => {
   if (req.user) {
     res.send({

@@ -3,17 +3,17 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchCategories } from '../redux/categories/allCategories';
-import { logout } from '../redux/authentication/user';
+import { logout, getUser } from '../redux/authentication/user';
 import '../../server/public/css/styles.css';
 
 class NavBar extends Component {
   componentDidMount() {
     this.props.fetchCategories();
+    this.props.getUser();
   }
 
   render() {
-    console.log(this.props.user)
-    const { categories } = this.props;
+    const { categories, user, logout } = this.props;
     return (
       <div>
         <div className="navContainer">
@@ -28,11 +28,11 @@ class NavBar extends Component {
 
               <div className="navbar-end">
                 <div className="navbar-item">
-                  <a className="navbar-item">Welcome, { this.props.user.id ? this.props.user.firstName : 'Guest' }!</a>
-                  { this.props.user.id ? (
+                  <a className="navbar-item">Welcome, { user.id ? user.firstName : 'Guest' }!</a>
+                  { user.id ? (
                     <div className="buttons">
                       <Link to="/home" className="button is-black">Account Settings</Link>
-                      <Link to="/login" className="button is-black" onClick={this.props.logout}>Log out</Link>
+                      <Link to="/login" className="button is-black" onClick={logout}>Log out</Link>
                     </div>
                   )
                     : (
@@ -72,6 +72,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   logout: () => {
     dispatch(logout());
+  },
+  getUser: () => {
+    dispatch(getUser());
   },
 });
 

@@ -4,33 +4,69 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchCategories } from '../redux/categories/allCategories';
 import { logout, getUser } from '../redux/authentication/user';
-import '../../server/public/css/styles.css';
 
 class NavBar extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      selectedCategory: 'all'
+    }
+    this.selectCategory = this.selectCategory.bind(this);
+  }
   componentDidMount() {
     this.props.fetchCategories();
     this.props.getUser();
   }
-
+  selectCategory (input) {
+    this.setState({
+      selectedCategory: input,
+    })
+  }
   render() {
-    const { categories, user, logout } = this.props;
+    const { selectCategory, props, state } = this;
+    const { categories, user, logout } = props;   
+    const { selectedCategory } = state;
     return (
       <div>
-        {/* <div className="navContainer"> */}
-          <nav className="navbar is-fixed-top is-link" role="navigation" aria-label="main navigation" id= "topNav">
-            <div className="navbar-brand">
-              <a className="navbar-item">Grace Shockers</a>
-              <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-              </a>
-            </div>
-            <div id="navbarBasicExample" className="navbar-menu is-active">
-              <div className="navbar-start">
+        <div className="topnav" role="navigtion" aria-label="main navigation">
+          <div className="logo">
+            <a>Grace Shockers</a>
+          </div>
+          <div className="topnav-links">
+            <div className= "topnav-left">  
                 <Link to="/home" className="navbar-item">Home</Link>
                 <Link to="/cart" className="navbar-item">Cart</Link>
                 <Link to="/orderHistory" className="navbar-item">Order History</Link>
+            </div>
+            <div className= "topnav-right">  
+              <a className="navbar-item">Welcome, {user.id ? user.firstName : 'Guest'}!</a>
+                {user.id ? (
+                  <div className="buttons">
+                    <Link to="/home" className="button is-black">Account Settings</Link>
+                    <Link to="/login" className="button is-black" onClick={logout}>Log out</Link>
+                  </div>
+                )
+                  : (
+                    <div className="buttons">
+                      <Link to="/createUser" className="button is-black">Register</Link>
+                      <Link to="/login" className="button is-black">Log in</Link>
+                    </div>
+              )}
+            </div>
+          </div>
+        </div>
+        {/* Bulma code for reference */}
+        {/* <div className="navContainer">
+          <nav className="navbar is-fixed-top is-link" role="navigation" aria-label="main navigation" id= "topNav">
+            <div className="navbar-brand">
+              <a className="navbar-item">Grace Shockers</a>
+              <Link to="/home" className="navbar-item">Home</Link>
+              <Link to="/cart" className="navbar-item">Cart</Link>
+              <Link to="/orderHistory" className="navbar-item">Order History</Link>
+            </div>
+            <div id="navbarBasicExample" className="navbar-menu is-active">
+              <div className="navbar-start">
+ 
               </div>
               <div className="navbar-end">
                 <div className="navbar-item">
@@ -51,14 +87,17 @@ class NavBar extends Component {
               </div>
             </div>
           </nav>
-        {/* </div> */}
+        </div> */}
 
-        <div className="sidenav">
+        <div className="sidenav" role="navigation" aria-label="search costumes by category">
           <p>Select a Category:</p>
-          <Link to="/categories/all">All</Link>
+          <Link className={selectedCategory === "all" ? "selected" : null} to="/categories/all" onClick={() => selectCategory('all')}>All</Link>
           {
             categories.map((category) => (
-              <Link key={category.id} className="side-nav" to={`/categories/${category.title}`}>{category.title}</Link>
+              <Link className={selectedCategory === category.title ? "selected" : null} key={category.id} 
+              to={`/categories/${category.title}`} onClick={() => selectCategory(`${category.title}`)}>
+                {category.title}
+              </Link>
             ))
           }
         </div>

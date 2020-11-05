@@ -44,19 +44,28 @@ const costumes = [
     imageUrl: '/costumeImages/animals/turkey.jpg',
   },
   {
-    costumeName: 'Cinderella',
+    costumeName: 'Tiana',
     price: 199.99,
     categoryId: 2,
+    imageUrl: '/costumeImages/disney/tiana.jpg',
+  },
+  {
+    costumeName: 'Aladdin',
+    price: 199.99,
+    categoryId: 2,
+    imageUrl: '/costumeImages/disney/aladdin.jpg',
   },
   {
     costumeName: 'Elsa',
     price: 159.99,
     categoryId: 2,
+    imageUrl: '/costumeImages/disney/elsa.jpg',
   },
   {
-    costumeName: 'Mrs. Potts',
+    costumeName: 'Finding Nemo',
     price: 299.99,
     categoryId: 2,
+    imageUrl: '/costumeImages/disney/findingNemo.jpg',
   },
   {
     costumeName: 'Werewolf',

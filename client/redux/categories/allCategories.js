@@ -9,16 +9,16 @@ const _loadCategories = (categories) => ({
 
 export const fetchCategories = () => async (dispatch) => {
   try {
-  const { data } = await axios.get('/api/categories');
-  dispatch(_loadCategories(data));
+    const { data } = await axios.get('/api/categories');
+    dispatch(_loadCategories(data));
   } catch (err) {
-    console.error(err)
+    console.error(err);
   }
 };
 
-export default function allCategoriesReducer (state = [], action) {
+export default function allCategoriesReducer(state = [], action) {
   if (action.type === LOAD_CATEGORIES) {
     state = [...action.categories];
   }
   return state;
-};
+}

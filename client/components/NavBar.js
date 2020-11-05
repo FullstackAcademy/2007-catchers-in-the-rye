@@ -20,7 +20,7 @@ class NavBar extends Component {
       <div>
 
         <div className="navContainer">
-          <nav className="navbar is-fixed-top is-link" role="navigation" aria-label="main navigation" id='topNav'>
+          <nav className="navbar is-fixed-top is-link" role="navigation" aria-label="main navigation" id="topNav">
             <div id="navbarBasicExample" className="navbar-menu">
               <div className="navbar-start">
                 <a className="navbar-item">Grace Shockers</a>
@@ -30,7 +30,11 @@ class NavBar extends Component {
 
               <div className="navbar-end">
                 <div className="navbar-item">
-                  <a className="navbar-item">Welcome, {user.id ? user.firstName : 'Guest'}!</a>
+                  <a className="navbar-item">
+                    Welcome,
+                    {user.id ? user.firstName : 'Guest'}
+                    !
+                  </a>
                   {user.id ? (
                     <div className="buttons">
                       <Link to="/orderHistory" className="button is-black">Order History</Link>

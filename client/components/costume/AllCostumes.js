@@ -17,9 +17,13 @@ class AllCostumes extends Component {
     return (
       <div className="costumesList">
         <div>
-          <h5>{selectedCategory ? selectedCategoryName : 'All'} Costumes</h5>
-          {selectedCategory ?
-            costumes.map((costume) => (costume.categoryId === selectedCategory.id ? (
+          <h5>
+            {selectedCategory ? selectedCategoryName : 'All'}
+            {' '}
+            Costumes
+          </h5>
+          {selectedCategory
+            ? costumes.map((costume) => (costume.categoryId === selectedCategory.id ? (
               <div key={costume.id} className="costumes">
                 <div>
                   <Link to={`/costumes/${costume.costumeName}/${costume.id}`}>{costume.costumeName}</Link>
@@ -35,13 +39,15 @@ class AllCostumes extends Component {
                     </div>
                   )
                   : null }
-                <div>${costume.price.toFixed(2)}</div>
+                <div>
+                  $
+                  {costume.price.toFixed(2)}
+                </div>
                 <br />
               </div>
             )
               : null))
-            :
-            costumes.map((costume) => (
+            : costumes.map((costume) => (
               <div key={costume.id} className="costumes">
                 <div>
                   <Link to={`/costumes/${costume.costumeName}/${costume.id}`}>{costume.costumeName}</Link>
@@ -56,7 +62,10 @@ class AllCostumes extends Component {
                       </Link>
                     </div>
                   ) : null }
-                <div>${costume.price.toFixed(2)}</div>
+                <div>
+                  $
+                  {costume.price.toFixed(2)}
+                </div>
                 <br />
               </div>
             ))}

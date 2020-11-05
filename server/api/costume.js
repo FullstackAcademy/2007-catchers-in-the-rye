@@ -29,17 +29,17 @@ router.post('/', async (req, res, next) => {
 });
 
 router.put('/:id', async (req, res, next) => {
-  console.log(req)
-  console.log('put is being called')
+  console.log(req);
+  console.log('put is being called');
   const updatedCostume = await Costume.update(
     {
       costumeName: req.body.costumeName,
       price: req.body.price,
       quantity: req.body.quantity,
       imageUrl: req.body.imageUrl,
-      categoryId: req.body.categoryId
+      categoryId: req.body.categoryId,
     },
-    { returning: true, where: { id: req.params.id } }
+    { returning: true, where: { id: req.params.id } },
   );
   res.send(updatedCostume);
 });

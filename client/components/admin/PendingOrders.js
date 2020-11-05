@@ -17,7 +17,7 @@ class PendingOrders extends Component {
 
   async componentDidMount() {
     await this.props.fetchPendingOrders();
-    if (!this.props.pendingOrders.length) this.setState({ message: 'You do not have rights to access this page.' })
+    if (!this.props.pendingOrders.length) this.setState({ message: 'You do not have rights to access this page.' });
   }
 
   render() {
@@ -25,14 +25,15 @@ class PendingOrders extends Component {
     return (
       this.state.message.length
         ? <h1>{this.state.message}</h1>
-        :
-        <div>
+        : <div>
           <h1>Paid Orders to be Shipped</h1>
           { pendingOrders.map((order) => (
             <div key={order.id}>
               <p>
                 <strong>Name: </strong>
-                {order.session.user.firstName} {order.session.user.lastName}
+                {order.session.user.firstName}
+                {' '}
+                {order.session.user.lastName}
               </p>
               <p>
                 <strong>Address: </strong>

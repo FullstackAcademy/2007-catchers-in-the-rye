@@ -3,6 +3,8 @@ import {
   BrowserRouter as Router, Route, Switch, Redirect, browserHistory,
 } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
 import AllCategories from './category/AllCategories';
 import SingleCategory from './category/SingleCategory';
 import AllCostumes from './costume/AllCostumes';
@@ -17,6 +19,11 @@ import CreateUser from './authentication/CreateUser';
 import { checkCookiesSetSession } from '../redux/authentication/session';
 import OrderHistory from './OrderHistory';
 import PendingOrders from './admin/PendingOrders';
+import CheckoutForm from './Payment/CheckoutForm';
+import PaymentSuccess from './Payment/PaymentSuccess';
+
+// const stripePromise = loadStripe(process.env.STRIPE_PUBLIC_KEY);
+const stripePromise = loadStripe('pk_test_51Hj94RFSm62mRLAhb5em7vKTTRm9V6zoY3mvXE2tSlpdSPIMhW5lFXqwFgoCb3mPeCoWQJLqMqImtV65kktYaO8d00s0YJmJjb');
 
 class Routes extends Component {
   componentDidMount() {
@@ -25,6 +32,7 @@ class Routes extends Component {
 
   render() {
     return (
+    <Elements stripe={stripePromise}>
       <Router>
         <div>
           <Route render={() => <NavBar />} />
@@ -44,11 +52,14 @@ class Routes extends Component {
                 <Route path="/createUser" exact component={CreateUser} />
                 <Route path="/orderHistory" exact component={OrderHistory} />
                 <Route path="/admin/pending" exact component={PendingOrders} />
+                <Route path="/checkout" exact component={CheckoutForm} />
+                <Route path="/successfulCheckout" exact component={PaymentSuccess} />
               </Switch>
             </main>
           </div>
         </div>
       </Router>
+    </Elements>
     );
   }
 }

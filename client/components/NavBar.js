@@ -16,6 +16,7 @@ class NavBar extends Component {
     const { categories, user, logout } = this.props;
     return (
       <div>
+
         <div className="navContainer">
           <nav className="navbar is-fixed-top is-link" role="navigation" aria-label="main navigation" id= 'topNav'>
             <div id="navbarBasicExample" className="navbar-menu">

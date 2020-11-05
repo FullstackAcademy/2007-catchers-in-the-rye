@@ -3,10 +3,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchCategories } from '../redux/categories/allCategories';
-import { logout } from '../redux/authentication/user';
+import { logout, getUser } from '../redux/authentication/user';
 import '../../server/public/css/styles.css';
-import { getUser } from '../redux/authentication/user';
-import { checkCookiesSetSession } from '../redux/authentication/session';
 
 class NavBar extends Component {
   componentDidMount() {
@@ -77,9 +75,6 @@ const mapDispatchToProps = (dispatch) => ({
   },
   getUser: () => {
     dispatch(getUser());
-  },
-  checkCookiesSetSession: () => {
-    dispatch(checkCookiesSetSession());
   },
 });
 

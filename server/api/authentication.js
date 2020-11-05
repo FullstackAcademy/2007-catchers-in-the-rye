@@ -127,6 +127,7 @@ router.post('/logout', async (req, res, next) => {
 
 router.get('/thisUser', async (req, res, next) => {
   try {
+    console.log('session',req.session)
     const { uuid } = req.session;
     const userSession = await Session.findOne({
       where: { uuid },

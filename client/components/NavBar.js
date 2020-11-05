@@ -5,10 +5,12 @@ import { connect } from 'react-redux';
 import { fetchCategories } from '../redux/categories/allCategories';
 import { logout, getUser } from '../redux/authentication/user';
 import '../../server/public/css/styles.css';
+import { checkCookiesSetSession } from '../redux/authentication/session';
 
 class NavBar extends Component {
-  componentDidMount() {
+  async componentDidMount() {
     this.props.fetchCategories();
+    await this.props.checkCookiesSetSession();
     this.props.getUser();
   }
 
@@ -75,6 +77,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   getUser: () => {
     dispatch(getUser());
+  },
+  checkCookiesSetSession: () => {
+    dispatch(checkCookiesSetSession());
   },
 });
 

@@ -45,10 +45,10 @@ class UserInfo extends Component {
   async submit(ev) {
     ev.preventDefault();
     const {
-      username, password, firstName, lastName, userEmail, user,
+      username, password, firstName, lastName, userEmail,
     } = this.state;
     const {
-      type, login, createUser,
+      type, login, createUser, user,
     } = this.props;
     if (!username.length || !password.length) this.setState({ message: 'All fields are required' });
     else {

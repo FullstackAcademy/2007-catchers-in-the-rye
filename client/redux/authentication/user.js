@@ -28,6 +28,7 @@ const _createUser = (newUser) => ({
 const createUser = (newUserInfo) => async (dispatch) => {
   try {
     const { data } = await (axios.post('/api/auth/createUser', newUserInfo));
+    console.log('createUser', data)
     dispatch(_createUser(data));
   } catch (err) { console.error(err); }
 };
@@ -53,6 +54,7 @@ const _getUser = (thisUser) => ({
 const getUser = () => async (dispatch) => {
   try {
     const { data } = await axios.get('/api/auth/thisUser');
+    console.log('getUser', data)
     dispatch(_getUser(data));
   } catch (err) { console.error(err); }
 };

@@ -26,7 +26,6 @@ class NavBar extends Component {
                 <a className="navbar-item">Grace Shockers</a>
                 <Link to="/home" className="navbar-item">Home</Link>
                 <Link to="/cart" className="navbar-item">Cart</Link>
-                <Link to="/orderHistory" className="navbar-item">Order History</Link>
               </div>
 
               <div className="navbar-end">
@@ -34,7 +33,7 @@ class NavBar extends Component {
                   <a className="navbar-item">Welcome, {user.id ? user.firstName : 'Guest'}!</a>
                   {user.id ? (
                     <div className="buttons">
-                      <Link to="/home" className="button is-black">Account Settings</Link>
+                      <Link to="/orderHistory" className="button is-black">Order History</Link>
                       <Link to="/home" className="button is-black" onClick={logout}>Log out</Link>
                     </div>
                   )

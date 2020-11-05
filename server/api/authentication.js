@@ -120,14 +120,17 @@ router.post('/createUser', async (req, res, next) => {
 router.post('/logout', async (req, res, next) => {
   try {
     res.clearCookie('sid');
-    req.session = null;
+    const guestSession = await Session.create();
+    res.cookie('sid', guestSession.uuid, {
+      maxAge: A_WEEK_IN_SECONDS,
+      path: '/',
+    });
     res.sendStatus(200);
   } catch (err) { next(err); }
 });
 
 router.get('/thisUser', async (req, res, next) => {
   try {
-    console.log('session',req.session)
     const { uuid } = req.session;
     const userSession = await Session.findOne({
       where: { uuid },

@@ -128,6 +128,16 @@ router.delete('/userCart/:costumeId', async (req, res, next) => {
   }
 });
 
+router.put('/isPaid/:id', async (req, res, next) => {
+  try {
+    const order = await Order.findByPk(req.params.id);
+    await order.update({ isPaid: true });
+    res.send(order);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.get('/admin/pending', async (req, res, next) => {
   try {
     const sessionId = req.session.id;

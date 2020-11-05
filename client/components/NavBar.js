@@ -18,8 +18,9 @@ class NavBar extends Component {
     const { categories, user, logout } = this.props;
     return (
       <div>
+
         <div className="navContainer">
-          <nav className="navbar is-fixed-top is-link" role="navigation" aria-label="main navigation" id= 'topNav'>
+          <nav className="navbar is-fixed-top is-link" role="navigation" aria-label="main navigation" id='topNav'>
             <div id="navbarBasicExample" className="navbar-menu">
               <div className="navbar-start">
                 <a className="navbar-item">Grace Shockers</a>
@@ -30,8 +31,8 @@ class NavBar extends Component {
 
               <div className="navbar-end">
                 <div className="navbar-item">
-                  <a className="navbar-item">Welcome, { user.id ? user.firstName : 'Guest' }!</a>
-                  { user.id ? (
+                  <a className="navbar-item">Welcome, {user.id ? user.firstName : 'Guest'}!</a>
+                  {user.id ? (
                     <div className="buttons">
                       <Link to="/home" className="button is-black">Account Settings</Link>
                       <Link to="/home" className="button is-black" onClick={logout}>Log out</Link>
@@ -54,7 +55,7 @@ class NavBar extends Component {
           <Link to="/categories/all">All</Link>
           {
             categories.map((category) => (
-              <Link key={category.id} to={`/categories/${category.title}`}>{category.title}</Link>
+              <Link key={category.id} className="side-nav" to={`/categories/${category.title}`}>{category.title}</Link>
             ))
           }
         </div>

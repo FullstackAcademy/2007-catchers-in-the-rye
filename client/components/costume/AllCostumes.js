@@ -29,7 +29,8 @@ class AllCostumes extends Component {
                   ? (
                     <div>
                       <Link to={`/costumes/${costume.costumeName}/${costume.id}/${costume.categoryId}/admin`}>
-                        Update {costume.costumeName}
+                        Update &nbsp;
+                        {costume.costumeName}
                       </Link>
                     </div>
                   )
@@ -50,7 +51,8 @@ class AllCostumes extends Component {
                   ? (
                     <div>
                       <Link to={`/costumes/${costume.costumeName}/${costume.id}/${costume.categoryId}/admin`}>
-                        Update {costume.costumeName}
+                        Update &nbsp;
+                        {costume.costumeName}
                       </Link>
                     </div>
                   ) : null }

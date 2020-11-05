@@ -10,24 +10,31 @@ class OrderHistory extends Component {
 
   render() {
     const { orders } = this.props;
-    if (orders.length > 0) {
+    if (orders.length) {
       return (
         <div>
           <h1>Previous Orders:</h1>
           <ul>
-            {orders.map((order) => (
-              <li key={order.id}>
-                Total: $
-                {order.total}
-                <ul>
-                  {order.costumes.map((costume) => (
-                    <li key={costume.id}>
-                      <Link to={`/costumes/${costume.costumeName}/${costume.id}`}>{costume.costumeName}</Link>
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            ))}
+            {orders.map((order) => {
+              const date = new Date(order.createdAt);
+              const readableDate = date.toDateString();
+              return (
+                <li key={order.id}>
+                  <div>{readableDate}</div>
+                  <div>
+                    Total: $
+                    {order.total}
+                  </div>
+                  <ul>
+                    {order.costumes.map((costume) => (
+                      <li key={costume.id}>
+                        <Link to={`/costumes/${costume.costumeName}`}>{costume.costumeName}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              );
+            })}
           </ul>
         </div>
       );

@@ -8,7 +8,7 @@
   background-color: #111;
   overflow-x: hidden;
   padding-top: 100px;
-
+  
 }
 
 .sidenav a {
@@ -17,6 +17,7 @@
   font-size: 25px;
   color: #818181;
   display: block;
+  
 }
 
 .sidenav a:hover {
@@ -27,6 +28,7 @@
   margin-left: 160px; /* Same as the width of the sidenav */
   font-size: 28px; /* Increased text to enable scrolling */
   padding: 0px 10px;
+  font-family: 'Englebert', sans-serif;
 }
 
 @media screen and (max-height: 450px) {
@@ -71,4 +73,32 @@
 
 .navContainer {
   margin-top: 100px
+}
+
+.costumes {
+  float: left;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border-width: 2px;
+  border-color: black;
+  border-style: solid;
+  width: 300px;
+  height: 400px;
+  margin: 10px 10px;
+  border-radius: 10px;
+  margin: 20px;
+  text-align: center;
+  align-items: center;
+}
+
+img {
+  width: 200px;
+  height: 300px;
+}
+
+h1 {
+  font-family: 'Henny Penny', cursive;
+  font-size: 50px;
 }

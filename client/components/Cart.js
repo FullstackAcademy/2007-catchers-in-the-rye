@@ -2,8 +2,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCart, updateCartQuantity, removeItem } from '../redux/cart/cart';
+import { CheckoutForm } from './Payment/CheckoutForm';
 // buttons that still need functionality: Checkout / keep shopping
 class Cart extends Component {
+  constructor() {
+    super();
+    this.checkout = this.checkout.bind(this);
+    this.keepShopping = this.keepShopping.bind(this);
+  }
+
   componentDidMount() {
     this.props.fetchCart();
   }
@@ -14,6 +21,22 @@ class Cart extends Component {
       cartTotal += costume.price * costume.lineitem.quantity;
     }
     return cartTotal.toFixed(2);
+  }
+
+  checkout(ev) {
+    ev.preventDefault();
+    this.props.history.push({
+      pathname: '/checkout',
+      state: {
+        total: this.props.cart.total,
+        orderId: this.props.cart.id,
+      },
+    });
+  }
+
+  keepShopping(ev) {
+    ev.preventDefault();
+    this.props.history.push('/Home');
   }
 
   render() {
@@ -54,8 +77,8 @@ class Cart extends Component {
           $
           { cartTotal }
         </h2>
-        <button>Check Out Now</button>
-        <button>Keep Shopping</button>
+        <button type="button" onClick={this.checkout}>Check Out Now</button>
+        <button type="button" onClick={this.keepShopping}>Keep Shopping</button>
       </div>
     );
   }

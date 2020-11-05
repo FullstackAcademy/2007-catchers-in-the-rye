@@ -22,7 +22,6 @@ class EditCostume extends Component {
 
   async componentDidMount() {
     await this.props.dispatchLoadSCostume(this.state.costumeId);
-    await this.props.dispatchFetchCategories()
     await this.props.dispatchSelectCategory(this.state.costumeCategoryId)
   }
 
@@ -37,8 +36,9 @@ class EditCostume extends Component {
   render() {
     const thisCostume = this.props.sCostume;
     const categories = this.props.categories
-    const thisCategory = this.props.sCateogry
-    console.log(thisCategory)
+    const thisCategory = categories.find((category) => category.id === thisCostume.categoryId)
+    // console.log(thisCategory)
+    console.log(categories.find((category) => category.id === thisCostume.categoryId))
     return (
 
       <div className="container">
@@ -108,15 +108,16 @@ class EditCostume extends Component {
         </form>
         <hr></hr>
 
-        {/* <form onSubmit={() => { this.props.dispatchUpdateCostume(this.state.costumeId, { categoryId: this.state.categoryId }) }}>
+        <form onSubmit={() => { this.props.dispatchUpdateCostume(this.state.costumeId, { categoryId: this.state.categoryId }) }}>
           <label>
-            Current Category: {' '}{thisCategory.title}
+            Current Category: {' '}
+            {thisCategory ? thisCategory.title : null}
             <div>New Category: {''}
               <select
                 name="categoryId"
                 value={this.state.categoryId}
                 onChange={this.handleInputChange}
-              >
+              ><option>--Update Category--</option>
                 {!!categories && categories
                   .map((category) => (
                     <option key={category.title} value={category.id}>
@@ -126,7 +127,7 @@ class EditCostume extends Component {
               </select></div>
             <input type="submit" value="Update" />
           </label>
-        </form> */}
+        </form>
         <hr></hr>
       </div>
     );

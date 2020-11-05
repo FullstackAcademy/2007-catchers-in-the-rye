@@ -33,7 +33,7 @@ class NavBar extends Component {
                   {user.id ? (
                     <div className="buttons">
                       <Link to="/home" className="button is-black">Account Settings</Link>
-                      <Link to="/login" className="button is-black" onClick={logout}>Log out</Link>
+                      <Link to="/home" className="button is-black" onClick={logout}>Log out</Link>
                     </div>
                   )
                     : (

@@ -13,7 +13,7 @@ class NavBar extends Component {
     }
     this.selectCategory = this.selectCategory.bind(this);
   }
-  componentDidMount() {
+  async componentDidMount() {
     this.props.fetchCategories();
     await this.props.checkCookiesSetSession();
     this.props.getUser();

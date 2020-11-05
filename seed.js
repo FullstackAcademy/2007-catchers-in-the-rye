@@ -44,19 +44,28 @@ const costumes = [
     imageUrl: '/costumeImages/animals/turkey.jpg',
   },
   {
-    costumeName: 'Cinderella',
+    costumeName: 'Tiana',
     price: 199.99,
     categoryId: 2,
+    imageUrl: '/costumeImages/disney/tiana.jpg',
+  },
+  {
+    costumeName: 'Aladdin',
+    price: 199.99,
+    categoryId: 2,
+    imageUrl: '/costumeImages/disney/aladdin.jpg',
   },
   {
     costumeName: 'Elsa',
     price: 159.99,
     categoryId: 2,
+    imageUrl: '/costumeImages/disney/elsa.jpg',
   },
   {
-    costumeName: 'Mrs. Potts',
+    costumeName: 'Finding Nemo',
     price: 299.99,
     categoryId: 2,
+    imageUrl: '/costumeImages/disney/findingNemo.jpg',
   },
   {
     costumeName: 'Werewolf',
@@ -92,16 +101,26 @@ const costumes = [
     costumeName: 'Wonder Woman',
     price: 109.99,
     categoryId: 4,
+    imageUrl: '/costumeImages/superheros/wonderWoman.jpg',
   },
   {
     costumeName: 'Captain America',
     price: 99.99,
     categoryId: 4,
+    imageUrl: '/costumeImages/superheros/captainAmerica.jpg',
+
   },
   {
     costumeName: 'Black Widow',
     price: 79.99,
     categoryId: 4,
+    imageUrl: '/costumeImages/superheros/blkWidow.jpg',
+  },
+  {
+    costumeName: 'Black Panther',
+    price: 79.99,
+    categoryId: 4,
+    imageUrl: '/costumeImages/superheros/blackPanther.jpg',
   },
 ];
 
@@ -215,8 +234,8 @@ const seed = async () => {
     }
     // assign costumes to each order
     for (let i = 0; i < ordersCreated.length; i++) {
-      let rand = Math.floor(Math.random() * (costumesCreated.length-1));
-      await ordersCreated[i].setCostumes([costumesCreated[rand], costumesCreated[rand+1]]);
+      let rand = Math.floor(Math.random() * (costumesCreated.length - 1));
+      await ordersCreated[i].setCostumes([costumesCreated[rand], costumesCreated[rand + 1]]);
     }
     // calculate total for each order from costumes
     for (let i = 0; i < ordersCreated.length; i++) {

@@ -22,9 +22,9 @@ class SingleCostume extends Component {
     this.setState({ quantity: ev.target.value });
   }
 
-  addCostumeToCart(costumeId, quantity) {
-    this.props.addCostumeToCart(costumeId, quantity);
-    this.props.fetchCart();
+  async addCostumeToCart(costumeId, quantity) {
+    await this.props.addCostumeToCart(costumeId, quantity);
+    await this.props.fetchCart();
     this.props.history.push('/cart');
   }
 

@@ -130,8 +130,12 @@ router.delete('/userCart/:costumeId', async (req, res, next) => {
 
 router.put('/isPaid/:id', async (req, res, next) => {
   try {
+    console.log(req.params)
     const order = await Order.findByPk(req.params.id);
-    await order.update({ isPaid: true });
+    await order.update({
+      isPaid: true,
+      // shippingAddress: `${req.}`
+    });
     res.send(order);
   } catch (err) {
     next(err);

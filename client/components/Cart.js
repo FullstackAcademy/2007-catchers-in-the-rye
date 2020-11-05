@@ -45,7 +45,7 @@ class Cart extends Component {
     const cartTotal = costumes.length ? this.calcTotal(costumes) : 0;
     return (
       <div>
-        <div className= "hero">Your cart</div>
+        <h1>Your cart</h1>
         {costumes.map((costume) => (
           <div key={costume.id}>
             <p>

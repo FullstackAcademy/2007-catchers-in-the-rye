@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchCategories } from '../redux/categories/allCategories';
-import { logout, getUser } from '../redux/authentication/user';
+import { logout, getUser, checkCookiesSetSession } from '../redux/authentication/user';
 
 class NavBar extends Component {
   constructor(props) {
@@ -14,9 +14,12 @@ class NavBar extends Component {
     this.selectCategory = this.selectCategory.bind(this);
   }
   async componentDidMount() {
-    this.props.fetchCategories();
-    await this.props.checkCookiesSetSession();
-    this.props.getUser();
+    const { props, setState } = this;
+    const { fetchCategories, checkCookiesSetSession, getUser } = props;
+    fetchCategories();
+    await checkCookiesSetSession();
+    getUser();
+    
   }
   selectCategory (input) {
     this.setState({
@@ -30,17 +33,16 @@ class NavBar extends Component {
     return (
       <div>
         <div className="topnav" role="navigtion" aria-label="main navigation">
-          <div className="logo">
-            <a>Grace Shockers</a>
-          </div>
-          <div className="topnav-links">
-            <div className= "topnav-left">  
+            <div className= "topnav-left"> 
+              <div className="logo">
+                <span>Grace Shockers</span>
+              </div>
                 <Link to="/home" className="navbar-item">Home</Link>
                 <Link to="/cart" className="navbar-item">Cart</Link>
                 <Link to="/orderHistory" className="navbar-item">Order History</Link>
             </div>
             <div className= "topnav-right">  
-              <a className="navbar-item">Welcome, {user.id ? user.firstName : 'Guest'}!</a>
+              <span className="navbar-item">Welcome, {user.id ? user.firstName : 'Guest'}!</span>
                 {user.id ? (
                   <div className="buttons">
                     <Link to="/home" className="button is-black">Account Settings</Link>
@@ -55,7 +57,6 @@ class NavBar extends Component {
               )}
             </div>
           </div>
-        </div>
         {/* Bulma code for reference */}
         {/* <div className="navContainer">
           <nav className="navbar is-fixed-top is-link" role="navigation" aria-label="main navigation" id= "topNav">
@@ -107,9 +108,11 @@ class NavBar extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, ownProps) => ({
   categories: state.categories,
   user: state.user,
+  // selectedCategoryTitle: ownProps.match.params.categoryTitle ? ownProps.match.params.categoryTitle : 'all',
+  selectedCategoryTitle: 'Animals',
 });
 
 const mapDispatchToProps = (dispatch) => ({

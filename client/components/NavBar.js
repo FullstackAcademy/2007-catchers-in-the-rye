@@ -17,16 +17,16 @@ class NavBar extends Component {
     return (
       <div>
         {/* <div className="navContainer"> */}
-          <nav className="navbar is-fixed-top is-link" role="navigation" aria-label="main navigation" id= 'topNav'>
+          <nav className="navbar is-fixed-top is-link" role="navigation" aria-label="main navigation" id= "topNav">
             <div className="navbar-brand">
               <a className="navbar-item">Grace Shockers</a>
-              <a role="button" className="navbar-burger is-active" aria-label="menu" aria-expanded="false">
+              <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
               </a>
             </div>
-            <div id="navbarBasicExample" className="navbar-menu">
+            <div id="navbarBasicExample" className="navbar-menu is-active">
               <div className="navbar-start">
                 <Link to="/home" className="navbar-item">Home</Link>
                 <Link to="/cart" className="navbar-item">Cart</Link>

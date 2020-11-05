@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const brcypt = require('bcrypt');
 const hash = require('../hash');
-const { User, Session } = require('../db');
+const { User, Session, Order } = require('../db');
 
 const A_WEEK_IN_SECONDS = 1000 * 60 * 60 * 24 * 7;
 
@@ -50,6 +50,29 @@ router.post('/login', async (req, res, next) => {
             maxAge: A_WEEK_IN_SECONDS,
             path: '/',
           });
+
+          const guestSession = req.session;
+          const guestCart = await Order.findOne({
+            where: {
+              sessionId: guestSession.id,
+              isPaid: false,
+            },
+          });
+          if (guestCart) {
+            const existingUserCart = await Order.findOne({
+              where: {
+                sessionId: user.session.id,
+                isPaid: false,
+              },
+            });
+            if (existingUserCart) {
+              const guestCartCostumes = await guestCart.getCostumes();
+              await existingUserCart.addCostumes(guestCartCostumes);
+              await existingUserCart.calcTotal();
+              await guestCart.destroy();
+            } else await guestCart.setSession(user.session);
+          }
+          await guestSession.destroy();
           res.status(200).send(user);
         } else {
           const createdSession = await Session.create();

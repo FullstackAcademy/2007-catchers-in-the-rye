@@ -14,16 +14,8 @@ const Order = db.define('order', {
     type: DECIMAL(10, 2),
     defaultValue: 0,
   },
-  paymentMethod: {
-    type: ENUM('credit', 'cash'),
-    defaultValue: 'credit',
-  },
   shippingAddress: {
     type: STRING,
-  },
-  shippingMethod: {
-    type: ENUM('ground', 'express'),
-    defaultValue: 'ground',
   },
   isShipped: {
     type: BOOLEAN,

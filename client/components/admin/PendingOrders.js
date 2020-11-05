@@ -39,14 +39,6 @@ class PendingOrders extends Component {
                 {order.shippingAddress}
               </p>
               <p>
-                <strong>Shipping Method: </strong>
-                {order.shippingMethod}
-              </p>
-              <p>
-                <strong>Payment Method: </strong>
-                {order.paymentMethod}
-              </p>
-              <p>
                 <strong>Purchase Date: </strong>
                 {order.updatedAt.slice(0, 10)}
               </p>

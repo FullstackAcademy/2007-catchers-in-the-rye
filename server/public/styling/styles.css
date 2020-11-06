@@ -127,3 +127,13 @@ html {
     font-family: 'Henny Penny', cursive;
     font-size: 50px;
   }
+
+  .CheckoutHeader {
+    text-align: center;
+    padding-top: 50px;
+  }
+
+  .success {
+    text-align: center;
+    padding-top: 50px;
+  }

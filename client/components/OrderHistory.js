@@ -19,17 +19,20 @@ class OrderHistory extends Component {
               const date = new Date(order.createdAt);
               const readableDate = date.toDateString();
               return (
-                <li key={order.id}>
-                  <div>{readableDate}</div>
+                <li className="box " key={order.id}>
+                  <div>Order Date: {readableDate}</div>
                   <div>
                     Total: $
                     {order.total}
                   </div>
                   <ul>
                     {order.costumes.map((costume) => (
-                      <li key={costume.id}>
+                      <div key={costume.id}>
+                        <img src={costume.imageUrl} />
+                        <div>
                         <Link to={`/costumes/${costume.costumeName}`}>{costume.costumeName}</Link>
-                      </li>
+                        </div>
+                      </div>
                     ))}
                   </ul>
                 </li>

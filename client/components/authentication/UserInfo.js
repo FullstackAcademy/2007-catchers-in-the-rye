@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-filename-extension */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { login, createUser } from '../../redux/authentication/user';
 
 class UserInfo extends Component {
@@ -56,6 +57,9 @@ class UserInfo extends Component {
       if (type === 'login') {
         await login(this.state);
         if (!this.props.user.id) this.setState({ message: 'Check username or password' });
+        else {
+          return <Redirect to="/home" />;
+        }
       }
       if (type === 'create') {
         if (!firstName.length || !lastName.length || !userEmail.length) this.setState({ message: 'All fields are required' });
@@ -115,6 +119,7 @@ class UserInfo extends Component {
                   </button>
                   <p>{ this.state.message }</p>
                 </form>
+                {/* { this.props.user.id ? <Redirect to="/home" />: null } */}
               </div>
             </div>
           </div>

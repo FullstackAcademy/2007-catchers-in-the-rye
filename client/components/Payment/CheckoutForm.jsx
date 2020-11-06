@@ -5,6 +5,7 @@ import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import styled from '@emotion/styled';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import { SendEmail } from './SendEmail';
 
 import Row from './prebuilt/Row';
 import BillingDetailsFields from './prebuilt/BillingDetailsFields';
@@ -82,6 +83,7 @@ const CheckoutForm = (props) => {
 
       await axios.put(`/api/orders/isPaid/${orderId}`,
         { billingDetails });
+      await SendEmail();
       history.push('/successfulCheckout');
     } catch (err) {
       setCheckoutError(err.message);

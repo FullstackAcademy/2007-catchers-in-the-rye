@@ -31,34 +31,34 @@ class Routes extends Component {
 
   render() {
     return (
-    <Elements stripe={stripePromise}>
-      <Router>
-        <div>
-          <Route render={() => <NavBar />} />
-          <div className="container">
-            <main>
-              <Switch>
-                <Route exact path="/">
-                  <Redirect to="/home" />
-                </Route>
-                <Route path="/home" exact component={AllCostumes} />
-                <Route path="/categories/:name" exact component={AllCostumes} />
-                <Route path="/costumes/:name/:id" exact component={SingleCostume} />
-                <Route path="/costumes/add" exact component={CreateCostume} />
-                <Route exact path="/costumes/:name/:costumeId/:categoryId/admin" component={EditCostume} />
-                <Route path="/login" exact component={Login} />
-                <Route path="/cart" exact component={Cart} />
-                <Route path="/createUser" exact component={CreateUser} />
-                <Route path="/orderHistory" exact component={OrderHistory} />
-                <Route path="/admin/pending" exact component={PendingOrders} />
-                <Route path="/checkout" exact component={CheckoutForm} />
-                <Route path="/successfulCheckout" exact component={PaymentSuccess} />
-              </Switch>
-            </main>
+      <Elements stripe={stripePromise}>
+        <Router>
+          <div>
+            <Route render={() => <NavBar />} />
+            <div className="container">
+              <main>
+                <Switch>
+                  <Route exact path="/">
+                    <Redirect to="/home" />
+                  </Route>
+                  <Route path="/home" exact component={AllCostumes} />
+                  <Route path="/categories/:name" exact component={AllCostumes} />
+                  <Route path="/costumes/:name/:id" exact component={SingleCostume} />
+                  <Route path="/costumes/add" exact component={CreateCostume} />
+                  <Route exact path="/costumes/:name/:costumeId/:categoryId/admin" component={EditCostume} />
+                  <Route path="/login" exact component={Login} />
+                  <Route path="/cart" exact component={Cart} />
+                  <Route path="/createUser" exact component={CreateUser} />
+                  <Route path="/orderHistory" exact component={OrderHistory} />
+                  <Route path="/admin/pending" exact component={PendingOrders} />
+                  <Route path="/checkout" exact component={CheckoutForm} />
+                  <Route path="/successfulCheckout" exact component={PaymentSuccess} />
+                </Switch>
+              </main>
+            </div>
           </div>
-        </div>
-      </Router>
-    </Elements>
+        </Router>
+      </Elements>
     );
   }
 }

@@ -45,8 +45,8 @@ const CheckoutForm = (props) => {
         city: ev.target.city.value,
         line1: ev.target.address.value,
         state: ev.target.state.value,
-        postal_code: ev.target.zip.value
-      }
+        postal_code: ev.target.zip.value,
+      },
     };
 
     setProcessingTo(true);
@@ -80,7 +80,8 @@ const CheckoutForm = (props) => {
         return;
       }
 
-      await axios.put(`/api/orders/isPaid/${orderId}`)
+      await axios.put(`/api/orders/isPaid/${orderId}`,
+        { billingDetails });
       history.push('/successfulCheckout');
     } catch (err) {
       setCheckoutError(err.message);

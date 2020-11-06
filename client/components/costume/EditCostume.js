@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadSCostumeDispatch } from '../../redux/costumes/singleCostume';
-import { updateCostumeDispatch } from '../../redux/costumes/allCostumes'
+import { updateCostumeDispatch } from '../../redux/costumes/allCostumes';
 import { fetchCategories } from '../../redux/categories/allCategories';
-import { selectCategory } from '../../redux/categories/singleCategory'
+import { selectCategory } from '../../redux/categories/singleCategory';
 
 class EditCostume extends Component {
   constructor(props) {
@@ -11,18 +11,18 @@ class EditCostume extends Component {
     this.state = {
       costumeId: this.props.match.params.costumeId,
       costumeCategoryId: this.props.match.params.categoryId,
-      costumeName: "",
-      price: "",
-      imageUrl: "",
-      quantity: "",
-      categoryId: "",
+      costumeName: '',
+      price: '',
+      imageUrl: '',
+      quantity: '',
+      categoryId: '',
     };
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   async componentDidMount() {
     await this.props.dispatchLoadSCostume(this.state.costumeId);
-    await this.props.dispatchSelectCategory(this.state.costumeCategoryId)
+    await this.props.dispatchSelectCategory(this.state.costumeCategoryId);
   }
 
   handleInputChange(ev) {
@@ -32,13 +32,12 @@ class EditCostume extends Component {
     });
   }
 
-
   render() {
     const thisCostume = this.props.sCostume;
-    const categories = this.props.categories
-    const thisCategory = categories.find((category) => category.id === thisCostume.categoryId)
+    const { categories } = this.props;
+    const thisCategory = categories.find((category) => category.id === thisCostume.categoryId);
     // console.log(thisCategory)
-    console.log(categories.find((category) => category.id === thisCostume.categoryId))
+    console.log(categories.find((category) => category.id === thisCostume.categoryId));
     return (
 
       <div className="container">
@@ -46,89 +45,117 @@ class EditCostume extends Component {
           Update Costume Information:
           {thisCostume.costumeName}
         </h2>
-        <hr></hr>
-        <form onSubmit={() => { this.props.dispatchUpdateCostume(this.state.costumeId, { costumeName: this.state.costumeName }) }}>
+        <hr />
+        <form onSubmit={() => { this.props.dispatchUpdateCostume(this.state.costumeId, { costumeName: this.state.costumeName }); }}>
           <label>
-            Current Name:{'  '}{thisCostume.costumeName}
-            <div>New Name: {''}
+            Current Name:
+            {'  '}
+            {thisCostume.costumeName}
+            <div>
+              New Name:
+
               <input
                 name="costumeName"
                 type="text"
                 placeholder={this.costumeName}
                 value={this.state.costumeName}
                 onChange={this.handleInputChange}
-              /></div>
+              />
+            </div>
             <input type="submit" value="Update" />
           </label>
         </form>
-        <hr></hr>
+        <hr />
 
-        <form onSubmit={() => { this.props.dispatchUpdateCostume(this.state.costumeId, { price: this.state.price }) }}>
+        <form onSubmit={() => { this.props.dispatchUpdateCostume(this.state.costumeId, { price: this.state.price }); }}>
           <label>
-            Current Price:{' '}{thisCostume.price}
-            <div>New Price: {''}
+            Current Price:
+            {' '}
+            {thisCostume.price}
+            <div>
+              New Price:
+
               <input
                 name="price"
                 type="number"
                 value={this.state.price}
                 onChange={this.handleInputChange}
-              /></div>
+              />
+            </div>
             <input type="submit" value="Update" />
           </label>
         </form>
 
-        <hr></hr>
-        <form onSubmit={() => { this.props.dispatchUpdateCostume(this.state.costumeId, { imageUrl: this.state.imageUrl }) }}>
+        <hr />
+        <form onSubmit={() => { this.props.dispatchUpdateCostume(this.state.costumeId, { imageUrl: this.state.imageUrl }); }}>
           <label>
-            Current ImageUrl: {' '}{thisCostume.imageUrl}
-            <div>New Image Url: {''}
+            Current ImageUrl:
+            {' '}
+            {' '}
+            {thisCostume.imageUrl}
+            <div>
+              New Image Url:
+
               <input
                 name="imageUrl"
                 type="text"
                 value={this.state.imageUrl}
                 onChange={this.handleInputChange}
-              /></div>
+              />
+            </div>
             <input type="submit" value="Update" />
           </label>
         </form>
-        <hr></hr>
+        <hr />
 
-        <form onSubmit={() => { this.props.dispatchUpdateCostume(this.state.costumeId, { quantity: parseInt(this.state.quantity, 10) }) }}>
+        <form onSubmit={() => { this.props.dispatchUpdateCostume(this.state.costumeId, { quantity: parseInt(this.state.quantity, 10) }); }}>
           <label>
-            Current Quantity: {' '}{thisCostume.quantity}
-            <div>New Quantity: {''}
+            Current Quantity:
+            {' '}
+            {' '}
+            {thisCostume.quantity}
+            <div>
+              New Quantity:
+
               <input
                 name="quantity"
                 type="text"
                 value={this.state.quantity}
                 onChange={this.handleInputChange}
-              /></div>
+              />
+            </div>
             <input type="submit" value="Update" />
           </label>
         </form>
-        <hr></hr>
+        <hr />
 
-        <form onSubmit={() => { this.props.dispatchUpdateCostume(this.state.costumeId, { categoryId: this.state.categoryId }) }}>
+        <form onSubmit={() => { this.props.dispatchUpdateCostume(this.state.costumeId, { categoryId: this.state.categoryId }); }}>
           <label>
-            Current Category: {' '}
+            Current Category:
+            {' '}
+            {' '}
             {thisCategory ? thisCategory.title : null}
-            <div>New Category: {''}
+            <div>
+              New Category:
+
               <select
                 name="categoryId"
                 value={this.state.categoryId}
                 onChange={this.handleInputChange}
-              ><option>--Update Category--</option>
+              >
+                <option>--Update Category--</option>
                 {!!categories && categories
                   .map((category) => (
                     <option key={category.title} value={category.id}>
                       {category.title}
                     </option>
                   ))}
-              </select></div>
+              </select>
+            </div>
             <input type="submit" value="Update" />
           </label>
         </form>
-        <hr></hr>
+        <hr />
       </div>
     );
   }
@@ -137,14 +164,14 @@ class EditCostume extends Component {
 const mapStateToProps = (state) => ({
   sCostume: state.sCostume,
   categories: state.categories,
-  sCategory: state.selectedCategory
+  sCategory: state.selectedCategory,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   dispatchLoadSCostume: (id) => dispatch(loadSCostumeDispatch(id)),
   dispatchUpdateCostume: (costumeId, changeObj) => dispatch(updateCostumeDispatch(costumeId, changeObj)),
   dispatchFetchCategories: () => dispatch(fetchCategories()),
-  dispatchSelectCategory: (id) => dispatch(selectCategory(id))
+  dispatchSelectCategory: (id) => dispatch(selectCategory(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditCostume);

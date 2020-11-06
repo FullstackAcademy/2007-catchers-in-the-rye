@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const LOAD_COSTUMES = 'LOAD_COSTUMES';
 const CREATE_COSTUME = 'CREATE_COSTUME';
-const UPDATE_COSTUME = 'UPDATE_COSTUME'
+const UPDATE_COSTUME = 'UPDATE_COSTUME';
 
 function loadCostumes(costumes) {
   return {
@@ -32,27 +32,23 @@ export const createCostume = (costume) => async (dispatch) => {
   dispatch(_createCostume(newCostume.data));
 };
 
-
-
 function updateCostume(costume) {
   return {
     type: UPDATE_COSTUME,
-    payload: costume
-  }
+    payload: costume,
+  };
 }
 
-
 export function updateCostumeDispatch(costumeId, changeObject) {
-  console.log("update costume thunk being called")
+  console.log('update costume thunk being called');
   return async (dispatch) => await axios
     .put(`/api/costumes/${costumeId}`, changeObject)
     .then((res) => {
-      console.log("axios update response: ", res.data[1][0]);
+      console.log('axios update response: ', res.data[1][0]);
       dispatch(updateCostume(res.data[1][0]));
     })
     .catch((e) => console.log(e));
-};
-
+}
 
 export default function allCostumesReducer(state = [], action) {
   switch (action.type) {

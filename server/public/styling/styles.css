@@ -1,3 +1,7 @@
+html {
+  background-color: rgb(136, 30, 228);
+}
+
 .topnav {
   display: inline-flex;
   justify-content: space-between;
@@ -25,6 +29,7 @@
 
 .logo {
   background-color: rgb(247, 95, 28);
+  font-family: 'Henny Penny', cursive;
   width: 170px;
 }
 
@@ -95,6 +100,7 @@
   
   .costumes {
     float: left;
+    background-color: #f2f2f2;
     list-style-type: none;
     display: flex;
     flex-direction: column;
@@ -117,6 +123,7 @@
   }
   
   h1 {
+    color: rgb(133, 226, 31);
     font-family: 'Henny Penny', cursive;
     font-size: 50px;
   }

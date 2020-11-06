@@ -71,7 +71,6 @@ class UserInfo extends Component {
     const { type } = this.props;
     return (
       <>
-        {/* <section className="hero is-success is-fullheight"> */}
         <div className="hero-body">
           <div className="container has-text-centered">
             <div className="column is-4 is-offset-4">

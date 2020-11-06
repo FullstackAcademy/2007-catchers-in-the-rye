@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-filename-extension */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadSCostumeDispatch } from '../../redux/costumes/singleCostume';
@@ -33,10 +34,13 @@ class SingleCostume extends Component {
     return (
       <div className="container">
         <div>{thisCostume.costumeName}</div>
-        <div>{thisCostume.price}</div>
         <img src={thisCostume.imageUrl} />
+        <div>${thisCostume.price} <span id="old-price">${(thisCostume.price / (1 - thisCostume.discount)).toFixed(2)}</span> FINAL SALE</div>
+        <div>Material: {thisCostume.material}</div>
+        <div>Made in: {thisCostume.madeIn}</div>
+        <div>One size fits most adults</div>
         <select onChange={this.changeQuantity}>
-          <option>Select quantity below:</option>
+          <option>Select quantity:</option>
           <option value={1}>1</option>
           <option value={2}>2</option>
           <option value={3}>3</option>

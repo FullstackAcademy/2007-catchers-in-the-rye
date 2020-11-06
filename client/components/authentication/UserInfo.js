@@ -92,7 +92,7 @@ class UserInfo extends Component {
                     </div>
                   </div>
                   { type === 'create' ? (
-                    <div>
+                    <>
                       <div className="field">
                         <div className="control">
                           <input placeholder="First name" onChange={this.setFirstName} className="input is-large" />
@@ -108,7 +108,7 @@ class UserInfo extends Component {
                           <input placeholder="Email" onChange={this.setEmail} className="input is-large" />
                         </div>
                       </div>
-                    </div>
+                    </>
                   )
                     : null }
                   <button type="submit" className="button is-block is-info is-large is-fullwidth">

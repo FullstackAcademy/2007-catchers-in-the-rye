@@ -102,3 +102,21 @@ h1 {
   font-family: 'Henny Penny', cursive;
   font-size: 50px;
 }
+
+button.is-block.is-info.is-large.is-fullwidth {
+  background-color: #85E21F;
+}
+
+#witch {
+  width: 128px;
+  height: 128px;
+}
+
+figure.avatar {
+  margin: 0 auto;
+}
+
+div.container.has-text-centered {
+  padding: 0px 0px;
+}
+

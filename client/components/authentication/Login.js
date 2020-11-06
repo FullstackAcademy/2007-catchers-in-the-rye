@@ -5,7 +5,7 @@ export default function Login() {
   return (
     // eslint-disable-next-line react/jsx-filename-extension
     <>
-      <h1>Login</h1>
+      {/* <h1 className="login-register-header">Login</h1> */}
       <UserInfo type="login" />
     </>
   );

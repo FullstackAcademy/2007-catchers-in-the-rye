@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchCategories } from '../redux/categories/allCategories';
-import { logout, getUser, checkCookiesSetSession } from '../redux/authentication/user';
+import { logout, getUser } from '../redux/authentication/user';
+import { checkCookiesSetSession } from '../redux/authentication/session';
 
 class NavBar extends Component {
   constructor(props) {

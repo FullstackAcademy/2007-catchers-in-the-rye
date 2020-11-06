@@ -71,46 +71,55 @@ class UserInfo extends Component {
     const { type } = this.props;
     return (
       <>
-        <form onSubmit={this.submit}>
-          <label>
-            Username
-            <input
-              onChange={this.setUsername}
-            />
-          </label>
-          <label>
-            Password
-            <input
-              onChange={this.setPassword}
-              type="password"
-            />
-          </label>
-          { type === 'create' ? (
-            <div>
-              <label>
-                First Name
-                <input
-                  onChange={this.setFirstName}
-                />
-              </label>
-              <label>
-                Last Name
-                <input
-                  onChange={this.setLastName}
-                />
-              </label>
-              <label>
-                Email
-                <input
-                  onChange={this.setEmail}
-                />
-              </label>
+        {/* <section className="hero is-success is-fullheight"> */}
+        <div className="hero-body">
+          <div className="container has-text-centered">
+            <div className="column is-4 is-offset-4">
+              <h1>{ type === 'login' ? 'Login' : 'Create Account' }</h1>
+              <div className="box">
+                <figure className="avatar">
+                  <img id="witch" src="/costumeImages/witch.png" />
+                </figure>
+                <form onSubmit={this.submit}>
+                  <div className="field">
+                    <div className="control">
+                      <input onChange={this.setUsername} className="input is-large" type="text" placeholder="Username" />
+                    </div>
+                  </div>
+                  <div className="field">
+                    <div className="control">
+                      <input onChange={this.setPassword} className="input is-large" type="password" placeholder="Password" />
+                    </div>
+                  </div>
+                  { type === 'create' ? (
+                    <>
+                      <div className="field">
+                        <div className="control">
+                          <input placeholder="First name" onChange={this.setFirstName} className="input is-large" />
+                        </div>
+                      </div>
+                      <div className="field">
+                        <div className="control">
+                          <input placeholder="Last name" onChange={this.setLastName} className="input is-large" />
+                        </div>
+                      </div>
+                      <div className="field">
+                        <div className="control">
+                          <input placeholder="Email" onChange={this.setEmail} className="input is-large" />
+                        </div>
+                      </div>
+                    </>
+                  )
+                    : null }
+                  <button type="submit" className="button is-block is-info is-large is-fullwidth">
+                    { type === 'login' ? 'Login' : 'Create Account' } <i className="fa fa-sign-in" aria-hidden="true"></i>
+                  </button>
+                  <p>{ this.state.message }</p>
+                </form>
+              </div>
             </div>
-          )
-            : null }
-          <button type="submit">{ type === 'login' ? 'Login' : 'Create Account' }</button>
-        </form>
-        <p>{ this.state.message }</p>
+          </div>
+        </div>
       </>
     );
   }

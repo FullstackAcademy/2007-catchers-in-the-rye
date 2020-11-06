@@ -119,7 +119,7 @@ class UserInfo extends Component {
                   </button>
                   <p>{ this.state.message }</p>
                 </form>
-                {/* { this.props.user.id ? <Redirect to="/home" />: null } */}
+                { this.props.user.id ? <Redirect to="/home" />: null }
               </div>
             </div>
           </div>

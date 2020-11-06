@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
 
-const { STRING, FLOAT, INTEGER } = Sequelize;
+const { STRING, FLOAT, INTEGER, DECIMAL } = Sequelize;
 
 const Costume = db.define('costume', {
   costumeName: {
@@ -26,6 +26,12 @@ const Costume = db.define('costume', {
   imageUrl: {
     type: STRING,
     defaultValue: '/costumeImages/notFound.png',
+  },
+  material: {
+    type: STRING,
+  },
+  oldPrice: {
+    type: DECIMAL(10, 2),
   },
 });
 

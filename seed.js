@@ -12,115 +12,138 @@ const categories = [
   { title: 'Superheroes' },
 ];
 
+const materials = ['100% polyester', '50% cotton, 50% polyester', '100% polyurethane foam', '100% cotton', '100% nylon'];
+const discounts = [20%, 30%, 40%, 50%, 60%, 70%];
+const sizes = ['S', 'M', 'L', 'XL']
+
+Math.floor(Math.random() * (materials.length - 1));
+
 const costumes = [
   {
     costumeName: 'Bumble Bee',
     price: 14.99,
     categoryId: 1,
     imageUrl: '/costumeImages/animals/bee.jpg',
+    material: materials[Math.floor(Math.random() * (materials.length - 1))],
   },
   {
     costumeName: 'Crab',
     price: 69.99,
     categoryId: 1,
     imageUrl: '/costumeImages/animals/crab.jpg',
+    material: materials[Math.floor(Math.random() * (materials.length - 1))],
   },
   {
     costumeName: 'Dilophosaurus',
     price: 59.99,
     categoryId: 1,
     imageUrl: '/costumeImages/animals/dilophosaurus.jpg',
+    material: materials[Math.floor(Math.random() * (materials.length - 1))],
   },
   {
     costumeName: 'Ostrich',
     price: 54.99,
     categoryId: 1,
     imageUrl: '/costumeImages/animals/ostrich.jpg',
+    material: materials[Math.floor(Math.random() * (materials.length - 1))],
   },
   {
     costumeName: 'Turkey',
     price: 54.99,
     categoryId: 1,
     imageUrl: '/costumeImages/animals/turkey.jpg',
+    material: materials[Math.floor(Math.random() * (materials.length - 1))],
   },
   {
     costumeName: 'Tiana',
     price: 199.99,
     categoryId: 2,
     imageUrl: '/costumeImages/disney/tiana.jpg',
+    material: materials[Math.floor(Math.random() * (materials.length - 1))],
   },
   {
     costumeName: 'Aladdin',
     price: 199.99,
     categoryId: 2,
     imageUrl: '/costumeImages/disney/aladdin.jpg',
+    material: materials[Math.floor(Math.random() * (materials.length - 1))],
   },
   {
     costumeName: 'Elsa',
     price: 159.99,
     categoryId: 2,
     imageUrl: '/costumeImages/disney/elsa.jpg',
+    material: materials[Math.floor(Math.random() * (materials.length - 1))],
   },
   {
     costumeName: 'Finding Nemo',
     price: 299.99,
     categoryId: 2,
     imageUrl: '/costumeImages/disney/findingNemo.jpg',
+    material: materials[Math.floor(Math.random() * (materials.length - 1))],
   },
   {
     costumeName: 'Werewolf',
     price: 52.99,
     categoryId: 3,
     imageUrl: '/costumeImages/monsters/werewolf.jpg',
+    material: materials[Math.floor(Math.random() * (materials.length - 1))],
   },
   {
     costumeName: 'Creature from the Black Lagoon',
     price: 299.99,
     categoryId: 3,
     imageUrl: '/costumeImages/monsters/blackLagoon.jpg',
+    material: materials[Math.floor(Math.random() * (materials.length - 1))],
   },
   {
     costumeName: 'Frankenstein\'s Monster',
     price: 74.99,
     categoryId: 3,
     imageUrl: '/costumeImages/monsters/frankenstein.jpg',
+    material: materials[Math.floor(Math.random() * (materials.length - 1))],
   },
   {
     costumeName: 'Mummy',
     price: 46.99,
     categoryId: 3,
     imageUrl: '/costumeImages/monsters/mummy.jpg',
+    material: materials[Math.floor(Math.random() * (materials.length - 1))],
   },
   {
     costumeName: 'Vampire',
     price: 44.99,
     categoryId: 3,
     imageUrl: '/costumeImages/monsters/vampire.jpg',
+    material: materials[Math.floor(Math.random() * (materials.length - 1))],
   },
   {
     costumeName: 'Wonder Woman',
     price: 109.99,
     categoryId: 4,
     imageUrl: '/costumeImages/superheros/wonderWoman.jpg',
+    material: materials[Math.floor(Math.random() * (materials.length - 1))],
   },
   {
     costumeName: 'Captain America',
     price: 99.99,
     categoryId: 4,
     imageUrl: '/costumeImages/superheros/captainAmerica.jpg',
-
+    material: materials[Math.floor(Math.random() * (materials.length - 1))],
   },
   {
     costumeName: 'Black Widow',
     price: 79.99,
     categoryId: 4,
     imageUrl: '/costumeImages/superheros/blkWidow.jpg',
+    material: materials[Math.floor(Math.random() * (materials.length - 1))],
   },
   {
     costumeName: 'Black Panther',
     price: 79.99,
     categoryId: 4,
     imageUrl: '/costumeImages/superheros/blackPanther.jpg',
+    material: materials[Math.floor(Math.random() * (materials.length - 1))],
   },
 ];
 

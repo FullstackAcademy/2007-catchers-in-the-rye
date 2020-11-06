@@ -10,10 +10,12 @@ class NavBar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedCategory: 'all'
-    }
+      selectedCategory: 'all',
+      selectedNav: 'home',
+    };
     this.selectCategory = this.selectCategory.bind(this);
-  }
+    this.selectTopNav = this.selectTopNav.bind(this);
+  };
   async componentDidMount() {
     const { props, setState } = this;
     const { fetchCategories, checkCookiesSetSession, getUser } = props;
@@ -21,16 +23,21 @@ class NavBar extends Component {
     await checkCookiesSetSession();
     getUser();
     
-  }
+  };
   selectCategory (input) {
     this.setState({
       selectedCategory: input,
-    })
-  }
+    });
+  };
+  selectTopNav (input) {
+    this.setState({
+      selectedNav: input,
+    });
+  };
   render() {
-    const { selectCategory, props, state } = this;
+    const { selectCategory, selectTopNav, props, state } = this;
     const { categories, user, logout } = props;   
-    const { selectedCategory } = state;
+    const { selectedCategory, selectedNav } = state;
     return (
       <div>
         <div className="topnav" role="navigtion" aria-label="main navigation">
@@ -38,11 +45,17 @@ class NavBar extends Component {
               <div className="logo">
                 <span>Grace Shockers</span>
               </div>
-                <Link to="/home" className="navbar-item">Home</Link>
-                <Link to="/cart" className="navbar-item">Cart</Link>
+                <Link to="/home" className={selectedNav === "home" ? "selected" : null} 
+                onClick={() => selectTopNav("home")}>
+                  Home
+                </Link>
+                <Link to="/cart" className={selectedNav === "cart" ? "selected" : null}
+                onClick={() => selectTopNav("cart")}>
+                  Cart
+                </Link>
             </div>
             <div className= "topnav-right">  
-              <span className="navbar-item">Welcome, {user.id ? user.firstName : 'Guest'}!</span>
+              <span>Welcome, {user.id ? user.firstName : 'Guest'}!</span>
                 {user.id ? (
                   <div className="buttons">
                     <Link to="/orderHistory" className="button is-black">Order History</Link>
@@ -57,42 +70,6 @@ class NavBar extends Component {
               )}
             </div>
           </div>
-        {/* Bulma code for reference */}
-        {/* <div className="navContainer">
-          <nav className="navbar is-fixed-top is-link" role="navigation" aria-label="main navigation" id= "topNav">
-            <div className="navbar-brand">
-              <a className="navbar-item">Grace Shockers</a>
-              <Link to="/home" className="navbar-item">Home</Link>
-              <Link to="/cart" className="navbar-item">Cart</Link>
-              <Link to="/orderHistory" className="navbar-item">Order History</Link>
-            </div>
-            <div id="navbarBasicExample" className="navbar-menu is-active">
-              <div className="navbar-start">
-              </div>
-              <div className="navbar-end">
-                <div className="navbar-item">
-                  <a className="navbar-item">
-                    Welcome,
-                    {user.id ? user.firstName : 'Guest'}
-                    !
-                  </a>
-                  {user.id ? (
-                    <div className="buttons">
-                      <Link to="/orderHistory" className="button is-black">Order History</Link>
-                      <Link to="/home" className="button is-black" onClick={logout}>Log out</Link>
-                    </div>
-                  )
-                    : (
-                      <div className="buttons">
-                        <Link to="/createUser" className="button is-black">Register</Link>
-                        <Link to="/login" className="button is-black">Log in</Link>
-                      </div>
-                    )}
-                </div>
-              </div>
-            </div>
-          </nav>
-        </div> */}
 
         <div className="sidenav" role="navigation" aria-label="search costumes by category">
           <p>Select a Category:</p>

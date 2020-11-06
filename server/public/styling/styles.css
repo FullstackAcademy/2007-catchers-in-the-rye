@@ -28,31 +28,45 @@ html {
 }
 
 .logo {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   background-color: rgb(247, 95, 28);
   font-family: 'Henny Penny', cursive;
-  width: 170px;
+  width: 200px;
+}
+
+.logo span {
+  color: rgb(133, 226, 31);
+  font-size: 29px;
+  padding: 0px;
 }
 
 .topnav-left a:hover {
-  background-color: rgb(133, 226, 31);
-  color: rgb(136, 30, 228);
+  background-color:rgb(249, 193, 14);
+  color: rgb(247, 95, 28);
 }
 
-/* .topnav a.selected {
-  background-color:  rgb(136, 30, 228);
-  color: rgb(133, 226, 31);
-} */
+.topnav a.selected {
+  background-color: rgb(249, 193, 14);
+  color: rgb(247, 95, 28);
+  border: 1px solid rgb(133, 226, 31);
+}
 
 .topnav-right {
   display: inline-flex;
   justify-content: flex-end;
 }
 
+.topnav-right span {
+  color: rgb(24, 24, 26);
+}
+
 .sidenav {
     display: flex;
     flex-direction: column;
     height: 100%;
-    width: 170px;
+    width: 200px;
     position: fixed;
     z-index: 1;
     bottom: 0;
@@ -136,4 +150,26 @@ html {
   .success {
     text-align: center;
     padding-top: 50px;
+  }
+
+  button.is-block.is-info.is-large.is-fullwidth {
+    background-color: #85E21F;
+  }
+  
+  #witch {
+    width: 128px;
+    height: 128px;
+  }
+  
+  figure.avatar {
+    margin: 0 auto;
+  }
+  
+  div.container.has-text-centered {
+    padding: 0px 0px;
+  }  
+
+  #old-price {
+    color: red;
+    text-decoration: line-through;
   }

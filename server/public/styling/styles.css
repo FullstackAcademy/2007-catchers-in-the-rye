@@ -1,0 +1,146 @@
+html {
+  background-color: rgb(136, 30, 228);
+}
+
+.topnav {
+  display: inline-flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  overflow: hidden;
+  background-color: rgb(255, 154, 0);
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  min-height: 50px;
+  width: 100%;
+}
+
+.topnav a, .topnav span {
+  color: #f2f2f2;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav-left {
+  display: inline-flex;
+  justify-content: flex-start;
+}
+
+.logo {
+  background-color: rgb(247, 95, 28);
+  font-family: 'Henny Penny', cursive;
+  width: 170px;
+}
+
+.topnav-left a:hover {
+  background-color: rgb(133, 226, 31);
+  color: rgb(136, 30, 228);
+}
+
+/* .topnav a.selected {
+  background-color:  rgb(136, 30, 228);
+  color: rgb(133, 226, 31);
+} */
+
+.topnav-right {
+  display: inline-flex;
+  justify-content: flex-end;
+}
+
+.sidenav {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 170px;
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    background-color:rgb(24, 24, 26);
+    overflow-x: hidden;
+    padding-top: 100px;
+  }
+  
+  .sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    
+  }
+
+  .sidenav a:hover {
+    background-color: rgb(133, 226, 31);
+    color: rgb(136, 30, 228);
+  }
+
+  .sidenav a.selected {
+    background-color:  rgb(136, 30, 228);
+    color: rgb(133, 226, 31);
+  }
+  
+  .main {
+    margin-left: 160px; /* Same as the width of the sidenav */
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+    font-family: 'Englebert', sans-serif;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+  
+  .container {
+    padding-left: 170px;
+    padding-top: 50px;
+  }
+  
+  .costumes {
+    float: left;
+    background-color: #f2f2f2;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    width: 300px;
+    height: 400px;
+    margin: 10px 10px;
+    border-radius: 10px;
+    margin: 20px;
+    text-align: center;
+    align-items: center;
+  }
+  
+  img {
+    width: 200px;
+    height: 300px;
+  }
+  
+  h1 {
+    color: rgb(133, 226, 31);
+    font-family: 'Henny Penny', cursive;
+    font-size: 50px;
+  }
+
+  button.is-block.is-info.is-large.is-fullwidth {
+    background-color: #85E21F;
+  }
+  
+  #witch {
+    width: 128px;
+    height: 128px;
+  }
+  
+  figure.avatar {
+    margin: 0 auto;
+  }
+  
+  div.container.has-text-centered {
+    padding: 0px 0px;
+  }  

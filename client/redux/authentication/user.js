@@ -72,4 +72,6 @@ export default function userReducer(state = {}, action) {
   }
 }
 
-export { login, createUser, logout, getUser };
+export {
+  login, createUser, logout, getUser,
+};

@@ -40,7 +40,7 @@ class OrderHistory extends Component {
       );
     }
     return (
-      <div>No Previous Orders</div>
+      <h1>No Previous Orders</h1>
     );
   }
 }

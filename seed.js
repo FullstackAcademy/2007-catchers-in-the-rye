@@ -68,6 +68,12 @@ const costumes = [
     imageUrl: '/costumeImages/disney/findingNemo.jpg',
   },
   {
+    costumeName: 'Tarzan',
+    price: 33.43,
+    categortyId: 2,
+    imageUrl: '/costumeImages/disney/tarzan.jpeg',
+  },
+  {
     costumeName: 'Werewolf',
     price: 52.99,
     categoryId: 3,

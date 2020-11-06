@@ -40,13 +40,12 @@ class NavBar extends Component {
               </div>
                 <Link to="/home" className="navbar-item">Home</Link>
                 <Link to="/cart" className="navbar-item">Cart</Link>
-                <Link to="/orderHistory" className="navbar-item">Order History</Link>
             </div>
             <div className= "topnav-right">  
               <span className="navbar-item">Welcome, {user.id ? user.firstName : 'Guest'}!</span>
                 {user.id ? (
                   <div className="buttons">
-                    <Link to="/home" className="button is-black">Account Settings</Link>
+                    <Link to="/orderHistory" className="button is-black">Order History</Link>
                     <Link to="/login" className="button is-black" onClick={logout}>Log out</Link>
                   </div>
                 )

@@ -12,11 +12,9 @@ const categories = [
   { title: 'Superheroes' },
 ];
 
-const materials = ['100% polyester', '50% cotton, 50% polyester', '100% polyurethane foam', '100% cotton', '100% nylon'];
-const discounts = [20%, 30%, 40%, 50%, 60%, 70%];
-const sizes = ['S', 'M', 'L', 'XL']
+const materials = ['100% polyester', '50% cotton, 50% polyester', '100% polyurethane foam', '100% cotton', '100% nylon', '100% acrylic'];
+const discounts = [0.2, 0.3, 0.4, 0.5, 0.6, 0.7];
 
-Math.floor(Math.random() * (materials.length - 1));
 
 const costumes = [
   {
@@ -25,6 +23,8 @@ const costumes = [
     categoryId: 1,
     imageUrl: '/costumeImages/animals/bee.jpg',
     material: materials[Math.floor(Math.random() * (materials.length - 1))],
+    discount: discounts[Math.floor(Math.random() * (discounts.length - 1))],
+    madeIn: faker.address.country(),
   },
   {
     costumeName: 'Crab',
@@ -32,6 +32,8 @@ const costumes = [
     categoryId: 1,
     imageUrl: '/costumeImages/animals/crab.jpg',
     material: materials[Math.floor(Math.random() * (materials.length - 1))],
+    discount: discounts[Math.floor(Math.random() * (discounts.length - 1))],
+    madeIn: faker.address.country(),
   },
   {
     costumeName: 'Dilophosaurus',
@@ -39,6 +41,8 @@ const costumes = [
     categoryId: 1,
     imageUrl: '/costumeImages/animals/dilophosaurus.jpg',
     material: materials[Math.floor(Math.random() * (materials.length - 1))],
+    discount: discounts[Math.floor(Math.random() * (discounts.length - 1))],
+    madeIn: faker.address.country(),
   },
   {
     costumeName: 'Ostrich',
@@ -46,6 +50,8 @@ const costumes = [
     categoryId: 1,
     imageUrl: '/costumeImages/animals/ostrich.jpg',
     material: materials[Math.floor(Math.random() * (materials.length - 1))],
+    discount: discounts[Math.floor(Math.random() * (discounts.length - 1))],
+    madeIn: faker.address.country(),
   },
   {
     costumeName: 'Turkey',
@@ -53,6 +59,8 @@ const costumes = [
     categoryId: 1,
     imageUrl: '/costumeImages/animals/turkey.jpg',
     material: materials[Math.floor(Math.random() * (materials.length - 1))],
+    discount: discounts[Math.floor(Math.random() * (discounts.length - 1))],
+    madeIn: faker.address.country(),
   },
   {
     costumeName: 'Tiana',
@@ -60,6 +68,8 @@ const costumes = [
     categoryId: 2,
     imageUrl: '/costumeImages/disney/tiana.jpg',
     material: materials[Math.floor(Math.random() * (materials.length - 1))],
+    discount: discounts[Math.floor(Math.random() * (discounts.length - 1))],
+    madeIn: faker.address.country(),
   },
   {
     costumeName: 'Aladdin',
@@ -67,6 +77,8 @@ const costumes = [
     categoryId: 2,
     imageUrl: '/costumeImages/disney/aladdin.jpg',
     material: materials[Math.floor(Math.random() * (materials.length - 1))],
+    discount: discounts[Math.floor(Math.random() * (discounts.length - 1))],
+    madeIn: faker.address.country(),
   },
   {
     costumeName: 'Elsa',
@@ -74,6 +86,8 @@ const costumes = [
     categoryId: 2,
     imageUrl: '/costumeImages/disney/elsa.jpg',
     material: materials[Math.floor(Math.random() * (materials.length - 1))],
+    discount: discounts[Math.floor(Math.random() * (discounts.length - 1))],
+    madeIn: faker.address.country(),
   },
   {
     costumeName: 'Finding Nemo',
@@ -81,6 +95,8 @@ const costumes = [
     categoryId: 2,
     imageUrl: '/costumeImages/disney/findingNemo.jpg',
     material: materials[Math.floor(Math.random() * (materials.length - 1))],
+    discount: discounts[Math.floor(Math.random() * (discounts.length - 1))],
+    madeIn: faker.address.country(),
   },
   {
     costumeName: 'Werewolf',
@@ -88,6 +104,8 @@ const costumes = [
     categoryId: 3,
     imageUrl: '/costumeImages/monsters/werewolf.jpg',
     material: materials[Math.floor(Math.random() * (materials.length - 1))],
+    discount: discounts[Math.floor(Math.random() * (discounts.length - 1))],
+    madeIn: faker.address.country(),
   },
   {
     costumeName: 'Creature from the Black Lagoon',
@@ -95,6 +113,8 @@ const costumes = [
     categoryId: 3,
     imageUrl: '/costumeImages/monsters/blackLagoon.jpg',
     material: materials[Math.floor(Math.random() * (materials.length - 1))],
+    discount: discounts[Math.floor(Math.random() * (discounts.length - 1))],
+    madeIn: faker.address.country(),
   },
   {
     costumeName: 'Frankenstein\'s Monster',
@@ -102,6 +122,8 @@ const costumes = [
     categoryId: 3,
     imageUrl: '/costumeImages/monsters/frankenstein.jpg',
     material: materials[Math.floor(Math.random() * (materials.length - 1))],
+    discount: discounts[Math.floor(Math.random() * (discounts.length - 1))],
+    madeIn: faker.address.country(),
   },
   {
     costumeName: 'Mummy',
@@ -109,6 +131,8 @@ const costumes = [
     categoryId: 3,
     imageUrl: '/costumeImages/monsters/mummy.jpg',
     material: materials[Math.floor(Math.random() * (materials.length - 1))],
+    discount: discounts[Math.floor(Math.random() * (discounts.length - 1))],
+    madeIn: faker.address.country(),
   },
   {
     costumeName: 'Vampire',
@@ -116,6 +140,8 @@ const costumes = [
     categoryId: 3,
     imageUrl: '/costumeImages/monsters/vampire.jpg',
     material: materials[Math.floor(Math.random() * (materials.length - 1))],
+    discount: discounts[Math.floor(Math.random() * (discounts.length - 1))],
+    madeIn: faker.address.country(),
   },
   {
     costumeName: 'Wonder Woman',
@@ -123,6 +149,8 @@ const costumes = [
     categoryId: 4,
     imageUrl: '/costumeImages/superheros/wonderWoman.jpg',
     material: materials[Math.floor(Math.random() * (materials.length - 1))],
+    discount: discounts[Math.floor(Math.random() * (discounts.length - 1))],
+    madeIn: faker.address.country(),
   },
   {
     costumeName: 'Captain America',
@@ -130,6 +158,8 @@ const costumes = [
     categoryId: 4,
     imageUrl: '/costumeImages/superheros/captainAmerica.jpg',
     material: materials[Math.floor(Math.random() * (materials.length - 1))],
+    discount: discounts[Math.floor(Math.random() * (discounts.length - 1))],
+    madeIn: faker.address.country(),
   },
   {
     costumeName: 'Black Widow',
@@ -137,6 +167,8 @@ const costumes = [
     categoryId: 4,
     imageUrl: '/costumeImages/superheros/blkWidow.jpg',
     material: materials[Math.floor(Math.random() * (materials.length - 1))],
+    discount: discounts[Math.floor(Math.random() * (discounts.length - 1))],
+    madeIn: faker.address.country(),
   },
   {
     costumeName: 'Black Panther',
@@ -144,6 +176,8 @@ const costumes = [
     categoryId: 4,
     imageUrl: '/costumeImages/superheros/blackPanther.jpg',
     material: materials[Math.floor(Math.random() * (materials.length - 1))],
+    discount: discounts[Math.floor(Math.random() * (discounts.length - 1))],
+    madeIn: faker.address.country(),
   },
 ];
 

@@ -144,3 +144,8 @@ html {
   div.container.has-text-centered {
     padding: 0px 0px;
   }  
+
+  #old-price {
+    color: red;
+    text-decoration: line-through;
+  }

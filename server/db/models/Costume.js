@@ -30,8 +30,11 @@ const Costume = db.define('costume', {
   material: {
     type: STRING,
   },
-  oldPrice: {
-    type: DECIMAL(10, 2),
+  discount: {
+    type: FLOAT,
+  },
+  madeIn: {
+    type: STRING,
   },
 });
 

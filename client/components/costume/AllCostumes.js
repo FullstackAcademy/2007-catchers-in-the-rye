@@ -17,13 +17,9 @@ class AllCostumes extends Component {
     return (
       <div className="costumesList">
         <div>
-          <h5>
-            {selectedCategory ? selectedCategoryName : 'All'}
-            {' '}
-            Costumes
-          </h5>
-          {selectedCategory
-            ? costumes.map((costume) => (costume.categoryId === selectedCategory.id ? (
+          <h1>{selectedCategory ? selectedCategoryName : 'All'} Costumes</h1>
+          {selectedCategory ?
+            costumes.map((costume) => (costume.categoryId === selectedCategory.id ? (
               <div key={costume.id} className="costumes">
                 <div>
                   <Link to={`/costumes/${costume.costumeName}/${costume.id}`}>{costume.costumeName}</Link>
@@ -76,7 +72,7 @@ class AllCostumes extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  selectedCategoryName: ownProps.match.params.name,
+  selectedCategoryName: ownProps.match.params.categoryTitle,
   categories: state.categories,
   costumes: state.costumes,
   user: state.user,

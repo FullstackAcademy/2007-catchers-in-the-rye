@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadSCostumeDispatch } from '../../redux/costumes/singleCostume';
-import { addCostumeToCart } from '../../redux/cart/cart';
+import { addCostumeToCart, fetchCart } from '../../redux/cart/cart';
 
 class SingleCostume extends Component {
   constructor(props) {
@@ -11,6 +11,7 @@ class SingleCostume extends Component {
       quantity: 0,
     };
     this.changeQuantity = this.changeQuantity.bind(this);
+    this.addCostumeToCart = this.addCostumeToCart.bind(this);
   }
 
   async componentDidMount() {
@@ -19,6 +20,12 @@ class SingleCostume extends Component {
 
   changeQuantity(ev) {
     this.setState({ quantity: ev.target.value });
+  }
+
+  async addCostumeToCart(costumeId, quantity) {
+    await this.props.addCostumeToCart(costumeId, quantity);
+    await this.props.fetchCart();
+    this.props.history.push('/cart');
   }
 
   render() {
@@ -36,7 +43,7 @@ class SingleCostume extends Component {
           <option value={4}>4</option>
           <option value={5}>5</option>
         </select>
-        <button onClick={() => this.props.addCostumeToCart(thisCostume.id, this.state.quantity * 1)}>Add costume to cart</button>
+        <button onClick={() => this.addCostumeToCart(thisCostume.id, this.state.quantity * 1)}>Add costume to cart</button>
       </div>
     );
   }
@@ -49,6 +56,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   dispatchLoadSCostume: (id) => dispatch(loadSCostumeDispatch(id)),
   addCostumeToCart: (costumeId, quantity) => dispatch(addCostumeToCart(costumeId, quantity)),
+  fetchCart: () => dispatch(fetchCart()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleCostume);

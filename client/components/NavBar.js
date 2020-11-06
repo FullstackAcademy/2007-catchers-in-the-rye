@@ -68,14 +68,17 @@ class NavBar extends Component {
             </div>
             <div id="navbarBasicExample" className="navbar-menu is-active">
               <div className="navbar-start">
- 
               </div>
               <div className="navbar-end">
                 <div className="navbar-item">
-                  <a className="navbar-item">Welcome, {user.id ? user.firstName : 'Guest'}!</a>
+                  <a className="navbar-item">
+                    Welcome,
+                    {user.id ? user.firstName : 'Guest'}
+                    !
+                  </a>
                   {user.id ? (
                     <div className="buttons">
-                      <Link to="/home" className="button is-black">Account Settings</Link>
+                      <Link to="/orderHistory" className="button is-black">Order History</Link>
                       <Link to="/home" className="button is-black" onClick={logout}>Log out</Link>
                     </div>
                   )

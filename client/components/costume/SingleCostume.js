@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-filename-extension */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Costume from './CostumeCard'
 import { loadSCostumeDispatch } from '../../redux/costumes/singleCostume';
 import { addCostumeToCart, fetchCart } from '../../redux/cart/cart';
 
@@ -32,7 +33,8 @@ class SingleCostume extends Component {
   render() {
     const thisCostume = this.props.sCostume;
     return (
-      <div className="container">
+      <div className="singleCostume">
+        <Costume costume={thisCostume} />
         <div>{thisCostume.costumeName}</div>
         <img src={thisCostume.imageUrl} />
         <div>${thisCostume.price} <span id="old-price">${(thisCostume.price / (1 - thisCostume.discount)).toFixed(2)}</span> FINAL SALE</div>

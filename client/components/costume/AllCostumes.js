@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-filename-extension */
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Costume from './CostumeCard'
 import { loadCostumesDispatch } from '../../redux/costumes/allCostumes';
 
 class AllCostumes extends Component {
@@ -11,7 +11,7 @@ class AllCostumes extends Component {
 
   render() {
     const {
-      categories, selectedCategoryName, costumes, user,
+      categories, selectedCategoryName, costumes
     } = this.props;
     const selectedCategory = categories.find((category) => category.title === selectedCategoryName);
     return (
@@ -19,52 +19,10 @@ class AllCostumes extends Component {
         <div>
           <h1>{selectedCategory ? selectedCategoryName : 'All'} Costumes</h1>
           {selectedCategory ?
-            costumes.map((costume) => (costume.categoryId === selectedCategory.id ? (
-              <div key={costume.id} className="costumes">
-                <div>
-                  <Link to={`/costumes/${costume.costumeName}/${costume.id}`}>{costume.costumeName}</Link>
-                </div>
-                <img src={costume.imageUrl} />
-                { user.userType === 'admin'
-                  ? (
-                    <div>
-                      <Link to={`/costumes/${costume.costumeName}/${costume.id}/${costume.categoryId}/admin`}>
-                        Update &nbsp;
-                        {costume.costumeName}
-                      </Link>
-                    </div>
-                  )
-                  : null }
-                <div>
-                  $
-                  {costume.price.toFixed(2)}
-                </div>
-                <br />
-              </div>
-            )
-              : null))
-            : costumes.map((costume) => (
-              <div key={costume.id} className="costumes">
-                <div>
-                  <Link to={`/costumes/${costume.costumeName}/${costume.id}`}>{costume.costumeName}</Link>
-                </div>
-                <img src={costume.imageUrl} />
-                { user.userType === 'admin'
-                  ? (
-                    <div>
-                      <Link to={`/costumes/${costume.costumeName}/${costume.id}/${costume.categoryId}/admin`}>
-                        Update &nbsp;
-                        {costume.costumeName}
-                      </Link>
-                    </div>
-                  ) : null }
-                <div>
-                  $
-                  {costume.price.toFixed(2)}
-                </div>
-                <br />
-              </div>
-            ))}
+            costumes.map((costume) => (costume.categoryId === selectedCategory.id ? <Costume key={costume.id} costume={costume} /> : null))
+          :
+            costumes.map((costume) => (<Costume key={costume.id} costume={costume} />))
+          }
         </div>
       </div>
     );

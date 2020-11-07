@@ -27,7 +27,6 @@ const _updateShipping = (shippedOrder) => ({
 const updateShipping = (orderId) => async (dispatch) => {
   try {
     const { data } = await axios.put(`/api/orders/admin/pending/${orderId}`);
-    console.log(data);
     const emailText = ShippedEmail(data);
     await axios.post('/api/stripe/email', { email: data.email, emailText, subject: 'Your Grace Shockers order has been shipped!' });
     dispatch(_updateShipping(data));

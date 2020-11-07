@@ -189,21 +189,4 @@ router.put('/admin/pending/:id', async (req, res, next) => {
   } catch (err) { next(err); }
 });
 
-// const transporter = nodemailer.createTransport({
-//   service: 'gmail',
-//   auth: {
-//     user: 'graceshockers@gmail.com', // generated ethereal user
-//     pass: 'Catchers', // generated ethereal password
-//   },
-// });
-// // send mail with defined transport object
-// const info = await transporter.sendMail({
-//   from: '"Grace Shockers 👻" <graceshockers@gmail.com>',
-//   to: email,
-//   subject: 'Thank you for your SPOOKY 👻 order',
-//   html: emailText,
-// });
-
-// console.log('Message sent: %s', info.messageId);
-
 module.exports = router;

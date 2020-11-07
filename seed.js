@@ -64,7 +64,7 @@ const costumes = [
   },
   {
     costumeName: 'Tiana',
-    price: 199.99,
+    price: 70.99,
     categoryId: 2,
     imageUrl: '/costumeImages/disney/tiana.jpg',
     material: materials[Math.floor(Math.random() * (materials.length - 1))],
@@ -73,7 +73,7 @@ const costumes = [
   },
   {
     costumeName: 'Aladdin',
-    price: 199.99,
+    price: 82.99,
     categoryId: 2,
     imageUrl: '/costumeImages/disney/aladdin.jpg',
     material: materials[Math.floor(Math.random() * (materials.length - 1))],
@@ -82,7 +82,7 @@ const costumes = [
   },
   {
     costumeName: 'Elsa',
-    price: 159.99,
+    price: 87.99,
     categoryId: 2,
     imageUrl: '/costumeImages/disney/elsa.jpg',
     material: materials[Math.floor(Math.random() * (materials.length - 1))],
@@ -91,7 +91,7 @@ const costumes = [
   },
   {
     costumeName: 'Finding Nemo',
-    price: 299.99,
+    price: 67.99,
     categoryId: 2,
     imageUrl: '/costumeImages/disney/findingNemo.jpg',
     material: materials[Math.floor(Math.random() * (materials.length - 1))],
@@ -109,7 +109,7 @@ const costumes = [
   },
   {
     costumeName: 'Creature from the Black Lagoon',
-    price: 299.99,
+    price: 92.99,
     categoryId: 3,
     imageUrl: '/costumeImages/monsters/blackLagoon.jpg',
     material: materials[Math.floor(Math.random() * (materials.length - 1))],

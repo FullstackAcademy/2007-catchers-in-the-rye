@@ -142,6 +142,16 @@ html {
     font-size: 50px;
   }
 
+  .CheckoutHeader {
+    text-align: center;
+    padding-top: 50px;
+  }
+
+  .success {
+    text-align: center;
+    padding-top: 50px;
+  }
+
   button.is-block.is-info.is-large.is-fullwidth {
     background-color: #85E21F;
   }

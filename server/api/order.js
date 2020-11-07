@@ -130,7 +130,7 @@ router.delete('/userCart/:costumeId', async (req, res, next) => {
 
 router.put('/isPaid/:id', async (req, res, next) => {
   try {
-    // console.log(req.body);
+    const { name } = req.body.billingDetails;
     const {
       line1, city, state, postal_code,
     } = req.body.billingDetails.address;
@@ -139,6 +139,7 @@ router.put('/isPaid/:id', async (req, res, next) => {
     await order.update({
       isPaid: true,
       shippingAddress,
+      name,
     });
     res.send(order);
   } catch (err) {

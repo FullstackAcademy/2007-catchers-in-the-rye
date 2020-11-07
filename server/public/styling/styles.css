@@ -111,30 +111,80 @@ html {
     padding-left: 170px;
     padding-top: 50px;
   }
-  
-  .costumes {
-    float: left;
-    background-color: #f2f2f2;
-    list-style-type: none;
+
+  .costumeList {
     display: flex;
-    flex-direction: column;
+  }
+  
+  .costume {
+    display: flex;
+    float: left;
+    background-color: rgb(256, 256, 256);
+    list-style-type: none;
+    /* display: flex;
+    flex-direction: column; */
     justify-content: space-evenly;
     border-width: 2px;
     border-color: black;
     border-style: solid;
-    width: 300px;
-    height: 400px;
-    margin: 10px 10px;
+    width: 400px;
+    height: 320px;
+    margin: 10px;
     border-radius: 10px;
-    margin: 20px;
-    text-align: center;
-    align-items: center;
+    padding: 10px;
+    /* margin: 20px; */
+    /* text-align: center;
+    align-items: center; */
   }
-  
-  img {
+
+  .costume:hover {
+    border-width: 5px;
+    border-color: rgb(133, 226, 31);
+  }
+
+  .costume img {
+    object-fit: fill;
     width: 200px;
     height: 300px;
   }
+
+  .costume.details {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .new {
+    color: green;
+  }
+
+  .new-price {
+    color: green;
+    font-weight: bold;
+  }
+
+  .old {
+    color: red;
+  }
+
+  .old-price {
+    color: red;
+    text-decoration: line-through;
+  }
+
+  .costume a:link, .costume a:visited {
+    height: 100%;
+    width: 100%;
+    padding: 5px;
+    background-color: rgb(249, 193, 14);
+    border-radius: 10px;
+    color: rgb(256, 256, 256);
+  }
+
+  .costume a:hover, .costume a:active {
+    background-color: rgb(255, 154, 0);
+  }
+  
   
   h1 {
     color: rgb(133, 226, 31);
@@ -158,8 +208,3 @@ html {
   div.container.has-text-centered {
     padding: 0px 0px;
   }  
-
-  #old-price {
-    color: red;
-    text-decoration: line-through;
-  }

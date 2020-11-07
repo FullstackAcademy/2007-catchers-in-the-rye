@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Costume from './CostumeCard'
 import { loadCostumesDispatch } from '../../redux/costumes/allCostumes';
 
 class AllCostumes extends Component {
@@ -18,6 +19,11 @@ class AllCostumes extends Component {
       <div className="costumesList">
         <div>
           <h1>{selectedCategory ? selectedCategoryName : 'All'} Costumes</h1>
+          {
+            costumes.map((costume) => 
+              <Costume key={costume.id} costume={costume} />
+            )
+          }
           {selectedCategory ?
             costumes.map((costume) => (costume.categoryId === selectedCategory.id ? (
               <div key={costume.id} className="costumes">

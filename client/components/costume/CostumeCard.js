@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 
 class Costume extends Component {
     render() {
-        const { costume, view, user, props } = this.props
-        console.log(props)
+        const { costume, view, user } = this.props
         return (
             <div className={view === "detailed" ? "costume detailView" : "costume"} role="listitem">
                 <div>

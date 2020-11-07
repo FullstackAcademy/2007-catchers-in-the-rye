@@ -108,6 +108,7 @@ html {
   }
   
   .container {
+    display: flex;
     margin-left: 200px;
     margin-top: 50px;
     padding-left: 50px;
@@ -132,6 +133,7 @@ html {
 
   .costume {
     display: flex;
+    float: left;
     background-color: rgb(256, 256, 256);
     list-style-type: none;
     justify-content: space-evenly;
@@ -170,6 +172,10 @@ html {
     height: 450px;
   }
 
+  .detailView:hover {
+    border-width: 2px;
+    border-color: black;
+  }
 
   .costume.details {
     display: flex;
@@ -235,12 +241,29 @@ html {
     height: 100%;
     padding: 5px;
     background-color: rgb(249, 193, 14);
-    border-radius: 10px;
     color: rgb(256, 256, 256);
+    border-radius: 10px;
+    border: rgb(256, 256, 256);
   }
 
-  .costume-options button:focus {
+  .costume-options button:focus, .costume-options button:hover {
     background-color: rgb(255, 154, 0);
+  }
+
+  .add-subtract button {
+    font-weight: bold;
+    color: black;
+    background-color: rgb(256, 256, 256);
+  }
+
+  .add-subtract button.add:focus, .add-subtract button.add:hover {
+    background-color: rgb(256, 256, 256);
+    color: green;
+  }
+
+  .add-subtract button.subtract:focus, .add-subtract button.subtract:hover {
+    background-color: rgb(256, 256, 256);
+    color: red;
   }
 
   button.is-block.is-info.is-large.is-fullwidth {

@@ -11,7 +11,7 @@ class NavBar extends Component {
     super(props)
     this.state = {
       selectedCategory: 'all',
-      selectedNav: 'home',
+      selectedNav: '',
     };
     this.selectCategory = this.selectCategory.bind(this);
     this.selectTopNav = this.selectTopNav.bind(this);
@@ -53,7 +53,10 @@ class NavBar extends Component {
                 onClick={() => selectTopNav("cart")}>
                   Cart
                 </Link>
-                <Link to="/orderHistory" className="navbar-item">Order History</Link>
+                <Link to="/orderHistory" className={selectedNav === "orderHistory" ? "selected" : null}
+                onClick={() => selectTopNav("orderHistory")}>
+                  Order History
+                </Link>
             </div>
             <div className= "topnav-right">  
               <span>Welcome, {user.id ? user.firstName : 'Guest'}!</span>

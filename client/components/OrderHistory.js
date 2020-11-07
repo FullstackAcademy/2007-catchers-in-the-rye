@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { fetchOrders } from '../redux/orderHistory/orderHistory';
+import Costume from './costume/CostumeCard'
 
 class OrderHistory extends Component {
   componentDidMount() {
@@ -20,18 +20,17 @@ class OrderHistory extends Component {
               const readableDate = date.toDateString();
               return (
                 <li key={order.id}>
-                  <div>{readableDate}</div>
-                  <div>
-                    Total: $
-                    {order.total}
+                  <div className="costume-options">
+                    <div><strong>{readableDate}</strong></div>
+                    <div>
+                      <strong>
+                        Total: ${order.total}
+                      </strong>
+                    </div>
                   </div>
-                  <ul>
                     {order.costumes.map((costume) => (
-                      <li key={costume.id}>
-                        <Link to={`/costumes/${costume.costumeName}`}>{costume.costumeName}</Link>
-                      </li>
+                        <Costume key={costume.id} costume={costume} />
                     ))}
-                  </ul>
                 </li>
               );
             })}

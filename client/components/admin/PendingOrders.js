@@ -31,9 +31,7 @@ class PendingOrders extends Component {
             <div key={order.id}>
               <p>
                 <strong>Name: </strong>
-                {order.session.user.firstName}
-                {' '}
-                {order.session.user.lastName}
+                {order.name}
               </p>
               <p>
                 <strong>Address: </strong>

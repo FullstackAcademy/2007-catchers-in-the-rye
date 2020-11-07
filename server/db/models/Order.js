@@ -21,6 +21,9 @@ const Order = db.define('order', {
     type: BOOLEAN,
     defaultValue: false,
   },
+  name: {
+    type: STRING,
+  },
 });
 
 Order.prototype.calcTotal = async function () {

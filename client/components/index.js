@@ -30,7 +30,7 @@ class Routes extends Component {
       <Router>
         <div>
           <Route render={() => <NavBar />} />
-          <div className="container">
+          <div className="content-body">
             <main>
               <Switch>
                 <Route exact path="/">

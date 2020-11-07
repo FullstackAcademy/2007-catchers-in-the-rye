@@ -1,3 +1,5 @@
+const nodemailer = require('nodemailer');
+
 const router = require('express').Router();
 const {
   Order, Costume, Lineitem, Session,
@@ -129,7 +131,7 @@ router.delete('/userCart/:costumeId', async (req, res, next) => {
 
 router.put('/isPaid/:id', async (req, res, next) => {
   try {
-    const { name } = req.body.billingDetails;
+    const { name, email } = req.body.billingDetails;
     const {
       line1, city, state, postal_code,
     } = req.body.billingDetails.address;
@@ -139,6 +141,7 @@ router.put('/isPaid/:id', async (req, res, next) => {
       isPaid: true,
       shippingAddress,
       name,
+      email,
     });
     res.send(order);
   } catch (err) {
@@ -178,7 +181,7 @@ router.get('/admin/pending', async (req, res, next) => {
 router.put('/admin/pending/:id', async (req, res, next) => {
   try {
     const orderId = req.params.id;
-    const shippedOrder = await Order.findByPk(orderId);
+    const shippedOrder = await Order.findByPk(orderId, { include: [Costume] });
     await shippedOrder.update({
       isShipped: true,
     });

@@ -128,7 +128,7 @@ body, html{
     font-family: 'Englebert', sans-serif;
   }
   
-  .container {
+  .content-body {
     margin-left: 200px;
     margin-top: 50px;
     padding-left: 50px;
@@ -178,6 +178,25 @@ body, html{
     height: 300px;
   }
 
+  .detailView {
+    width: 600px;
+    height: 480px;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .detailView img {
+    object-fit: fill;
+    width: 300px;
+    height: 450px;
+  }
+
+  .detailView:hover {
+    border-width: 2px;
+    border-color: black;
+  }
+
   .costume.details {
     display: flex;
     flex-direction: column;
@@ -206,7 +225,7 @@ body, html{
     text-decoration: line-through;
   }
 
-  .costume a:link, .costume a:visited {
+  .costume a:link, .costume a:visited, .costumesList a:link, .costumesList a:visited {
     height: 100%;
     width: 100%;
     padding: 5px;
@@ -215,9 +234,56 @@ body, html{
     color: rgb(256, 256, 256);
   }
 
-  .costume a:hover, .costume a:active {
+  .costume a:hover, .costume a:active, .costumesList a:hover, .costumesList a:active {
     background-color: rgb(255, 154, 0);
   }
+
+  .singleCostume {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .costume-options {
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(256, 256, 256);
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    width: 600px;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .costume-options button {
+    height: 100%;
+    padding: 5px;
+    background-color: rgb(249, 193, 14);
+    color: rgb(256, 256, 256);
+    border-radius: 10px;
+    border: rgb(256, 256, 256);
+  }
+
+  .costume-options button:focus, .costume-options button:hover {
+    background-color: rgb(255, 154, 0);
+  }
+
+  .add-subtract button {
+    font-weight: bold;
+    color: black;
+    background-color: rgb(256, 256, 256);
+  }
+
+  .add-subtract button.add:focus, .add-subtract button.add:hover {
+    background-color: rgb(256, 256, 256);
+    color: green;
+  }
+
+  .add-subtract button.subtract:focus, .add-subtract button.subtract:hover {
+    background-color: rgb(256, 256, 256);
+    color: red;
 
   .CheckoutHeader {
     text-align: center;
@@ -228,6 +294,11 @@ body, html{
     text-align: center;
     padding-top: 50px;
   }
+
+  /* .box {
+    width: 400px;
+    min-height: 400px;
+  } */
 
   button.is-block.is-info.is-large.is-fullwidth {
     background-color: #85E21F;
@@ -250,6 +321,7 @@ body, html{
     /* .sidenav {padding-top: 15px;} */
     .sidenav a {font-size: 18px;}
     h1 {font-size: 30px};
+
     .container {max-height: fit-content}
   }
 
@@ -267,6 +339,7 @@ body, html{
     font-size: 80px;
     text-align: center;
   }
+    
   #talkbubble:before {
     content: "";
     position: absolute;

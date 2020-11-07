@@ -5,6 +5,7 @@ import { updateCostumeDispatch } from '../../redux/costumes/allCostumes';
 import { fetchCategories } from '../../redux/categories/allCategories';
 import { selectCategory } from '../../redux/categories/singleCategory';
 
+
 class EditCostume extends Component {
   constructor(props) {
     super(props);
@@ -38,11 +39,12 @@ class EditCostume extends Component {
     const thisCategory = categories.find((category) => category.id === thisCostume.categoryId);
     return (
 
-      <div className="container">
-        <h2>
-          Update Costume Information:
+      <div className = "editCostume">
+        <h1>
+          Update Costume Information:{' '}
           {thisCostume.costumeName}
-        </h2>
+
+        </h1>
         <hr />
         <form onSubmit={() => { this.props.dispatchUpdateCostume(this.state.costumeId, { costumeName: this.state.costumeName }); }}>
           <label>
@@ -51,7 +53,7 @@ class EditCostume extends Component {
             {thisCostume.costumeName}
             <div>
               New Name:
-
+              {'  '}
               <input
                 name="costumeName"
                 type="text"
@@ -65,6 +67,7 @@ class EditCostume extends Component {
         </form>
         <hr />
 
+        <div>
         <form onSubmit={() => { this.props.dispatchUpdateCostume(this.state.costumeId, { price: this.state.price }); }}>
           <label>
             Current Price:
@@ -72,7 +75,7 @@ class EditCostume extends Component {
             {thisCostume.price}
             <div>
               New Price:
-
+              {'  '}
               <input
                 name="price"
                 type="number"
@@ -83,8 +86,11 @@ class EditCostume extends Component {
             <input type="submit" value="Update" />
           </label>
         </form>
+        </div>
 
         <hr />
+
+        <div>
         <form onSubmit={() => { this.props.dispatchUpdateCostume(this.state.costumeId, { imageUrl: this.state.imageUrl }); }}>
           <label>
             Current ImageUrl:
@@ -93,7 +99,7 @@ class EditCostume extends Component {
             {thisCostume.imageUrl}
             <div>
               New Image Url:
-
+              {'  '}
               <input
                 name="imageUrl"
                 type="text"
@@ -104,8 +110,10 @@ class EditCostume extends Component {
             <input type="submit" value="Update" />
           </label>
         </form>
+        </div>
         <hr />
 
+        <div>
         <form onSubmit={() => { this.props.dispatchUpdateCostume(this.state.costumeId, { quantity: parseInt(this.state.quantity, 10) }); }}>
           <label>
             Current Quantity:
@@ -114,7 +122,7 @@ class EditCostume extends Component {
             {thisCostume.quantity}
             <div>
               New Quantity:
-
+              {'  '}
               <input
                 name="quantity"
                 type="text"
@@ -125,8 +133,10 @@ class EditCostume extends Component {
             <input type="submit" value="Update" />
           </label>
         </form>
+        </div>
         <hr />
 
+        <div>
         <form onSubmit={() => { this.props.dispatchUpdateCostume(this.state.costumeId, { categoryId: this.state.categoryId }); }}>
           <label>
             Current Category:
@@ -153,6 +163,7 @@ class EditCostume extends Component {
             <input type="submit" value="Update" />
           </label>
         </form>
+        </div>
         <hr />
       </div>
     );

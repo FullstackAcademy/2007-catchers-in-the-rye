@@ -22,7 +22,7 @@ class OrderHistory extends Component {
                 <div key={order.id}>
                   <div className="orderText">Order Date: {readableDate}</div>
                   <div className="orderText">
-                    Item Cost: $
+                    Item Total: $
                     {order.total}
                   </div>
                   <div>

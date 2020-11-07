@@ -1,5 +1,9 @@
-html {
+/* html {
   background-color: rgb(136, 30, 228);
+} */
+
+body, html{
+  background-image: url("/costumeImages/pattern2.jpg")
 }
 
 #landing-div {

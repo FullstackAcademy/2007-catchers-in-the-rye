@@ -108,6 +108,7 @@ html {
   }
   
   .container {
+    display: flex;
     margin-left: 200px;
     margin-top: 50px;
     padding-left: 50px;
@@ -157,6 +158,25 @@ html {
     height: 300px;
   }
 
+  .detailView {
+    width: 600px;
+    height: 480px;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .detailView img {
+    object-fit: fill;
+    width: 300px;
+    height: 450px;
+  }
+
+  .detailView:hover {
+    border-width: 2px;
+    border-color: black;
+  }
+
   .costume.details {
     display: flex;
     flex-direction: column;
@@ -197,6 +217,53 @@ html {
   .costume a:hover, .costume a:active {
     background-color: rgb(255, 154, 0);
   }
+
+  .singleCostume {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .costume-options {
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(256, 256, 256);
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    width: 600px;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .costume-options button {
+    height: 100%;
+    padding: 5px;
+    background-color: rgb(249, 193, 14);
+    color: rgb(256, 256, 256);
+    border-radius: 10px;
+    border: rgb(256, 256, 256);
+  }
+
+  .costume-options button:focus, .costume-options button:hover {
+    background-color: rgb(255, 154, 0);
+  }
+
+  .add-subtract button {
+    font-weight: bold;
+    color: black;
+    background-color: rgb(256, 256, 256);
+  }
+
+  .add-subtract button.add:focus, .add-subtract button.add:hover {
+    background-color: rgb(256, 256, 256);
+    color: green;
+  }
+
+  .add-subtract button.subtract:focus, .add-subtract button.subtract:hover {
+    background-color: rgb(256, 256, 256);
+    color: red;
 
   .CheckoutHeader {
     text-align: center;

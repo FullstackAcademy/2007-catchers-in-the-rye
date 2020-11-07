@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCart, updateCartQuantity, removeItem } from '../redux/cart/cart';
+import Costume from './costume/CostumeCard'
 import { CheckoutForm } from './Payment/CheckoutForm';
 // buttons that still need functionality: Checkout / keep shopping
 class Cart extends Component {
@@ -47,39 +48,33 @@ class Cart extends Component {
     return (
       <div>
         <h1>Your cart</h1>
+        <div className="costume-options">
+          <h2>
+            <strong>Cart Total: </strong>
+              ${ cartTotal }
+          </h2>
+          <button type="button" onClick={this.checkout}>Check Out Now</button>
+          <button type="button" onClick={this.keepShopping}>Keep Shopping</button>
+        </div>
         {costumes.map((costume) => (
-          <div key={costume.id}>
-            <p>
-              <strong>Costume:</strong>
-              {costume.costumeName}
-            </p>
-            <p>
-              <strong>Price per unit:</strong>
-              $
-              {costume.price.toFixed(2)}
-            </p>
-            <p>
-              <strong>Quantity:</strong>
-              {costume.lineitem.quantity}
-            </p>
-            <button onClick={() => updateCartQuantity(costume.id, '+')}>+</button>
-            <button onClick={() => updateCartQuantity(costume.id, '-')}>-</button>
-            <p>
-              <strong>Sub Total:</strong>
-              $
-              { (costume.price * costume.lineitem.quantity).toFixed(2) }
-            </p>
-            <button onClick={() => removeItem(costume.id)}>Remove from Cart</button>
-            <img src={costume.imageUrl} />
+          <div>
+           <Costume costume={costume} view="detailed" />
+           <div className="costume-options">
+              <div className="add-subtract">
+                <span>Quantity:</span>
+                <button onClick={() => updateCartQuantity(costume.id, '+')} className="add">+</button>
+                <span>{costume.lineitem.quantity}</span>
+                <button onClick={() => updateCartQuantity(costume.id, '-')} className="subtract">-</button>
+              </div>
+              <p>
+                <strong>Sub Total:</strong>
+                $
+                { (costume.price * costume.lineitem.quantity).toFixed(2) }
+              </p>
+              <button onClick={() => removeItem(costume.id)}>Remove from Cart</button>
+            </div>
           </div>
         ))}
-        <h2>
-          <strong>Cart Total: </strong>
-          $
-          { cartTotal }
-        </h2>
-        <button type="button" onClick={this.checkout}>Check Out Now</button>
-        <button type="button" onClick={this.keepShopping}>Keep Shopping</button>
       </div>
     );
   }

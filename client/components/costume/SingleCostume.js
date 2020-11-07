@@ -34,22 +34,18 @@ class SingleCostume extends Component {
     const thisCostume = this.props.sCostume;
     return (
       <div className="singleCostume">
-        <Costume costume={thisCostume} />
-        <div>{thisCostume.costumeName}</div>
-        <img src={thisCostume.imageUrl} />
-        <div>${thisCostume.price} <span id="old-price">${(thisCostume.price / (1 - thisCostume.discount)).toFixed(2)}</span> FINAL SALE</div>
-        <div>Material: {thisCostume.material}</div>
-        <div>Made in: {thisCostume.madeIn}</div>
-        <div>One size fits most adults</div>
-        <select onChange={this.changeQuantity}>
-          <option>Select quantity:</option>
-          <option value={1}>1</option>
-          <option value={2}>2</option>
-          <option value={3}>3</option>
-          <option value={4}>4</option>
-          <option value={5}>5</option>
-        </select>
-        <button onClick={() => this.addCostumeToCart(thisCostume.id, this.state.quantity * 1)}>Add costume to cart</button>
+        <Costume costume={thisCostume} view="detailed" />
+        <div className="costume-options">
+          <select onChange={this.changeQuantity}>
+            <option>Select quantity:</option>
+            <option value={1}>1</option>
+            <option value={2}>2</option>
+            <option value={3}>3</option>
+            <option value={4}>4</option>
+            <option value={5}>5</option>
+          </select>
+          <button onClick={() => this.addCostumeToCart(thisCostume.id, this.state.quantity * 1)}>Add costume to cart</button>
+        </div>
       </div>
     );
   }

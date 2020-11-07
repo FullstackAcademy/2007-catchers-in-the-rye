@@ -14,7 +14,7 @@ class OrderHistory extends Component {
       return (
         <div>
           <h1>Previous Orders:</h1>
-          <ul>
+          <div>
             {orders.map((order) => {
               const date = new Date(order.createdAt);
               const readableDate = date.toDateString();
@@ -34,7 +34,7 @@ class OrderHistory extends Component {
                 </li>
               );
             })}
-          </ul>
+          </div>
         </div>
       );
     }

@@ -1,3 +1,5 @@
+const nodemailer = require('nodemailer');
+
 const router = require('express').Router();
 const {
   Order, Costume, Lineitem, Session,
@@ -12,8 +14,7 @@ router.get('/', async (req, res, next) => {
     next(err);
   }
 });
-// currently doing findOne since user should only have one order that is not paid
-// for the below routes, we are currently re-finding the order based on user ID on req.user. This may be updated based on how we handle guest. also, we could probably put an orderId on the req.user object or something when user creates an order, so that we can just reference the orderId that references user's cart.
+
 router.get('/userCart', async (req, res, next) => {
   try {
     const sessionId = req.session.id;
@@ -130,7 +131,7 @@ router.delete('/userCart/:costumeId', async (req, res, next) => {
 
 router.put('/isPaid/:id', async (req, res, next) => {
   try {
-    // console.log(req.body);
+    const { name, email } = req.body.billingDetails;
     const {
       line1, city, state, postal_code,
     } = req.body.billingDetails.address;
@@ -139,6 +140,8 @@ router.put('/isPaid/:id', async (req, res, next) => {
     await order.update({
       isPaid: true,
       shippingAddress,
+      name,
+      email,
     });
     res.send(order);
   } catch (err) {
@@ -175,14 +178,15 @@ router.get('/admin/pending', async (req, res, next) => {
   } catch (err) { next(err); }
 });
 
-// commented out for now - we do not need this route anymore given we are using cookies to identify cart
-// router.get('/:id', async(req, res, next) => {
-//     try {
-//         const order = await Order.findByPk(req.params.id, { include: [Costume] })
-//         res.send(order)
-//     } catch(err) {
-//         next(err)
-//     }
-// })
+router.put('/admin/pending/:id', async (req, res, next) => {
+  try {
+    const orderId = req.params.id;
+    const shippedOrder = await Order.findByPk(orderId, { include: [Costume] });
+    await shippedOrder.update({
+      isShipped: true,
+    });
+    res.send(shippedOrder);
+  } catch (err) { next(err); }
+});
 
 module.exports = router;

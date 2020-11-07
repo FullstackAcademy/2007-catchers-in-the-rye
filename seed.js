@@ -233,6 +233,8 @@ while (orders.length < 10) {
     orders.push(
       {
         shippingAddress: faker.address.streetAddress(),
+        name: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        email: faker.internet.email(),
       },
     );
   } else {
@@ -240,6 +242,8 @@ while (orders.length < 10) {
       {
         isPaid: true,
         shippingAddress: faker.address.streetAddress(),
+        name: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        email: faker.internet.email(),
       },
     );
   }

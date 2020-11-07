@@ -10,6 +10,7 @@ import Row from './prebuilt/Row';
 import BillingDetailsFields from './prebuilt/BillingDetailsFields';
 import SubmitButton from './prebuilt/SubmitButton';
 import CheckoutError from './prebuilt/CheckoutError';
+import ConfirmationEmail from './ConfirmationEmail';
 
 const CardElementContainer = styled.div`
   height: 40px;
@@ -25,6 +26,7 @@ const CheckoutForm = (props) => {
   const history = useHistory();
   const price = props.location.state.total === undefined ? 0 : props.location.state.total;
   const orderId = props.location.state.orderId;
+  const costumes = props.location.state.costumes;
   const [isProcessing, setProcessingTo] = useState(false);
   const [checkoutError, setCheckoutError] = useState();
 
@@ -48,6 +50,7 @@ const CheckoutForm = (props) => {
         postal_code: ev.target.zip.value,
       },
     };
+    const emailText = ConfirmationEmail(billingDetails, price, costumes);
 
     setProcessingTo(true);
 
@@ -55,7 +58,7 @@ const CheckoutForm = (props) => {
 
     try {
       const { data: clientSecret } = await axios.post('/api/stripe/charge', {
-        amount: price * 100,
+        amount: Math.round(price * 100),
       });
 
       const paymentMethodReq = await stripe.createPaymentMethod({
@@ -82,6 +85,7 @@ const CheckoutForm = (props) => {
 
       await axios.put(`/api/orders/isPaid/${orderId}`,
         { billingDetails });
+      await axios.post('/api/stripe/email', { email: billingDetails.email, emailText, subject: 'Thank you for your SPOOKY 👻 order' });
       history.push('/successfulCheckout');
     } catch (err) {
       setCheckoutError(err.message);
@@ -90,20 +94,20 @@ const CheckoutForm = (props) => {
 
   const iframeStyles = {
     base: {
-      color: "#fff",
+      color: "#881EE4",
       fontSize: "16px",
-      iconColor: "#fff",
+      iconColor: "#881EE4",
       "::placeholder": {
-        color: "#87bbfd"
+        color: "##881EE4"
       }
     },
     invalid: {
-      iconColor: "#FFC7EE",
+      iconColor: "#881EE4",
       color: "#FFC7EE"
     },
     complete: {
-      iconColor: "#cbf4c9"
-    }
+      iconColor: "#881EE4"
+    },
   };
 
   const cardElementOpts = {
@@ -114,7 +118,7 @@ const CheckoutForm = (props) => {
 
   return (
     <div>
-      <div>Checkout:</div>
+      <h1 className="CheckoutHeader">Checkout:</h1>
       <form onSubmit={handleFormSubmit}>
         <Row>
           <BillingDetailsFields />

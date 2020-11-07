@@ -53,6 +53,9 @@ class NavBar extends Component {
                 onClick={() => selectTopNav("cart")}>
                   Cart
                 </Link>
+                { user.userType === 'admin' ? 
+                  <Link to="/admin/pending" className="navbar-item">Orders to Ship</Link>
+                  : null }
             </div>
             <div className= "topnav-right">  
               <span>Welcome, {user.id ? user.firstName : 'Guest'}!</span>

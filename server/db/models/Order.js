@@ -24,6 +24,13 @@ const Order = db.define('order', {
   name: {
     type: STRING,
   },
+  email: {
+    type: STRING,
+    validate: {
+      isEmail: true,
+      notEmpty: true,
+    },
+  },
 });
 
 Order.prototype.calcTotal = async function () {

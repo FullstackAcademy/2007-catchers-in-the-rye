@@ -35,7 +35,7 @@ const Input = styled.input`
   animation: 1ms void-animation-out;
 
   &::placeholder {
-    color: #881EE4;
+    color: #808080;
   }
 `;
 

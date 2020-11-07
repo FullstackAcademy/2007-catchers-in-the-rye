@@ -131,7 +131,7 @@ router.delete('/userCart/:costumeId', async (req, res, next) => {
 
 router.put('/isPaid/:id', async (req, res, next) => {
   try {
-    const { name } = req.body.billingDetails;
+    const { name, email } = req.body.billingDetails;
     const {
       line1, city, state, postal_code,
     } = req.body.billingDetails.address;
@@ -141,6 +141,7 @@ router.put('/isPaid/:id', async (req, res, next) => {
       isPaid: true,
       shippingAddress,
       name,
+      email,
     });
     res.send(order);
   } catch (err) {
@@ -180,31 +181,29 @@ router.get('/admin/pending', async (req, res, next) => {
 router.put('/admin/pending/:id', async (req, res, next) => {
   try {
     const orderId = req.params.id;
-    const shippedOrder = await Order.findByPk(orderId);
+    const shippedOrder = await Order.findByPk(orderId, { include: [Costume] });
     await shippedOrder.update({
       isShipped: true,
     });
-
-    const { billingDetails, emailText } = req.body;
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: 'graceshockers@gmail.com', // generated ethereal user
-        pass: 'Catchers', // generated ethereal password
-      },
-    });
-    // send mail with defined transport object
-    const info = await transporter.sendMail({
-      from: '"Grace Shockers 👻" <graceshockers@gmail.com>',
-      to: billingDetails.email,
-      subject: 'Thank you for your SPOOKY 👻 order',
-      html: emailText,
-    });
-
-    console.log('Message sent: %s', info.messageId);
-
     res.send(shippedOrder);
   } catch (err) { next(err); }
 });
+
+// const transporter = nodemailer.createTransport({
+//   service: 'gmail',
+//   auth: {
+//     user: 'graceshockers@gmail.com', // generated ethereal user
+//     pass: 'Catchers', // generated ethereal password
+//   },
+// });
+// // send mail with defined transport object
+// const info = await transporter.sendMail({
+//   from: '"Grace Shockers 👻" <graceshockers@gmail.com>',
+//   to: email,
+//   subject: 'Thank you for your SPOOKY 👻 order',
+//   html: emailText,
+// });
+
+// console.log('Message sent: %s', info.messageId);
 
 module.exports = router;

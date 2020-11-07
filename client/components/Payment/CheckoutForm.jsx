@@ -85,7 +85,7 @@ const CheckoutForm = (props) => {
 
       await axios.put(`/api/orders/isPaid/${orderId}`,
         { billingDetails });
-      await axios.post('/api/stripe/email', { billingDetails, emailText });
+      await axios.post('/api/stripe/email', { email: billingDetails.email, emailText, subject: 'Thank you for your SPOOKY 👻 order' });
       history.push('/successfulCheckout');
     } catch (err) {
       setCheckoutError(err.message);

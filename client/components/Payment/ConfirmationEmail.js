@@ -8,7 +8,7 @@ export default function ConfirmationEmail(billingDetails, total, costumes) {
         ${costumes.map(costume => {
     return `<li>${costume.costumeName}, ${costume.lineitem.quantity} units, $${costume.price} each</li>`}).join('')}
       </ul>
-      <p>Total: ${total}</p>
+      <p>Total: $${total}</p>
       <p>Shipping address: ${address.city} ${address.line1} ${address.state} ${address.postal_code}</p>
       <p>If you have any questions, please reply to this email.</p>
       <p>Thanks,</p>

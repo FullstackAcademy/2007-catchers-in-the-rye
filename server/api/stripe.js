@@ -28,7 +28,7 @@ router.post('/charge', async (req, res, next) => {
 
 router.post('/email', async (req, res, next) => {
   try {
-    const { billingDetails, emailText } = req.body;
+    const { email, emailText, subject } = req.body;
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -39,8 +39,8 @@ router.post('/email', async (req, res, next) => {
     // send mail with defined transport object
     const info = await transporter.sendMail({
       from: '"Grace Shockers 👻" <graceshockers@gmail.com>',
-      to: billingDetails.email,
-      subject: 'Thank you for your SPOOKY 👻 order',
+      to: email,
+      subject,
       html: emailText,
     });
 

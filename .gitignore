@@ -12,4 +12,3 @@ npm-debug.log
 .DS_Store
 
 # Keys for Stripe
-.env

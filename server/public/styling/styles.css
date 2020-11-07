@@ -107,8 +107,7 @@ html {
     font-family: 'Englebert', sans-serif;
   }
   
-  .container {
-    display: flex;
+  .content-body {
     margin-left: 200px;
     margin-top: 50px;
     padding-left: 50px;
@@ -205,7 +204,7 @@ html {
     text-decoration: line-through;
   }
 
-  .costume a:link, .costume a:visited {
+  .costume a:link, .costume a:visited, .costumesList a:link, .costumesList a:visited {
     height: 100%;
     width: 100%;
     padding: 5px;
@@ -214,7 +213,7 @@ html {
     color: rgb(256, 256, 256);
   }
 
-  .costume a:hover, .costume a:active {
+  .costume a:hover, .costume a:active, .costumesList a:hover, .costumesList a:active {
     background-color: rgb(255, 154, 0);
   }
 
@@ -275,6 +274,11 @@ html {
     padding-top: 50px;
   }
 
+  /* .box {
+    width: 400px;
+    min-height: 400px;
+  } */
+
   button.is-block.is-info.is-large.is-fullwidth {
     background-color: #85E21F;
   }
@@ -296,5 +300,5 @@ html {
     /* .sidenav {padding-top: 15px;} */
     .sidenav a {font-size: 18px;}
     h1 {font-size: 30px};
-    .container {max-height: fit-content}
+    /* .container {max-height: fit-content} */
   }

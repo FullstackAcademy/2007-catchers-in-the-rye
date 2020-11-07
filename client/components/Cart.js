@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCart, updateCartQuantity, removeItem } from '../redux/cart/cart';
 import Costume from './costume/CostumeCard'
-import { CheckoutForm } from './Payment/CheckoutForm';
-// buttons that still need functionality: Checkout / keep shopping
+
 class Cart extends Component {
   constructor() {
     super();
@@ -57,7 +56,7 @@ class Cart extends Component {
           <button type="button" onClick={this.keepShopping}>Keep Shopping</button>
         </div>
         {costumes.map((costume) => (
-          <div>
+          <div className="singleCostume" key={costume.id}>
            <Costume costume={costume} view="detailed" />
            <div className="costume-options">
               <div className="add-subtract">

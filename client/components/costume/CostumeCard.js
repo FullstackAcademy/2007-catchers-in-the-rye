@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 
 class Costume extends Component {
     render() {
-        const { costume, view, user } = this.props
+        const { 
+            costume, view, user 
+        } = this.props
         return (
             <div className={view === "detailed" ? "costume detailView" : "costume"} role="listitem">
                 <div>
@@ -63,8 +65,4 @@ const mapStateToProps = (state, ownProps) => ({
     user: state.user,
   });
   
-const mapDispatchToProps = (dispatch) => ({
-
-});
-  
-export default connect(mapStateToProps, mapDispatchToProps)(Costume);
+export default connect(mapStateToProps, null)(Costume);

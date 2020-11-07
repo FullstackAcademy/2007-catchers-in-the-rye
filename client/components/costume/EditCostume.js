@@ -36,8 +36,6 @@ class EditCostume extends Component {
     const thisCostume = this.props.sCostume;
     const { categories } = this.props;
     const thisCategory = categories.find((category) => category.id === thisCostume.categoryId);
-    // console.log(thisCategory)
-    console.log(categories.find((category) => category.id === thisCostume.categoryId));
     return (
 
       <div className="container">

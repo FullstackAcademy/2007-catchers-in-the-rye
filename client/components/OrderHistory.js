@@ -14,28 +14,31 @@ class OrderHistory extends Component {
       return (
         <div>
           <h1>Previous Orders:</h1>
-          <ul>
+          <div>
             {orders.map((order) => {
               const date = new Date(order.createdAt);
               const readableDate = date.toDateString();
               return (
-                <li key={order.id}>
-                  <div>{readableDate}</div>
-                  <div>
-                    Total: $
+                <div key={order.id}>
+                  <div className="orderText">Order Date: {readableDate}</div>
+                  <div className="orderText">
+                    Item Total: $
                     {order.total}
                   </div>
-                  <ul>
+                  <div>
                     {order.costumes.map((costume) => (
-                      <li key={costume.id}>
+                      <div className="costumes" key={costume.id}>
+                        <img src={costume.imageUrl} />
+                        <div>
                         <Link to={`/costumes/${costume.costumeName}`}>{costume.costumeName}</Link>
-                      </li>
+                        </div>
+                      </div>
                     ))}
-                  </ul>
-                </li>
+                  </div>
+                </div>
               );
             })}
-          </ul>
+          </div>
         </div>
       );
     }

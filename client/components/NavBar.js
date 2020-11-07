@@ -53,13 +53,15 @@ class NavBar extends Component {
                 onClick={() => selectTopNav("cart")}>
                   Cart
                 </Link>
-                <Link to="/orderHistory" className="navbar-item">Order History</Link>
+                { user.userType === 'admin' ? 
+                  <Link to="/admin/pending" className="navbar-item">Orders to Ship</Link>
+                  : null }
             </div>
             <div className= "topnav-right">  
               <span>Welcome, {user.id ? user.firstName : 'Guest'}!</span>
                 {user.id ? (
                   <div className="buttons">
-                    <Link to="/home" className="button is-black">Account Settings</Link>
+                    <Link to="/orderHistory" className="button is-black">Order History</Link>
                     <Link to="/login" className="button is-black" onClick={logout}>Log out</Link>
                   </div>
                 )

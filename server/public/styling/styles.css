@@ -241,6 +241,15 @@ html {
 
   .costume-options button:focus {
     background-color: rgb(255, 154, 0);
+
+  .CheckoutHeader {
+    text-align: center;
+    padding-top: 50px;
+  }
+
+  .success {
+    text-align: center;
+    padding-top: 50px;
   }
 
   button.is-block.is-info.is-large.is-fullwidth {

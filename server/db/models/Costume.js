@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
 
-const { STRING, FLOAT, INTEGER, DECIMAL } = Sequelize;
+const { STRING, FLOAT, INTEGER } = Sequelize;
 
 const Costume = db.define('costume', {
   costumeName: {

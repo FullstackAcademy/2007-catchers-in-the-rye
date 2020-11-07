@@ -95,51 +95,117 @@ html {
     color: rgb(133, 226, 31);
   }
   
+  h1 {
+    color: rgb(133, 226, 31);
+    font-family: 'Henny Penny', cursive;
+    font-size: 50px;
+  }
+
   .main {
-    margin-left: 160px; /* Same as the width of the sidenav */
     font-size: 28px; /* Increased text to enable scrolling */
     padding: 0px 10px;
     font-family: 'Englebert', sans-serif;
   }
   
-  @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
-  }
-  
   .container {
-    padding-left: 170px;
+    margin-left: 200px;
+    margin-top: 50px;
+    padding-left: 50px;
     padding-top: 50px;
   }
   
-  .costumes {
-    float: left;
-    background-color: #f2f2f2;
-    list-style-type: none;
+  .detailView {
     display: flex;
-    flex-direction: column;
+    float: left;
+    background-color: rgb(256, 256, 256);
+    list-style-type: none;
     justify-content: space-evenly;
     border-width: 2px;
     border-color: black;
     border-style: solid;
-    width: 300px;
-    height: 400px;
-    margin: 10px 10px;
+    width: 400px;
+    height: 320px;
+    margin: 10px;
     border-radius: 10px;
-    margin: 20px;
-    text-align: center;
-    align-items: center;
+    padding: 10px;
   }
-  
-  img {
+
+  .costume {
+    display: flex;
+    float: left;
+    background-color: rgb(256, 256, 256);
+    list-style-type: none;
+    justify-content: space-evenly;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    width: 400px;
+    height: 320px;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .costume:hover {
+    border-width: 5px;
+    border-color: rgb(133, 226, 31);
+  }
+
+  .costume img {
+    object-fit: fill;
     width: 200px;
     height: 300px;
   }
-  
-  h1 {
-    color: rgb(133, 226, 31);
-    font-family: 'Henny Penny', cursive;
-    font-size: 50px;
+
+  .costume.details {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .costume-name {
+    font-weight: bold;
+  }
+
+  .new {
+    color: green;
+  }
+
+  .new-price {
+    color: green;
+    font-weight: bold;
+  }
+
+  .old {
+    color: red;
+  }
+
+  .old-price {
+    color: red;
+    text-decoration: line-through;
+  }
+
+  .costume a:link, .costume a:visited {
+    height: 100%;
+    width: 100%;
+    padding: 5px;
+    background-color: rgb(249, 193, 14);
+    border-radius: 10px;
+    color: rgb(256, 256, 256);
+  }
+
+  .costume a:hover, .costume a:active {
+    background-color: rgb(255, 154, 0);
+  }
+
+  .CheckoutHeader {
+    text-align: center;
+    padding-top: 50px;
+  }
+
+  .success {
+    text-align: center;
+    padding-top: 50px;
   }
 
   button.is-block.is-info.is-large.is-fullwidth {
@@ -159,7 +225,9 @@ html {
     padding: 0px 0px;
   }  
 
-  #old-price {
-    color: red;
-    text-decoration: line-through;
+  @media only screen and (max-width: 850px) {
+    /* .sidenav {padding-top: 15px;} */
+    .sidenav a {font-size: 18px;}
+    h1 {font-size: 30px};
+    .container {max-height: fit-content}
   }

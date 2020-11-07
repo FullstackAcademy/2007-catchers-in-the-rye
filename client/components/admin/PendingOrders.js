@@ -5,7 +5,7 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchPendingOrders } from '../../redux/PendingOrders/pendingOrders';
+import { fetchPendingOrders, updateShipping } from '../../redux/PendingOrders/pendingOrders';
 
 class PendingOrders extends Component {
   constructor() {
@@ -21,7 +21,7 @@ class PendingOrders extends Component {
   }
 
   render() {
-    const { pendingOrders } = this.props;
+    const { pendingOrders, updateShipping } = this.props;
     return (
       this.state.message.length
         ? <h1>{this.state.message}</h1>
@@ -58,6 +58,7 @@ class PendingOrders extends Component {
                   </p>
                 </div>
               ))}
+              <button onClick={() => updateShipping(order.id)}>Shipped!</button>
               <hr />
             </div>
           ))}
@@ -72,7 +73,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchPendingOrders: () => dispatch(fetchPendingOrders()),
-  // updateShipping: (orderId) => dispatch(updateShipping(orderId)),
+  updateShipping: (orderId) => dispatch(updateShipping(orderId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PendingOrders);

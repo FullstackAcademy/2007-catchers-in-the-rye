@@ -132,7 +132,6 @@ html {
 
   .costume {
     display: flex;
-    float: left;
     background-color: rgb(256, 256, 256);
     list-style-type: none;
     justify-content: space-evenly;
@@ -156,6 +155,21 @@ html {
     width: 200px;
     height: 300px;
   }
+
+  .detailView {
+    width: 600px;
+    height: 480px;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .detailView img {
+    object-fit: fill;
+    width: 300px;
+    height: 450px;
+  }
+
 
   .costume.details {
     display: flex;
@@ -195,6 +209,37 @@ html {
   }
 
   .costume a:hover, .costume a:active {
+    background-color: rgb(255, 154, 0);
+  }
+
+  .singleCostume {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .costume-options {
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(256, 256, 256);
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    width: 600px;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .costume-options button {
+    height: 100%;
+    padding: 5px;
+    background-color: rgb(249, 193, 14);
+    border-radius: 10px;
+    color: rgb(256, 256, 256);
+  }
+
+  .costume-options button:focus {
     background-color: rgb(255, 154, 0);
   }
 

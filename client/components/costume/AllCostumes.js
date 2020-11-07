@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-filename-extension */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Costume from './CostumeCard'
 import { loadCostumesDispatch } from '../../redux/costumes/allCostumes';
 
@@ -11,19 +12,25 @@ class AllCostumes extends Component {
 
   render() {
     const {
-      categories, selectedCategoryName, costumes
+      categories, selectedCategoryName, costumes, user
     } = this.props;
     const selectedCategory = categories.find((category) => category.title === selectedCategoryName);
     return (
       <div className="costumesList">
-        <div>
-          <h1>{selectedCategory ? selectedCategoryName : 'All'} Costumes</h1>
-          {selectedCategory ?
-            costumes.map((costume) => (costume.categoryId === selectedCategory.id ? <Costume key={costume.id} costume={costume} /> : null))
-          :
-            costumes.map((costume) => (<Costume key={costume.id} costume={costume} />))
-          }
-        </div>
+        <h1>{selectedCategory ? selectedCategoryName : 'All'} Costumes</h1>
+        {
+          user.userType === "admin"? 
+            <div>
+              <Link to={"/costumes/add"}>Create New Costume</Link>
+            </div> 
+          : 
+            null
+        }
+        {selectedCategory ?
+          costumes.map((costume) => (costume.categoryId === selectedCategory.id ? <Costume key={costume.id} costume={costume} /> : null))
+        :
+          costumes.map((costume) => (<Costume key={costume.id} costume={costume} />))
+        }
       </div>
     );
   }

@@ -10,30 +10,32 @@ class NavBar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedCategory: 'all',
-      selectedNav: 'home',
+      selectedCategory: '',
+      selectedNav: '',
     };
     this.selectCategory = this.selectCategory.bind(this);
     this.selectTopNav = this.selectTopNav.bind(this);
   };
+
   async componentDidMount() {
-    const { props, setState } = this;
-    const { fetchCategories, checkCookiesSetSession, getUser } = props;
+    const { fetchCategories, checkCookiesSetSession, getUser } = this.props;
     fetchCategories();
     await checkCookiesSetSession();
     getUser();
-    
   };
+
   selectCategory (input) {
     this.setState({
       selectedCategory: input,
     });
   };
+
   selectTopNav (input) {
     this.setState({
       selectedNav: input,
     });
   };
+
   render() {
     const { selectCategory, selectTopNav, props, state } = this;
     const { categories, user, logout } = props;   
@@ -52,6 +54,10 @@ class NavBar extends Component {
                 <Link to="/cart" className={selectedNav === "cart" ? "selected" : null}
                 onClick={() => selectTopNav("cart")}>
                   Cart
+                </Link>
+                <Link to="/orderHistory" className={selectedNav === "orderHistory" ? "selected" : null}
+                onClick={() => selectTopNav("orderHistory")}>
+                  Order History
                 </Link>
                 { user.userType === 'admin' ? 
                   <Link to="/admin/pending" className="navbar-item">Orders to Ship</Link>

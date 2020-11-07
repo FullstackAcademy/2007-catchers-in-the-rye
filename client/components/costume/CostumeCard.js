@@ -17,7 +17,7 @@ class Costume extends Component {
                     <div className="old-price">${(costume.price / (1 - costume.discount)).toFixed(2)}</div>
                     <br />
                     <div className="new">NOW ONLY</div>
-                    <div className="new-price">${costume.price.toFixed(2)}</div>
+                    <div className="new-price">${costume.price}</div>
                     <br />
                     <div className="links">
                         <div><Link to={`/costumes/${costume.costumeName}/${costume.id}`}>Details</Link></div>
@@ -39,6 +39,7 @@ class Costume extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
     costume: ownProps.costume,
+    view: ownProps.view,
     user: state.user,
   });
   

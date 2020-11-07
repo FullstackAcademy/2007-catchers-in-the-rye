@@ -107,16 +107,29 @@ html {
     font-family: 'Englebert', sans-serif;
   }
   
-  @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
-  }
-  
   .container {
-    padding-left: 75px;
-    padding-top: 75px;
+    margin-left: 200px;
+    margin-top: 50px;
+    padding-left: 50px;
+    padding-top: 50px;
   }
   
+  .detailView {
+    display: flex;
+    float: left;
+    background-color: rgb(256, 256, 256);
+    list-style-type: none;
+    justify-content: space-evenly;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    width: 400px;
+    height: 320px;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
   .costume {
     display: flex;
     float: left;
@@ -201,3 +214,10 @@ html {
   div.container.has-text-centered {
     padding: 0px 0px;
   }  
+
+  @media only screen and (max-width: 850px) {
+    /* .sidenav {padding-top: 15px;} */
+    .sidenav a {font-size: 18px;}
+    h1 {font-size: 30px};
+    .container {max-height: fit-content}
+  }

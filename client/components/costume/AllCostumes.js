@@ -11,7 +11,7 @@ class AllCostumes extends Component {
 
   render() {
     const {
-      categories, selectedCategoryName, costumes, user,
+      categories, selectedCategoryName, costumes
     } = this.props;
     const selectedCategory = categories.find((category) => category.title === selectedCategoryName);
     return (

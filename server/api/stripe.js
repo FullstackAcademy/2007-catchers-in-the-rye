@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const nodemailer = require('nodemailer');
-const { Order } = require('../db');
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();

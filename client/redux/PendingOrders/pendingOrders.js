@@ -1,5 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import axios from 'axios';
+import ShippedEmail from '../../Payment/ShippedEmail'
 
 const PENDING_ORDERS = 'PENDING_ORDERS';
 const UPDATE_SHIPPING = 'UPDATE_SHIPPING';
@@ -26,6 +27,9 @@ const _updateShipping = (shippedOrder) => ({
 const updateShipping = (orderId) => async (dispatch) => {
   try {
     const { data } = await axios.put(`/api/orders/admin/pending/${orderId}`);
+    console.log(data);
+    // const emailText = ShippedEmail(data);
+    // await axios.post('/api/orders/admin/pending/email', { emailText });
     dispatch(_updateShipping(data));
   } catch (err) { console.error(err); }
 };

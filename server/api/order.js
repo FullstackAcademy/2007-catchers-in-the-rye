@@ -1,3 +1,5 @@
+const nodemailer = require('nodemailer');
+
 const router = require('express').Router();
 const {
   Order, Costume, Lineitem, Session,
@@ -182,6 +184,25 @@ router.put('/admin/pending/:id', async (req, res, next) => {
     await shippedOrder.update({
       isShipped: true,
     });
+
+    const { billingDetails, emailText } = req.body;
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'graceshockers@gmail.com', // generated ethereal user
+        pass: 'Catchers', // generated ethereal password
+      },
+    });
+    // send mail with defined transport object
+    const info = await transporter.sendMail({
+      from: '"Grace Shockers 👻" <graceshockers@gmail.com>',
+      to: billingDetails.email,
+      subject: 'Thank you for your SPOOKY 👻 order',
+      html: emailText,
+    });
+
+    console.log('Message sent: %s', info.messageId);
+
     res.send(shippedOrder);
   } catch (err) { next(err); }
 });

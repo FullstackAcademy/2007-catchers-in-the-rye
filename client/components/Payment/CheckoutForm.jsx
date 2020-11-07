@@ -10,7 +10,7 @@ import Row from './prebuilt/Row';
 import BillingDetailsFields from './prebuilt/BillingDetailsFields';
 import SubmitButton from './prebuilt/SubmitButton';
 import CheckoutError from './prebuilt/CheckoutError';
-import Email from './Email';
+import ConfirmationEmail from './ConfirmationEmail';
 
 const CardElementContainer = styled.div`
   height: 40px;
@@ -50,7 +50,7 @@ const CheckoutForm = (props) => {
         postal_code: ev.target.zip.value,
       },
     };
-    const emailText = Email(billingDetails, price, costumes);
+    const emailText = ConfirmationEmail(billingDetails, price, costumes);
 
     setProcessingTo(true);
 

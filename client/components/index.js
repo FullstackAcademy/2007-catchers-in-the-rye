@@ -47,7 +47,6 @@ class Routes extends Component {
                 <Route path="/admin/pending" exact component={PendingOrders} />
                 <Route path="/checkout" exact component={CheckoutForm} />
                 <Route path="/successfulCheckout" exact component={PaymentSuccess} />
-                <Redirect from='/login' to='/home' />
               </Switch>
             </main>
             </div>

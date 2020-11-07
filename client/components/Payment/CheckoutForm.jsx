@@ -10,6 +10,7 @@ import Row from './prebuilt/Row';
 import BillingDetailsFields from './prebuilt/BillingDetailsFields';
 import SubmitButton from './prebuilt/SubmitButton';
 import CheckoutError from './prebuilt/CheckoutError';
+import Email from './Email';
 
 const CardElementContainer = styled.div`
   height: 40px;
@@ -25,6 +26,7 @@ const CheckoutForm = (props) => {
   const history = useHistory();
   const price = props.location.state.total === undefined ? 0 : props.location.state.total;
   const orderId = props.location.state.orderId;
+  const costumes = props.location.state.costumes;
   const [isProcessing, setProcessingTo] = useState(false);
   const [checkoutError, setCheckoutError] = useState();
 
@@ -48,6 +50,7 @@ const CheckoutForm = (props) => {
         postal_code: ev.target.zip.value,
       },
     };
+    const emailText = Email(billingDetails, price, costumes);
 
     setProcessingTo(true);
 
@@ -55,7 +58,7 @@ const CheckoutForm = (props) => {
 
     try {
       const { data: clientSecret } = await axios.post('/api/stripe/charge', {
-        amount: price * 100,
+        amount: Math.round(price * 100),
       });
 
       const paymentMethodReq = await stripe.createPaymentMethod({
@@ -82,6 +85,7 @@ const CheckoutForm = (props) => {
 
       await axios.put(`/api/orders/isPaid/${orderId}`,
         { billingDetails });
+      await axios.post('/api/stripe/email', { billingDetails, emailText });
       history.push('/successfulCheckout');
     } catch (err) {
       setCheckoutError(err.message);

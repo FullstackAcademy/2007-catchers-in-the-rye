@@ -14,7 +14,7 @@ export default class PaymentSuccess extends Component {
   render() {
     return (
       <div className="success">
-        <h1>Your Payment Was Successful!</h1>
+        <h1>Your payment was processed! A confirmation email has been sent.</h1>
         <button className="button" type="button" onClick={this.keepShopping}>Continue Shopping</button>
       </div>
     );

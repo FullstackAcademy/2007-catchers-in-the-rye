@@ -265,10 +265,10 @@ html {
     color: red;
   }
 
-  .box {
+  /* .box {
     width: 400px;
     min-height: 400px;
-  }
+  } */
 
   button.is-block.is-info.is-large.is-fullwidth {
     background-color: #85E21F;

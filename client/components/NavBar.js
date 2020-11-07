@@ -10,30 +10,32 @@ class NavBar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedCategory: 'all',
+      selectedCategory: '',
       selectedNav: '',
     };
     this.selectCategory = this.selectCategory.bind(this);
     this.selectTopNav = this.selectTopNav.bind(this);
   };
+
   async componentDidMount() {
-    const { props, setState } = this;
-    const { fetchCategories, checkCookiesSetSession, getUser } = props;
+    const { fetchCategories, checkCookiesSetSession, getUser } = this.props;
     fetchCategories();
     await checkCookiesSetSession();
     getUser();
-    
   };
+
   selectCategory (input) {
     this.setState({
       selectedCategory: input,
     });
   };
+
   selectTopNav (input) {
     this.setState({
       selectedNav: input,
     });
   };
+
   render() {
     const { selectCategory, selectTopNav, props, state } = this;
     const { categories, user, logout } = props;   
@@ -62,7 +64,6 @@ class NavBar extends Component {
               <span>Welcome, {user.id ? user.firstName : 'Guest'}!</span>
                 {user.id ? (
                   <div className="buttons">
-                    <Link to="/home" className="button is-black">Account Settings</Link>
                     <Link to="/login" className="button is-black" onClick={logout}>Log out</Link>
                   </div>
                 )

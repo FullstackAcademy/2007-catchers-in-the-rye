@@ -95,8 +95,13 @@ html {
     color: rgb(133, 226, 31);
   }
   
+  h1 {
+    color: rgb(133, 226, 31);
+    font-family: 'Henny Penny', cursive;
+    font-size: 50px;
+  }
+
   .main {
-    margin-left: 160px; /* Same as the width of the sidenav */
     font-size: 28px; /* Increased text to enable scrolling */
     padding: 0px 10px;
     font-family: 'Englebert', sans-serif;
@@ -108,12 +113,8 @@ html {
   }
   
   .container {
-    padding-left: 170px;
-    padding-top: 50px;
-  }
-
-  .costumeList {
-    display: flex;
+    padding-left: 75px;
+    padding-top: 75px;
   }
   
   .costume {
@@ -121,8 +122,6 @@ html {
     float: left;
     background-color: rgb(256, 256, 256);
     list-style-type: none;
-    /* display: flex;
-    flex-direction: column; */
     justify-content: space-evenly;
     border-width: 2px;
     border-color: black;
@@ -132,9 +131,6 @@ html {
     margin: 10px;
     border-radius: 10px;
     padding: 10px;
-    /* margin: 20px; */
-    /* text-align: center;
-    align-items: center; */
   }
 
   .costume:hover {
@@ -152,6 +148,10 @@ html {
     display: flex;
     flex-direction: column;
     padding: 10px;
+  }
+
+  .costume-name {
+    font-weight: bold;
   }
 
   .new {
@@ -183,13 +183,6 @@ html {
 
   .costume a:hover, .costume a:active {
     background-color: rgb(255, 154, 0);
-  }
-  
-  
-  h1 {
-    color: rgb(133, 226, 31);
-    font-family: 'Henny Penny', cursive;
-    font-size: 50px;
   }
 
   button.is-block.is-info.is-large.is-fullwidth {

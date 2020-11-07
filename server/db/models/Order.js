@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const db = require('../db');
 
 const {
-  STRING, BOOLEAN, DECIMAL, ENUM,
+  STRING, BOOLEAN, DECIMAL,
 } = Sequelize;
 
 const Order = db.define('order', {

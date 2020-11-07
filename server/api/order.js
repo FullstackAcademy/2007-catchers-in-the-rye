@@ -129,7 +129,7 @@ router.delete('/userCart/:costumeId', async (req, res, next) => {
 
 router.put('/isPaid/:id', async (req, res, next) => {
   try {
-    // console.log(req.body);
+    const { name } = req.body.billingDetails;
     const {
       line1, city, state, postal_code,
     } = req.body.billingDetails.address;
@@ -138,6 +138,7 @@ router.put('/isPaid/:id', async (req, res, next) => {
     await order.update({
       isPaid: true,
       shippingAddress,
+      name,
     });
     res.send(order);
   } catch (err) {
@@ -174,14 +175,15 @@ router.get('/admin/pending', async (req, res, next) => {
   } catch (err) { next(err); }
 });
 
-// commented out for now - we do not need this route anymore given we are using cookies to identify cart
-// router.get('/:id', async(req, res, next) => {
-//     try {
-//         const order = await Order.findByPk(req.params.id, { include: [Costume] })
-//         res.send(order)
-//     } catch(err) {
-//         next(err)
-//     }
-// })
+router.put('/admin/pending/:id', async (req, res, next) => {
+  try {
+    const orderId = req.params.id;
+    const shippedOrder = await Order.findByPk(orderId);
+    await shippedOrder.update({
+      isShipped: true,
+    });
+    res.send(shippedOrder);
+  } catch (err) { next(err); }
+});
 
 module.exports = router;

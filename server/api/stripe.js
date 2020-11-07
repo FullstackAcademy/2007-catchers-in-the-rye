@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const nodemailer = require('nodemailer');
+const { Order } = require('../db');
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
@@ -23,6 +25,29 @@ router.post('/charge', async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+});
+
+router.post('/email', async (req, res, next) => {
+  try {
+    const { billingDetails, emailText } = req.body;
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'graceshockers@gmail.com', // generated ethereal user
+        pass: 'Catchers', // generated ethereal password
+      },
+    });
+    // send mail with defined transport object
+    const info = await transporter.sendMail({
+      from: '"Grace Shockers 👻" <graceshockers@gmail.com>',
+      to: billingDetails.email,
+      subject: 'Thank you for your SPOOKY 👻 order',
+      html: emailText,
+    });
+
+    console.log('Message sent: %s', info.messageId);
+    res.sendStatus(200);
+  } catch (err) { next(err); }
 });
 
 module.exports = router;

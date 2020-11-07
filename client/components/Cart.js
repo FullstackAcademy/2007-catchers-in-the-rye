@@ -31,6 +31,7 @@ class Cart extends Component {
       state: {
         total: this.props.cart.total,
         orderId: this.props.cart.id,
+        costumes: this.props.cart.costumes,
       },
     });
   }

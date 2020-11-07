@@ -264,6 +264,15 @@ html {
   .add-subtract button.subtract:focus, .add-subtract button.subtract:hover {
     background-color: rgb(256, 256, 256);
     color: red;
+
+  .CheckoutHeader {
+    text-align: center;
+    padding-top: 50px;
+  }
+
+  .success {
+    text-align: center;
+    padding-top: 50px;
   }
 
   button.is-block.is-info.is-large.is-fullwidth {

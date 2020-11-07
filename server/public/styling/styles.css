@@ -5,18 +5,19 @@ html {
 #landing-div {
   display: flex;
   height: 80%;
-  justify-content: space-between;
+  justify-content: flex-start;
+  align-items: flex-end;
 }
 
 #landing-image {
-  max-height: 50%;
-  max-width: 50%;
+  max-height: 45%;
+  max-width: 45%;
 }
 
-#bubble {
+/* #bubble {
   max-width: 30%;
   max-height: 30%
-}
+} */
 
 .topnav {
   display: inline-flex;
@@ -248,64 +249,28 @@ html {
     .container {max-height: fit-content}
   }
 
-  .speech {
+  #talkbubble {
+    width: 50%;
+    height: 100%;
+    background: #85E21F;
     position: relative;
-    background: #00aabb;
-    border-radius: .4em;
-  }
-  
-  .speech:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border: 20px solid transparent;
-    border-top-color: #00aabb;
-    border-bottom: 0;
-    border-left: 0;
-    margin-left: -10px;
-    margin-bottom: -20px;
-  }
-
-  /* a.speech {
-    position: relative;
-    width: 400px;
-    height: 400px;
-    text-align: center;
-    line-height: 100px;
-    background-color: #fff;
-    border: 8px solid #85E21F;
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    border-radius: 30px;
-    -webkit-box-shadow: 2px 2px 4px #888;
-    -moz-box-shadow: 2px 2px 4px #888;
-    box-shadow: 2px 2px 4px #888;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    margin-left: 30px;
+    margin-bottom: 70px; 
     font-family: 'Henny Penny', cursive;
-    font-size: 50px;
-    margin: 50px;
+    font-size: 80px;
+    text-align: center;
   }
-
-  a.speech:before {
-    content: ' ';
+  #talkbubble:before {
+    content: "";
     position: absolute;
-    width: 0;
-    height: 0;
-    left: 0px;
-    top: 400px;
-    border: 25px solid;
-    border-color: #666 transparent transparent #666;
-  }
-
-  a.speech:after {
-    content: ' ';
-    position: absolute;
-    width: 0;
-    height: 0;
-    left: 38px;
+    right: 100%;
     top: 100px;
-    border: 15px solid;
-    border-color: #fff transparent transparent #fff;
-  } */
+    width: 0;
+    height: 0;
+    border-top: 13px solid transparent;
+    border-right: 26px solid #85E21F;
+    border-bottom: 13px solid transparent;
+  }

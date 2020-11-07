@@ -33,8 +33,10 @@ class Routes extends Component {
           <div className="container">
             <main>
               <Switch>
-                <Route exact path="/" exact component={LandingPage} />
-                <Route path="/home" exact component={AllCostumes} />
+                <Route exact path="/">
+                  <Redirect to="/home" />
+                </Route>
+                <Route path="/home" exact component={LandingPage} />
                 <Route path="/categories/:categoryTitle" exact component={AllCostumes} />
                 <Route path="/costumes/:name/:id" exact component={SingleCostume} />
                 <Route path="/costumes/add" exact component={CreateCostume} />

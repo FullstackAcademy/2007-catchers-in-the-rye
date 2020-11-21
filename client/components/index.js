@@ -18,6 +18,7 @@ import OrderHistory from './OrderHistory';
 import PendingOrders from './admin/PendingOrders';
 import CheckoutForm from './Payment/CheckoutForm';
 import PaymentSuccess from './Payment/PaymentSuccess';
+import LandingPage from './LandingPage';
 
 const stripePromise = loadStripe(process.env.STRIPE_PUBLIC_KEY);
 
@@ -34,7 +35,7 @@ class Routes extends Component {
                 <Route exact path="/">
                   <Redirect to="/home" />
                 </Route>
-                <Route path="/home" exact component={AllCostumes} />
+                <Route path="/home" exact component={LandingPage} />
                 <Route path="/categories/:categoryTitle" exact component={AllCostumes} />
                 <Route path="/costumes/:name/:id" exact component={SingleCostume} />
                 <Route path="/costumes/add" exact component={CreateCostume} />

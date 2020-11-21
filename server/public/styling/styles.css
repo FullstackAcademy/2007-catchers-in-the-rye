@@ -1,6 +1,27 @@
-html {
+/* html {
   background-color: rgb(136, 30, 228);
+} */
+
+body, html{
+  background-image: url("/costumeImages/pattern2.jpg")
 }
+
+#landing-div {
+  display: flex;
+  height: 80%;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+#landing-image {
+  max-height: 45%;
+  max-width: 45%;
+}
+
+/* #bubble {
+  max-width: 30%;
+  max-height: 30%
+} */
 
 .topnav {
   display: inline-flex;
@@ -300,5 +321,33 @@ html {
     /* .sidenav {padding-top: 15px;} */
     .sidenav a {font-size: 18px;}
     h1 {font-size: 30px};
-    /* .container {max-height: fit-content} */
+
+    .container {max-height: fit-content}
+  }
+
+  #talkbubble {
+    width: 50%;
+    height: 100%;
+    background: #85E21F;
+    position: relative;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    margin-left: 30px;
+    margin-bottom: 70px; 
+    font-family: 'Henny Penny', cursive;
+    font-size: 80px;
+    text-align: center;
+  }
+    
+  #talkbubble:before {
+    content: "";
+    position: absolute;
+    right: 100%;
+    top: 100px;
+    width: 0;
+    height: 0;
+    border-top: 13px solid transparent;
+    border-right: 26px solid #85E21F;
+    border-bottom: 13px solid transparent;
   }

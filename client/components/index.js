@@ -19,8 +19,7 @@ import PendingOrders from './admin/PendingOrders';
 import CheckoutForm from './Payment/CheckoutForm';
 import PaymentSuccess from './Payment/PaymentSuccess';
 
-// const stripePromise = loadStripe(process.env.STRIPE_PUBLIC_KEY);
-const stripePromise = loadStripe('pk_test_51Hj94RFSm62mRLAhb5em7vKTTRm9V6zoY3mvXE2tSlpdSPIMhW5lFXqwFgoCb3mPeCoWQJLqMqImtV65kktYaO8d00s0YJmJjb');
+const stripePromise = loadStripe(process.env.STRIPE_PUBLIC_KEY);
 
 class Routes extends Component {
   render() {

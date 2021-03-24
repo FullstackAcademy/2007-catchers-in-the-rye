@@ -1,30 +1,45 @@
-const Sequelize = require("sequelize") //for things like Sequelize.STRING
-//import your db
-const { db } = require('../db')
-const { STRING, BOOLEAN, FLOAT, ENUM } = Sequelize
-//define your model
-const Order = db.define('order', {
-    isPaid: {
-        type: BOOLEAN,
-        defaultValue: true
-    },
-    total: {
-        type: FLOAT
-    },
-    paymentMethod: {
-        type: ENUM('credit', 'cash'),
-        defaultValue: 'credit'
-    },
-    ccNumber: {
-        type: STRING
-    },
-    shippingAddress: {
-        type: STRING
-    },
-    shippingMethod: {
-        type: ENUM('ground', 'express'),
-        defaultValue: 'ground'
-    }
-})
+const Sequelize = require('sequelize');
+const db = require('../db');
 
-module.exports = { Order }
+const {
+  STRING, BOOLEAN, DECIMAL,
+} = Sequelize;
+
+const Order = db.define('order', {
+  isPaid: {
+    type: BOOLEAN,
+    defaultValue: false,
+  },
+  total: {
+    type: DECIMAL(10, 2),
+    defaultValue: 0,
+  },
+  shippingAddress: {
+    type: STRING,
+  },
+  isShipped: {
+    type: BOOLEAN,
+    defaultValue: false,
+  },
+  name: {
+    type: STRING,
+  },
+  email: {
+    type: STRING,
+    validate: {
+      isEmail: true,
+      notEmpty: true,
+    },
+  },
+});
+
+Order.prototype.calcTotal = async function () {
+  const thisOrderCostumes = await this.getCostumes();
+  this.total = thisOrderCostumes.reduce((acc, costume) => {
+    acc += costume.price * costume.lineitem.quantity;
+    return acc;
+  }, 0);
+  await this.save();
+};
+
+module.exports = Order;

@@ -1,58 +1,122 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux"
-import "../../server/public/css/styles.css"
+/* eslint-disable react/jsx-filename-extension */
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { fetchCategories } from '../redux/categories/allCategories';
+import { logout, getUser } from '../redux/authentication/user';
+import { checkCookiesSetSession } from '../redux/authentication/session';
 
+class NavBar extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      selectedCategory: '',
+      selectedNav: '',
+    };
+    this.selectCategory = this.selectCategory.bind(this);
+    this.selectTopNav = this.selectTopNav.bind(this);
+  };
 
-export default class NavBar extends Component {
+  async componentDidMount() {
+    const { fetchCategories, checkCookiesSetSession, getUser } = this.props;
+    fetchCategories();
+    await checkCookiesSetSession();
+    getUser();
+  };
+
+  selectCategory (input) {
+    this.setState({
+      selectedCategory: input,
+    });
+  };
+
+  selectTopNav (input) {
+    this.setState({
+      selectedNav: input,
+    });
+  };
+
   render() {
-
+    const { selectCategory, selectTopNav, props, state } = this;
+    const { categories, user, logout } = props;   
+    const { selectedCategory, selectedNav } = state;
     return (
-      <div >
-        <nav class="navbar is-link" role="navigation" aria-label="main navigation">
-          <div id="navbarBasicExample" class="navbar-menu">
-            <div class="navbar-start">
-              <a class="navbar-item">Grace Shockers</a>
-              <a class="navbar-item">Home</a>
-              <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">Categories</a>
-                <div class="navbar-dropdown">
-                  <a class="navbar-item">Men</a>
-                  <a class="navbar-item">Women</a>
-                  <a class="navbar-item">Kids</a>
-                  <a class="navbar-item">Scary</a>
-                  <a class="navbar-item">Funny</a>
-                  <a class="navbar-item">Animals</a>
-                  <a class="navbar-item">Movies</a>
-                </div>
+      <div>
+        <div className="topnav" role="navigtion" aria-label="main navigation">
+            <div className= "topnav-left"> 
+              <div className="logo">
+                <span>Grace Shockers</span>
               </div>
+                <Link to="/home" className={selectedNav === "home" ? "selected" : null} 
+                onClick={() => selectTopNav("home")}>
+                  Home
+                </Link>
+                <Link to="/cart" className={selectedNav === "cart" ? "selected" : null}
+                onClick={() => selectTopNav("cart")}>
+                  Cart
+                </Link>
+                <Link to="/orderHistory" className={selectedNav === "orderHistory" ? "selected" : null}
+                onClick={() => selectTopNav("orderHistory")}>
+                  Order History
+                </Link>
+                { user.userType === 'admin' ? 
+                  <Link to="/admin/pending" className="navbar-item">Orders to Ship</Link>
+                  : null }
             </div>
-
-            <div class="navbar-end">
-              <div class="navbar-item">
-                <div class="buttons">
-                  <a class="button is-black">
-                    <strong>Register</strong></a>
-                  <a class="button is-black">Log in</a>
-                </div>
-              </div>
+            <div className= "topnav-right">  
+              <span>Welcome, {user.id ? user.firstName : 'Guest'}!</span>
+                {user.id ? (
+                  <div className="buttons">
+                    <Link to="/orderHistory" className="button is-black">Order History</Link>
+                    <Link to="/login" className="button is-black" onClick={logout}>Log out</Link>
+                  </div>
+                )
+                  : (
+                    <div className="buttons">
+                      <Link to="/createUser" className="button is-black">Register</Link>
+                      <Link to="/login" className="button is-black">Log in</Link>
+                    </div>
+              )}
             </div>
           </div>
-        </nav>
 
-        <div>
-          <div class="sidenav">
-            <a href="#">All Costumes</a>
-            <a href="#">Men</a>
-            <a href="#">Women</a>
-            <a href="#">Kids</a>
-            <a href="#">Scary</a>
-            <a href="#">Funny</a>
-            <a href="#">Animals</a>
-            <a href="#">Movies</a>
-          </div>
+        <div className="sidenav" role="navigation" aria-label="search costumes by category">
+          <p>Select a Category:</p>
+          <Link className={selectedCategory === "all" ? "selected" : null} to="/categories/all" onClick={() => selectCategory('all')}>All</Link>
+          {
+            categories.map((category) => (
+              <Link className={selectedCategory === category.title ? "selected" : null} key={category.id} 
+              to={`/categories/${category.title}`} onClick={() => selectCategory(`${category.title}`)}>
+                {category.title}
+              </Link>
+            ))
+          }
         </div>
       </div>
-    )
+    );
   }
 }
+
+const mapStateToProps = (state, ownProps) => ({
+  categories: state.categories,
+  user: state.user,
+  // selectedCategoryTitle: ownProps.match.params.categoryTitle ? ownProps.match.params.categoryTitle : 'all',
+  selectedCategoryTitle: 'Animals',
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchCategories: () => {
+    dispatch(fetchCategories());
+  },
+  logout: () => {
+    dispatch(logout());
+  },
+  getUser: () => {
+    dispatch(getUser());
+  },
+  checkCookiesSetSession: () => {
+    dispatch(checkCookiesSetSession());
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

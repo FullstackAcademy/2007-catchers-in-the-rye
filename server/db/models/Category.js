@@ -1,17 +1,17 @@
-const Sequelize = require("sequelize") //for things like Sequelize.STRING
-//import your db
-const { db } = require('../db')
-const { STRING } = Sequelize
-//define your model
-const Category = db.define('category', {
-    title: {
-        type: STRING,
-        allowNull: false,
-        unique: true,
-        validation: {
-            notEmpty: true
-        }
-    }
-})
+const Sequelize = require('sequelize');
+const db = require('../db');
 
-module.exports = { Category }
+const { STRING } = Sequelize;
+
+const Category = db.define('category', {
+  title: {
+    type: STRING,
+    allowNull: false,
+    unique: true,
+    validation: {
+      notEmpty: true,
+    },
+  },
+});
+
+module.exports = Category;

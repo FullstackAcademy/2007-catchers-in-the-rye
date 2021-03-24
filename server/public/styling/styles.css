@@ -1,0 +1,353 @@
+/* html {
+  background-color: rgb(136, 30, 228);
+} */
+
+body, html{
+  background-image: url("/costumeImages/pattern2.jpg")
+}
+
+#landing-div {
+  display: flex;
+  height: 80%;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+#landing-image {
+  max-height: 45%;
+  max-width: 45%;
+}
+
+/* #bubble {
+  max-width: 30%;
+  max-height: 30%
+} */
+
+.topnav {
+  display: inline-flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  overflow: hidden;
+  background-color: rgb(255, 154, 0);
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  min-height: 50px;
+  width: 100%;
+}
+
+.topnav a, .topnav span {
+  color: #f2f2f2;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav-left {
+  display: inline-flex;
+  justify-content: flex-start;
+}
+
+.logo {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgb(247, 95, 28);
+  font-family: 'Henny Penny', cursive;
+  width: 200px;
+}
+
+.logo span {
+  color: rgb(133, 226, 31);
+  font-size: 29px;
+  padding: 0px;
+}
+
+.topnav-left a:hover {
+  background-color:rgb(249, 193, 14);
+  color: rgb(247, 95, 28);
+}
+
+.topnav a.selected {
+  background-color: rgb(249, 193, 14);
+  color: rgb(247, 95, 28);
+  border: 1px solid rgb(133, 226, 31);
+}
+
+.topnav-right {
+  display: inline-flex;
+  justify-content: flex-end;
+}
+
+.topnav-right span {
+  color: rgb(24, 24, 26);
+}
+
+.sidenav {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    background-color:rgb(24, 24, 26);
+    overflow-x: hidden;
+    padding-top: 100px;
+  }
+  
+  .sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    
+  }
+
+  .sidenav a:hover {
+    background-color: rgb(133, 226, 31);
+    color: rgb(136, 30, 228);
+  }
+
+  .sidenav a.selected {
+    background-color:  rgb(136, 30, 228);
+    color: rgb(133, 226, 31);
+  }
+  
+  h1 {
+    color: rgb(133, 226, 31);
+    font-family: 'Henny Penny', cursive;
+    font-size: 50px;
+  }
+
+  .main {
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+    font-family: 'Englebert', sans-serif;
+  }
+  
+  .content-body {
+    margin-left: 200px;
+    margin-top: 50px;
+    padding-left: 50px;
+    padding-top: 50px;
+  }
+  
+  .detailView {
+    display: flex;
+    float: left;
+    background-color: rgb(256, 256, 256);
+    list-style-type: none;
+    justify-content: space-evenly;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    width: 400px;
+    height: 320px;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .costume {
+    display: flex;
+    float: left;
+    background-color: rgb(256, 256, 256);
+    list-style-type: none;
+    justify-content: space-evenly;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    width: 400px;
+    height: 320px;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .costume:hover {
+    border-width: 5px;
+    border-color: rgb(133, 226, 31);
+  }
+
+  .costume img {
+    object-fit: fill;
+    width: 200px;
+    height: 300px;
+  }
+
+  .detailView {
+    width: 600px;
+    height: 480px;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .detailView img {
+    object-fit: fill;
+    width: 300px;
+    height: 450px;
+  }
+
+  .detailView:hover {
+    border-width: 2px;
+    border-color: black;
+  }
+
+  .costume.details {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .costume-name {
+    font-weight: bold;
+  }
+
+  .new {
+    color: green;
+  }
+
+  .new-price {
+    color: green;
+    font-weight: bold;
+  }
+
+  .old {
+    color: red;
+  }
+
+  .old-price {
+    color: red;
+    text-decoration: line-through;
+  }
+
+  .costume a:link, .costume a:visited, .costumesList a:link, .costumesList a:visited {
+    height: 100%;
+    width: 100%;
+    padding: 5px;
+    background-color: rgb(249, 193, 14);
+    border-radius: 10px;
+    color: rgb(256, 256, 256);
+  }
+
+  .costume a:hover, .costume a:active, .costumesList a:hover, .costumesList a:active {
+    background-color: rgb(255, 154, 0);
+  }
+
+  .singleCostume {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .costume-options {
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(256, 256, 256);
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    width: 600px;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .costume-options button {
+    height: 100%;
+    padding: 5px;
+    background-color: rgb(249, 193, 14);
+    color: rgb(256, 256, 256);
+    border-radius: 10px;
+    border: rgb(256, 256, 256);
+  }
+
+  .costume-options button:focus, .costume-options button:hover {
+    background-color: rgb(255, 154, 0);
+  }
+
+  .add-subtract button {
+    font-weight: bold;
+    color: black;
+    background-color: rgb(256, 256, 256);
+  }
+
+  .add-subtract button.add:focus, .add-subtract button.add:hover {
+    background-color: rgb(256, 256, 256);
+    color: green;
+  }
+
+  .add-subtract button.subtract:focus, .add-subtract button.subtract:hover {
+    background-color: rgb(256, 256, 256);
+    color: red;
+
+  .CheckoutHeader {
+    text-align: center;
+    padding-top: 50px;
+  }
+
+  .success {
+    text-align: center;
+    padding-top: 50px;
+  }
+
+  /* .box {
+    width: 400px;
+    min-height: 400px;
+  } */
+
+  button.is-block.is-info.is-large.is-fullwidth {
+    background-color: #85E21F;
+  }
+  
+  #witch {
+    width: 128px;
+    height: 128px;
+  }
+  
+  figure.avatar {
+    margin: 0 auto;
+  }
+  
+  div.container.has-text-centered {
+    padding: 0px 0px;
+  }  
+
+  @media only screen and (max-width: 850px) {
+    /* .sidenav {padding-top: 15px;} */
+    .sidenav a {font-size: 18px;}
+    h1 {font-size: 30px};
+
+    .container {max-height: fit-content}
+  }
+
+  #talkbubble {
+    width: 50%;
+    height: 100%;
+    background: #85E21F;
+    position: relative;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    margin-left: 30px;
+    margin-bottom: 70px; 
+    font-family: 'Henny Penny', cursive;
+    font-size: 80px;
+    text-align: center;
+  }
+    
+  #talkbubble:before {
+    content: "";
+    position: absolute;
+    right: 100%;
+    top: 100px;
+    width: 0;
+    height: 0;
+    border-top: 13px solid transparent;
+    border-right: 26px solid #85E21F;
+    border-bottom: 13px solid transparent;
+  }
